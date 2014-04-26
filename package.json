@@ -1,0 +1,22 @@
+{
+  "name": "ripple-gateway-webapp-example",
+  "version": "1.0.0",
+  "description": "An example angular webapp for interacting with Gatewayd.",
+  "main": "Gruntfile.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "readme": "ERROR: No README data found!",
+  "_id": "ripple-gateway-webapp-example@1.0.0",
+  "dist": {
+    "shasum": "350798fd7eb68d45cfda90f8d5644dd9696e47ca"
+  },
+  "_from": "ripple-gateway-webapp-example@1.0.0",
+  "_resolved": "https://registry.npmjs.org/ripple-gateway-webapp-example/-/ripple-gateway-webapp-example-1.0.0.tgz"
+}
