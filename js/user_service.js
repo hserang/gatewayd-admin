@@ -31,6 +31,7 @@ rippleGatewayApp.service('UserService', ['$http', '$location', 'Base64', functio
       loginUser({ name: name, password: password }, fn);
     },
     logout: function(fn) {
+      delete $http.defaults.headers.common['Authorization'];
       user.name = "";
       user.password = "";
       user.id = "";
