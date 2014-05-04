@@ -1,4 +1,4 @@
-angular.module('publicApp').service('Base64', ['$http','$location', function($http, $location) {
+angular.module('rippleGatewayApp').service('Base64', [function() {
 /**
 *
 *  Base64 encode / decode

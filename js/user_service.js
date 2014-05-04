@@ -1,4 +1,4 @@
-rippleGatewayApp.service('UserService', ['$http', '$location', function($http, $location) {
+rippleGatewayApp.service('UserService', ['$http', '$location', 'Base64', function($http, $location, Base64) {
   function registerUser(opts, fn) {
     $http({ method: "POST", url: '/v1/register/', data: opts })
     .success(function(response, status, headers, config) {
@@ -10,6 +10,8 @@ rippleGatewayApp.service('UserService', ['$http', '$location', function($http, $
   }
 
   function loginUser(opts, fn) {
+   $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(opts.name+':'+opts.password)
+
     $http({ method: "POST", url: '/v1/users/login', data: opts })
     .success(function(response, status, headers, config) {
       fn(null, response.user);

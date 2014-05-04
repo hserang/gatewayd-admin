@@ -13,7 +13,7 @@ angular.module('publicApp').service('UserService', ['$http','$location', 'Base64
 
     login: function(username, password) {
       $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(username+':'+password)
-			$http.get('/api/v1/users').success(function(resp){
+			$http.get('/v1/users').success(function(resp){
         if (resp.admin) {
           user.isLogged = true;
           user.admin = true;
