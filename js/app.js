@@ -5,14 +5,6 @@ var rippleGatewayApp = angular.module('rippleGatewayApp', [
 rippleGatewayApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-    when('/admin', {
-      controller: 'AdminCtrl',
-      templateUrl: 'views/admin/index.html'
-    }).
-    when('/account', {
-      controller: 'AdminCtrl',
-      templateUrl: 'views/admin.html'
-    }).
     when('/login', {
       controller: 'LoginCtrl',
       templateUrl: 'views/login.html'
@@ -21,33 +13,29 @@ rippleGatewayApp.config(['$routeProvider',
       controller: 'RegistrationCtrl',
       templateUrl: 'views/register.html'
     }).
+    when('/history', {
+      controller: 'AdminCtrl',
+      templateUrl: 'views/admin/history.html'
+    }).
     when('/deposits', {
       controller: 'AdminCtrl',
       templateUrl: 'views/admin/deposits.html'
-    }).
-    when('/payments/outgoing', {
-      controller: 'AdminCtrl',
-      templateUrl: 'views/admin/outgoing_payments.html'
-    }).
-    when('/payments/incoming', {
-      controller: 'AdminCtrl',
-      templateUrl: 'views/admin/incoming_payments.html'
     }).
     when('/withdrawals', {
       controller: 'AdminCtrl',
       templateUrl: 'views/admin/withdrawals.html'
     }).
     when('/users', {
-      controller: 'UsersCtrl',
-      templateUrl: 'views/users.html'
+      controller: 'AdminCtrl',
+      templateUrl: 'views/admin/users.html'
     }).
     when('/users/:id', {
-      controller: 'UserCtrl',
-      templateUrl: 'views/user.html'
+      controller: 'AdminCtrl',
+      templateUrl: 'views/admin/user.html'
     }).
     when('/account', {
       controller: 'AccountCtrl',
-      templateUrl: 'views/user.html'
+      templateUrl: 'views/user/account.html'
     }).
     when('/deposit', {
       controller: 'AccountCtrl',
