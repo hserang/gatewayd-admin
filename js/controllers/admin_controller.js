@@ -8,13 +8,28 @@ rippleGatewayApp.controller('AdminCtrl', [
 
   if (!$user.isAdmin) {  $location.path('/login') };
 
-  $scope.path = function() {$location.path() };
+  $scope.path = function() { $location.path() };
 
-  $scope.loading = true;
-  $scope.isHome = false;
-  $('#highlighted').hide();
+  $scope.externalTransactions = [];
+  $scope.users = [];
+  $scope.withdrawals = [];
+  $scope.currencies = [];
 
-  console.log('admin controller');
+  $api.getCurrencies(function(err, resp){
+    $scope.currencies = resp.CURRENCIES;
+  });
+
+  $api.getUsers(function(err, resp){
+    $scope.users = resp.users;
+  });
+
+  $api.getWithdrawals(function(err, resp){
+    $scope.withdrawals = resp.withdrawals;
+  });
+
+  $api.getExternalTransactions(function(err, resp){
+    $scope.externalTransactiosn = resp.data;
+  });
 
   $window.api = $api;
 
