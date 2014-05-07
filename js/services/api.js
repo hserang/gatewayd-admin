@@ -1,52 +1,74 @@
 rippleGatewayApp.service('ApiService', ['$http', function($http) {
 
+  function success(resp, status, headers, config){
+    fn(null, resp);
+  }
+
+  function error(resp, status, headers, config){
+    fn(resp, null);
+  }
+ 
   function API(){};
 
   API.prototype.getCurrencies = function(fn) {
     $http.get('/v1/currencies')
-    .success(function(resp, status, headers, config) {
-      fn(null, resp.currencies);
-    })
-    .error(function(data, stats, headers, config) {
-      fn(data, null);
-    });
+    .success(success)
+    .error(error);
   };
 
   API.prototype.getUserRippleTransactions = function(userId, fn) {
     http.get('/v1/users/'+userId+'/ripple_transactions')
-    .success(function(response, status, headers, config) {
-      fn(null, response.rippleTransactions);
-    })
-    .error(function(data, status, headers, config) {
-      fn(data, null);
-    });
+    .success(success)
+    .error(error);
   };
 
   API.prototype.getUserExternalTransactions = function(userId, fn) {
     http.get('/v1/users/'+userId+'/external_transactions')
-    .success(function(response, status, headers, config) {
-      fn(null, response.externalTransactions);
-    })
-    .error(function(data, status, headers, config) {
-      fn(data, null);
-    });
+    .success(success)
+    .error(error);
   };
 
   API.prototype.makeDeposit = function(externalAccountId, amount, currency) {
     var opts = { 
-      external_account_id: externalAccountId,, 
+      external_account_id: externalAccountId,
       amount: amount,
       currency: currency
     };
 
-    $http.post('/v1/deposits', opts)
-    .success(function(response, status, headers, config) {
-      fn(null, response.deposit);
-    })
-    .error(function(response, status, headers, config) {
-      fn(response.error, null);
-    });
+    $http({ method: "POST", url: '/v1/deposits/' })
+    .success(success)
+    .error(error);
   };
+
+  API.prototype.clearWithdrawal = function(id, fn) {
+    $http({ method: "POST", url: '/v1/withdrawals/'+id+'/clear' })
+    .success(success)
+    .error(error);
+  };
+
+  API.prototype.getIncomingPayments = function() {
+    $http({method: 'GET', url: '/v1/payments/incoming'})
+    .success(success)
+    .error(error);
+  }
+
+  API.prototype.getPendingWithdrawals = function() {
+    $http({method: 'GET', url: '/v1/withdrawals'})
+    .success(success)
+    .error(error);
+  }
+
+  API.prototype.getQueuedDeposits = function() {
+    $http({method: 'GET', url: '/v1/deposits'})
+    .success(success)
+    .error(error);
+  }
+
+  API.prototype.getOutgoingPayments = function() {
+    $http({method: 'GET', url: '/v1/payments/outgoing'})
+    .success(success)
+    .error(error);
+  }
 
   return new API;
 
