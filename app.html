@@ -214,67 +214,11 @@
 <!--Custom scripts mainly used to trigger libraries --> 
 <script src="theme/js/script.min.js"></script>
 
-
-<script>
-
-  function makeDeposit($scope, $http) {
-    console.log(makeDeposit);
-    $scope.loading = true;
-    $(".throbber").show(); 
-    var opts = { 
-      name: $scope.deposit.username, 
-      amount: $scope.deposit.amount,
-      currency: $scope.deposit.currency
-    };
-
-    $http.post('/v1/deposits', opts)
-    .success(function(response, status, headers, config) {
-      $scope.loading = false;
-      $(".throbber").hide(); 
-      $scope.deposit = response.deposit;
-    })
-    .error(function(data, status, headers, config) {
-      $scope.loading = false;
-      $(".throbber").hide(); 
-    });
-  }
-
-  function getUserExternalTransactions(http, userId, fn) {
-    http.get('/v1/users/'+userId+'/external_transactions')
-    .success(function(response, status, headers, config) {
-      fn(null, response.externalTransactions);
-    })
-    .error(function(data, status, headers, config) {
-      fn(data, null);
-    });
-  }
-
-  function getUserRippleTransactions(http, userId, fn) {
-    http.get('/v1/users/'+userId+'/ripple_transactions')
-    .success(function(response, status, headers, config) {
-      console.log(response);
-      fn(null, response.rippleTransactions);
-    })
-    .error(function(data, status, headers, config) {
-      console.log(data);
-      fn(data, null);
-    });
-  }
-
-  function getCurrencies($http, fn) {
-    $http.get('/v1/currencies')
-    .success(function(resp, status, headers, config) {
-      fn(null, resp.currencies);
-    })
-    .error(function(data, stats, headers, config) {
-      fn(data, null);
-    });
-  }
-
-</script>
+<!-- Gateway Application Scripts --> 
 <script src="/js/app.js"></script>
 <script src="/js/services/base64.js"></script>
 <script src="/js/services/user.js"></script>
+<script src="/js/services/api.js"></script>
 <script src="/js/login_controller.js"></script>
 <script src="/js/registration_controller.js"></script>
 <script src="/js/user_controller.js"></script>
