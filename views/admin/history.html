@@ -4,7 +4,7 @@
 </div>
 
 <div class='col-sm-12' ng-hide='loading'>
-<h4 class="margin-top-large">Deposits Queued For Processing</h4>
+<h4 class="margin-top-large">History</h4>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -12,14 +12,16 @@
         <th>External Account Id</th>
         <th>Currency</th>
         <th>Amount</th>
+        <th>Deposit?</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="deposit in queuedDeposits">
-        <td>{{ deposit.id }}</td>
-        <td>{{ deposit.external_account_id }}</td>
-        <td>{{ deposit.currency }}</td>
-        <td>{{ deposit.amount }}</td>
+      <tr ng-repeat="transaction in externalTransactions">
+        <td>{{ transaction.id }}</td>
+        <td>{{ transaction.external_account_id }}</td>
+        <td>{{ transaction.currency }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.deposit }}</td>
       </tr>
     </tbody>
   </table>
