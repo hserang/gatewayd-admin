@@ -10,7 +10,7 @@ rippleGatewayApp.controller('RegistrationCtrl', ['$scope', 'UserService', '$loca
         console.log('error registering user:', err);
       } else { 
         console.log('registered a new user:', user);
-        $location.path('/app#/users/35');
+        $location.path('/app#/users/'+user.id);
       }
     });
   };

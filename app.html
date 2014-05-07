@@ -44,8 +44,10 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="theme/img/icons/114x114.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="theme/img/icons/72x72.png">
 <link rel="apple-touch-icon-precomposed" href="theme/img/icons/default.png">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti' rel='stylesheet' type='text/css'>
 
+<!--
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti' rel='stylesheet' type='text/css'>
+-->
 <style>
   .throbber {
     text-align:center;
@@ -123,7 +125,7 @@
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/deposits" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposits</a></li>
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/withdrawals" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdrawals</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/deposits" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>History</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/history" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>History</a></li>
           </ul>
         </div>
         <!--/.navbar-collapse --> 
@@ -219,14 +221,11 @@
 <script src="/js/services/base64.js"></script>
 <script src="/js/services/user.js"></script>
 <script src="/js/services/api.js"></script>
-<script src="/js/login_controller.js"></script>
-<script src="/js/registration_controller.js"></script>
-<script src="/js/user_controller.js"></script>
-<script src="/js/users_controller.js"></script>
-<script src="/js/admin_controller.js"></script>
-<script src="/js/account_controller.js"></script>
-<script src="/js/admin_controller.js"></script>
-<script src="/js/main_controller.js"></script>
+<script src="/js/controllers/login_controller.js"></script>
+<script src="/js/controllers/registration_controller.js"></script>
+<script src="/js/controllers/admin_controller.js"></script>
+<script src="/js/controllers/account_controller.js"></script>
+<script src="/js/controllers/main_controller.js"></script>
 
 </body>
 </html>

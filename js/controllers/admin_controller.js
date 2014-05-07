@@ -14,5 +14,9 @@ rippleGatewayApp.controller('AdminCtrl', [
   $scope.isHome = false;
   $('#highlighted').hide();
 
+  console.log('admin controller');
+
+  $window.api = $api;
+
 }]);
 
