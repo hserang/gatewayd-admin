@@ -1,0 +1,45 @@
+<div class='container'>
+
+<div class="col-sm-6">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <td>Currency</td>
+                <td>Amount</td>
+            </tr>
+            <tr ng-repeat="balance in accountBalance">
+                <td>{{balance.currency}}</td>
+                <td>{{balance.value}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class='col-sm-12' ng-hide='loading'>
+    <h4 class="margin-top-large">Overview</h4>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>External Account Id</th>
+        <th>Currency</th>
+        <th>Amount</th>
+        <th>Deposit?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="transaction in clearedTransactions">
+        <td>{{ transaction.id }}</td>
+        <td>{{ transaction.external_account_id }}</td>
+        <td>{{ transaction.currency }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.deposit }}</td>
+      </tr>
+    </tbody>
+  </table>
+    <div style='text-align:center; margin: 0 auto' ng-hide="clearedTransactions">
+        <img class='throbber' src='/images/ripple_throbber.png'/>
+    </div>
+</div>
+
+</div>

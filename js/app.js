@@ -13,9 +13,9 @@ rippleGatewayApp.config(['$routeProvider',
       controller: 'RegistrationCtrl',
       templateUrl: 'views/register.html'
     }).
-    when('/history', {
+    when('/overview', {
       controller: 'AdminCtrl',
-      templateUrl: 'views/admin/history.html'
+      templateUrl: 'views/admin/overview.html'
     }).
     when('/deposits', {
       controller: 'AdminCtrl',

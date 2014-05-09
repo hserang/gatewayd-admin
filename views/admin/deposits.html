@@ -1,0 +1,71 @@
+<div class='container'>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="depositForm" ng-submit="submitDepositForm(depositForm.$valid)" novalidate>
+                <fieldset ng-disabled="isSubmitting">
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <label for="">User</label>
+                            <input type="text" ng-model="deposit.externalAccountId" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <label for="">Amount</label>
+                            <input type="text" type="number" name="amount" ng-model="deposit.amount" class="form-control" required />
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2">
+                            <label for="">Currency</label>
+                            <select name=""  ng-model="deposit.currency" class="form-control" required>
+                                <option value="{{c}}" ng-repeat="c in currencies">{{c}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <label for="">Confirm amount</label>
+                            <input type="text" name="amount2" type="number" match="deposit.amount" ng-model="deposit.amount2" class="form-control" required/>
+                        </div>
+                        <p ng-show="depositForm.amount2.$error.match" class="help-block">Amount must match</p>
+                    </div>
+                    <br/>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span ng-hide="isSubmitting">Issue to User</span>
+                                <span ng-show="isSubmitting">Making deposit ...</span>
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class='col-sm-12' ng-hide='loading'>
+        <h4 class="margin-top-large">Deposits Queued For Processing</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>External Account Id</th>
+                <th>Currency</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="deposit in externalTransactions">
+                <td>{{ deposit.id }}</td>
+                <td>{{ deposit.external_account_id }}</td>
+                <td>{{ deposit.currency }}</td>
+                <td>{{ deposit.amount }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div style='text-align:center; margin: 0 auto' ng-hide="externalTransactions">
+            <img class='throbber' src='/images/ripple_throbber.png'/>
+        </div>
+    </div>
+
+</div>

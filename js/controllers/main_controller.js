@@ -6,5 +6,6 @@ rippleGatewayApp.controller('MainCtrl', ['$scope', '$location', 'UserService', f
   });
 
   $scope.user = $user;
+
 }]);
 
