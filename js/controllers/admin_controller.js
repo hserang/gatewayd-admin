@@ -36,12 +36,21 @@ rippleGatewayApp.controller('AdminCtrl', [
 
   $api.getUsers(function(err, resp){
     $scope.users = resp.users;
-
-    $api.getRippleAddress($scope.users[0].id, function(err, resp){
-      $scope.users[0].independent_address = resp.ripple_address.address;
-      //console.log('!!!!!!!!!!!!', resp.ripple_address.address);
-    });
-
+//    for(i=0; i < $scope.users.length; i++){
+//      $api.getRippleAddress($scope.users[i].id, function(err, resp){
+//        //$scope.users[i].independent_address = resp.ripple_address.address;
+//        console.log('$scope.users', $scope.users);
+//      });
+//    }
+    angular.forEach(resp.users, function(key, value){
+      $api.getRippleAddress(key.id, function(err, resp) {
+        console.log('resp', resp);
+        if(resp.ripple_address.id == key.id){
+          key.independent_address = resp.ripple_address.address;
+        }
+      });
+    })
+   
   });
 
   $api.getWithdrawals(function(err, resp){
