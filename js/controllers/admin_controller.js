@@ -39,7 +39,6 @@ rippleGatewayApp.controller('AdminCtrl', [
 
     angular.forEach(resp.users, function(key, value){
       $api.getRippleAddress(key.id, function(err, resp) {
-        console.log('resp', resp);
         if(resp.ripple_address.id == key.id){
           key.independent_address = resp.ripple_address.address;
         }
@@ -71,8 +70,6 @@ rippleGatewayApp.controller('AdminCtrl', [
     });
   };
 
-
-
   $scope.deposit = {};
   
   $scope.submitDepositForm = function(valid){
@@ -92,10 +89,6 @@ rippleGatewayApp.controller('AdminCtrl', [
         });
       });
   };
-
-
-
-
 
   $window.api = $api;
 
