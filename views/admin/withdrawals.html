@@ -1,11 +1,9 @@
 <div class='container'>
-<div style='text-align:center; margin: 0 auto'>
-  <img class='throbber' src='/images/ripple_throbber.png'/>
-</div>
+
 
 <div class='col-sm-12' ng-hide='loading'>
 <h4 class="margin-top-large">Pending Withdrawals</h4>
-  <table class="table table-bordered">
+  <table class="table">
     <thead>
       <tr>
         <th>#</th>
@@ -21,10 +19,13 @@
         <td>{{ withdrawal.external_account_id }}</td>
         <td>{{ withdrawal.currency }}</td>
         <td>{{ withdrawal.amount }}</td>
-        <td><button ng-click="clearWithdrawal(withdrawal.id)" class='clearWithdrawal'>Clear Withdrawal</button></td>
+        <td><button ng-click="clearWithdrawal(withdrawal.id)" class='btn btn-danger clearWithdrawal'>Clear Withdrawal</button></td>
       </tr>
     </tbody>
   </table>
+  <div style='text-align:center; margin: 0 auto'>
+    <img class='throbber' src='/images/ripple_throbber.png' ng-hide="withdrawals.length > 0"/>
+  </div>
 </div>
 
 </div>

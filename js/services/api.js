@@ -32,14 +32,14 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
-  API.prototype.makeDeposit = function(externalAccountId, amount, currency, fn) {
+  API.prototype.makeDeposit = function(deposit, fn) {
     var opts = { 
-      external_account_id: externalAccountId,
-      amount: amount,
-      currency: currency
+      external_account_id: deposit.externalAccountId,
+      amount: deposit.amount,
+      currency: deposit.currency
     };
 
-    $http({ method: "POST", url: '/v1/deposits/' })
+    $http({ method: "POST", url: '/v1/deposits', data: opts })
     .success(success(fn))
     .error(error(fn));
   };
@@ -81,13 +81,32 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   };
 
   API.prototype.getExternalTransactions = function(fn){
-    $http({ method: 'GET', url: '/api/external_transactions' })
+    $http({ method: 'GET', url: '/v1/deposits' })
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+
+  API.prototype.getClearedTransactions = function(fn){
+    $http({ method: 'GET', url: '/v1/cleared' })
     .success(success(fn))
     .error(error(fn));
   };
 
   API.prototype.getWithdrawals = function(fn){
     $http({ method: 'GET', url: '/v1/withdrawals' })
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getBalance = function(fn){
+    $http({method: 'GET', url: '/v1/get_account_balance'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getRippleAddress = function(id,fn){
+    $http({method: 'GET', url: '/v1/ripple_addresses/'+id})
     .success(success(fn))
     .error(error(fn));
   };

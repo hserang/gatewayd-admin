@@ -3,10 +3,11 @@ rippleGatewayApp.controller('LoginCtrl', ['$scope', 'UserService', '$location', 
   $scope.login = function() {
     var password = $scope.user.password;
     var name = $scope.user.name;
+
     $user.login(name, password, function(err, user) {
       
       if (err) {
-        console.log('error');
+        console.log('error', err);
       } else {
         if (user) {
           $user.isLogged = true; 
@@ -14,7 +15,7 @@ rippleGatewayApp.controller('LoginCtrl', ['$scope', 'UserService', '$location', 
           if (user.admin) {
             $user.name = 'admin';
             $user.isAdmin = true;
-            $location.path('/admin');
+            $location.path('/overview');
           } else {
             $user.name = user.name;
             $user.id = user.id;
