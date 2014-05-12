@@ -10,7 +10,7 @@
             </tr>
             <tr ng-repeat="balance in accountBalance">
                 <td>{{balance.currency}}</td>
-                <td>{{balance.value}}</td>
+                <td>{{balance.value | number:2}}</td>
             </tr>
         </table>
     </div>
