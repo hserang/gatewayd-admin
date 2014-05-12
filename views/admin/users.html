@@ -8,7 +8,7 @@
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Withdraw Address</th>
+
             <th>Independent Address</th>
           </tr>
         </thead>
@@ -16,7 +16,6 @@
           <tr ng-click='navigateToUser(user.id)' ng-repeat="user in users">
             <td>{{ user.id }}</td>
             <td>{{ user.name }}</td>
-            <td>{{ user.withdraw_address }}</td>
             <td>{{ user.independent_address }}</td>
           </tr>
         </tbody>
