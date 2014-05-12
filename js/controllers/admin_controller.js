@@ -36,12 +36,7 @@ rippleGatewayApp.controller('AdminCtrl', [
 
   $api.getUsers(function(err, resp){
     $scope.users = resp.users;
-//    for(i=0; i < $scope.users.length; i++){
-//      $api.getRippleAddress($scope.users[i].id, function(err, resp){
-//        //$scope.users[i].independent_address = resp.ripple_address.address;
-//        console.log('$scope.users', $scope.users);
-//      });
-//    }
+
     angular.forEach(resp.users, function(key, value){
       $api.getRippleAddress(key.id, function(err, resp) {
         console.log('resp', resp);
