@@ -89,8 +89,8 @@
           </div>
           <div class="col-md-4">
               <div class="pull-right">
-                  <div ng-hide='user.isLogged' class="btn-group user-menu"> <a ng-href="/app#/login" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Login</a></div>
-                  <div ng-hide='user.isLogged' class="btn-group user-menu"> <a ng-href="/app#/register" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Register</a> </div>
+                  <div ng-hide='user.isLogged' class="btn-group user-menu"> <a ng-href="/#/login" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Login</a></div>
+                  <div ng-hide='user.isLogged' class="btn-group user-menu"> <a ng-href="/#/register" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Register</a> </div>
                   <div ng-show='user.isLogged' class="btn-group user-menu"> <a ng-click="user.logout()" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Logout</a> </div>
               </div>
           </div>
@@ -109,8 +109,8 @@
         
         <!--user menu-->
 
-        <div ng-show="user.isLogged && !user.isAdmin"><a ng-href="/app#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, {{ user.name }}</a></div>
-        <div ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, Admin</a></div>
+        <div ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, {{ user.name }}</a></div>
+        <div ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, Admin</a></div>
 
         
         <!--everything within this div is collapsed on mobile-->
@@ -126,13 +126,13 @@
                 <li role="presentation"><a role="menuitem" href="theme/contact.htm" tabindex="-1" class="menu-item">Contact</a></li>
               </ul>
             </li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/overview" ng-class="{active: location.path() == '/overview'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Overview</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/app#/account" ng-class="{active: path == '/account'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Account</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/app#/deposit" ng-class="{active: path == '/deposit'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposit</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/app#/withdraw" ng-class="{active: path == '/withdraw'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdraw</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/deposits" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposits</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/app#/withdrawals" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdrawals</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/overview" ng-class="{active: location.path() == '/overview'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Overview</a></li>
+            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/account" ng-class="{active: path == '/account'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Account</a></li>
+            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/deposit" ng-class="{active: path == '/deposit'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposit</a></li>
+            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/withdraw" ng-class="{active: path == '/withdraw'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdraw</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/deposits" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposits</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/withdrawals" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdrawals</a></li>
 
           </ul>
         </div>
