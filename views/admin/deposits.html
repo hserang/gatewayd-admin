@@ -52,14 +52,16 @@
                 <th>External Account Id</th>
                 <th>Currency</th>
                 <th>Amount</th>
+                <th> </th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="deposit in externalTransactions">
+            <tr ng-repeat="deposit in externalTransactions | orderBy: 'amount'">
                 <td>{{ deposit.id }}</td>
                 <td>{{ deposit.external_account_id }}</td>
                 <td>{{ deposit.currency }}</td>
                 <td>{{ deposit.amount }}</td>
+                <td style="color: #aaa;">{{ deposit.createdAt | date:'short'}}</td>
             </tr>
             </tbody>
         </table>

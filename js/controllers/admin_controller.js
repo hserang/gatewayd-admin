@@ -16,6 +16,7 @@ rippleGatewayApp.controller('AdminCtrl', [
   $scope.currencies = [];
   $scope.clearedTransactions = [];
   $scope.accountBalance = [];
+  $scope.liabilities = [];
 
   //UI states
   $scope.isSubmitting = false;
@@ -23,6 +24,12 @@ rippleGatewayApp.controller('AdminCtrl', [
   $api.getBalance(function(err, resp){
     if(!err && resp.success){
       $scope.accountBalance = resp.balances;
+    }
+  });
+
+  $api.getLiabilities(function(err, resp){
+    if(!err && resp.success){
+      $scope.liabilities = resp.balances;
     }
   });
 

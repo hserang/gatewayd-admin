@@ -11,6 +11,7 @@
         <th>Currency</th>
         <th>Amount</th>
         <th>Action</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +20,9 @@
         <td>{{ withdrawal.external_account_id }}</td>
         <td>{{ withdrawal.currency }}</td>
         <td>{{ withdrawal.amount }}</td>
-        <td><button ng-click="clearWithdrawal(withdrawal.id)" class='btn btn-danger clearWithdrawal'>Clear Withdrawal</button></td>
+          <td><button ng-click="clearWithdrawal(withdrawal.id)" class='btn btn-danger clearWithdrawal'>Clear Withdrawal</button></td>
+        <td style="color: #aaa;">{{ withdrawal.createdAt | date:'short'}}</td>
+
       </tr>
     </tbody>
   </table>

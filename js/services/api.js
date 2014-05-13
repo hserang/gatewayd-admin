@@ -100,7 +100,13 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   };
 
   API.prototype.getBalance = function(fn){
-    $http({method: 'GET', url: '/v1/get_account_balance'})
+    $http({method: 'GET', url: '/v1/balances'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getLiabilities = function(fn){
+    $http({method: 'GET', url: '/v1/liabilities'})
     .success(success(fn))
     .error(error(fn));
   };
