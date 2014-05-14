@@ -46,7 +46,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="transaction in externalTransactions | orderBy:orderProperty">
+      <tr ng-repeat="transaction in externalTransactions | orderBy:orderProperty:reverse">
         <td>{{ transaction.id }}</td>
         <td>{{ transaction.external_account_id }}</td>
         <td>{{ transaction.currency }}</td>
