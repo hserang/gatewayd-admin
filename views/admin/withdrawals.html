@@ -26,8 +26,8 @@
       </tr>
     </tbody>
   </table>
-  <div style='text-align:center; margin: 0 auto'>
-    <img class='throbber' src='/images/ripple_throbber.png' ng-hide="withdrawals.length > 0"/>
+  <div style='text-align:center; margin: 0 auto' ng-show="isLoading">
+    <img class='throbber' src='/images/ripple_throbber.png'/>
   </div>
 </div>
 
