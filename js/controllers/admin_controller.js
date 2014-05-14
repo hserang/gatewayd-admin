@@ -17,9 +17,11 @@ rippleGatewayApp.controller('AdminCtrl', [
   $scope.clearedTransactions = [];
   $scope.accountBalance = [];
   $scope.liabilities = [];
+  $scope.deposit = {};
 
   //UI states
   $scope.isSubmitting = false;
+  $scope.isLoading = true;
 
   $api.getBalance(function(err, resp){
     if(!err && resp.success){
@@ -30,6 +32,7 @@ rippleGatewayApp.controller('AdminCtrl', [
   $api.getLiabilities(function(err, resp){
     if(!err && resp.success){
       $scope.liabilities = resp.balances;
+      $scope.isLoading = false;
     }
   });
 
@@ -38,8 +41,6 @@ rippleGatewayApp.controller('AdminCtrl', [
       $scope.currencies.push(value);
     });
   });
-
-
 
   $api.getUsers(function(err, resp){
     $scope.users = resp.users;
@@ -56,10 +57,12 @@ rippleGatewayApp.controller('AdminCtrl', [
 
   $api.getWithdrawals(function(err, resp){
     $scope.withdrawals = resp.withdrawals;
+    $scope.isLoading = false;
   });
 
   $api.getExternalTransactions(function(err, resp){
     $scope.externalTransactions = resp.deposits;
+    $rootScope.isLoading = false;
   });
 
   $api.getClearedTransactions(function(err, resp){
@@ -72,13 +75,12 @@ rippleGatewayApp.controller('AdminCtrl', [
       if(!err){
         $api.getWithdrawals(function(err, resp){
           $scope.withdrawals = resp.withdrawals;
+          $rootScope.isLoading = false;
         });
       }
     });
   };
 
-  $scope.deposit = {};
-  
   $scope.submitDepositForm = function(valid){
       $scope.isSubmitting = true;
       delete $scope.deposit.amount2;
@@ -89,6 +91,7 @@ rippleGatewayApp.controller('AdminCtrl', [
         $api.getExternalTransactions(function(err, resp){
           $scope.externalTransactions = resp.deposits;
           $scope.isSubmitting = false;
+          $rootScope.isLoading = false;
 
           angular.forEach($scope.deposit, function(key, value){
             $scope.deposit[value] = null;
