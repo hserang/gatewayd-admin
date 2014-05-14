@@ -24,6 +24,7 @@ rippleGatewayApp.controller('AdminCtrl', [
   $scope.isLoading = true;
 
   $scope.orderProperty = 'createdAt';
+  $scope.reverse = true;
 
   $api.getBalance(function(err, resp){
     if(!err && resp.success){
@@ -70,11 +71,13 @@ rippleGatewayApp.controller('AdminCtrl', [
       resp.external_transactions.forEach(function(transaction){
         transactions.push(transaction);
       });
+      
       outstandingCalls -= 1;
       if (outstandingCalls == 0){
         fn(null, transactions);
       }
     }
+    
     $api.getExternalTransactions({ status: 'processed' }, function(err, resp){
       if (err) { fn(err, null); return };
       handleResponse(resp);
@@ -84,6 +87,7 @@ rippleGatewayApp.controller('AdminCtrl', [
       if (err) { fn(err, null); return };
       handleResponse(resp, fn);
     });
+    
   }
 
   $scope.clearWithdrawal = function(id) {
@@ -103,10 +107,15 @@ rippleGatewayApp.controller('AdminCtrl', [
 
       console.log($scope.deposit);
       $api.makeDeposit($scope.deposit, function(data){
-        getClearedTransactions(function(transactions){
-          $scope.externalTransactions = resp.transactions;
+        getClearedTransactions(function(err, transactions){
+
+          if (err) { console.log('error', err); return; }
+
+          $scope.externalTransactions = transactions;
           $scope.isSubmitting = false;
           $scope.isLoading = false;
+
+          //Clear form
           angular.forEach($scope.deposit, function(key, value){
             $scope.deposit[value] = null;
           });
@@ -115,7 +124,8 @@ rippleGatewayApp.controller('AdminCtrl', [
   };
 
   getClearedTransactions(function(err, transactions){
-    if (err) { console.log('error', err); return; };
+    if (err) { console.log('error', err); return; }
+
     $scope.externalTransactions = transactions;
     $scope.isSubmitting = false;
     $scope.isLoading = false;
