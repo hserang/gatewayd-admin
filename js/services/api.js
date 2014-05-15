@@ -11,7 +11,16 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
       fn(resp, null);
     };
   };
- 
+
+  function serialize(obj) {
+    var str = [];
+    for(var p in obj)
+      if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      }
+    return str.join("&");
+  }
+
   function API(){};
 
   API.prototype.getCurrencies = function(fn) {
@@ -86,12 +95,17 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
-
   API.prototype.getClearedTransactions = function(fn){
     $http({ method: 'GET', url: '/v1/cleared' })
     .success(success(fn))
     .error(error(fn));
   };
+
+  API.prototype.getExternalTransactions = function(query, fn){
+    $http({ method: 'GET', url: '/v1/external_transactions?'+serialize(query) })
+    .success(success(fn))
+    .error(error(fn));
+  }
 
   API.prototype.getWithdrawals = function(fn){
     $http({ method: 'GET', url: '/v1/withdrawals' })
