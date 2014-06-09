@@ -9,6 +9,10 @@ rippleGatewayApp.config(['$routeProvider',
       controller: 'LoginCtrl',
       templateUrl: 'views/login.html'
     }).
+    when('/setup', {
+      controller: 'SetupCtrl',
+      templateUrl: 'views/setup.html'
+    }).
     when('/register', {
       controller: 'RegistrationCtrl',
       templateUrl: 'views/register.html'
