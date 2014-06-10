@@ -131,6 +131,16 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.setup = function(configuration, fn) {
+    $http({
+      method: 'POST',
+      url: '/v1/setup',
+      data: configuration
+    })
+    .success(success(fn))
+    .error(error(fn));
+  };
+
   return new API;
 
 }]);

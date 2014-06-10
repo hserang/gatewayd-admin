@@ -1,24 +1,31 @@
 <div class="container"> 
   <!-- Login form -->
-  <form class="form-login form-wrapper form-narrow" ng-submit="login()">
+  <form class="form-login form-wrapper form-narrow" ng-submit="postSetup()" ng-hide='setupComplete'>
     <h3 class="title-divider"><span>Setup</span></h3> 
     <div class="form-group">
       <label for="setup-database-url">Database URL</label>
+      <p ng-show='errors.database_url' style='color:red'>{{ errors.database_url }}</p>
       <input type="text" ng-model="setup.database_url" id="setup-database-url" class="form-control" placeholder="postgres://user:password@host:port/database">
     </div>
     <div class="form-group">
       <label for="setup-ripple-rest-url">Ripple REST URL</label>
+      <p ng-show='errors.ripple_rest_url' style='color:red'>{{ errors.ripple_rest_url }}</p>
       <input type="text" ng-model="setup.ripple_rest_url" id="setup-ripple-rest-url" class="form-control" placeholder="http://localhost:5990/"/>
     </div>
     <div class="form-group">
       <label for="setup-ripple-address">Ripple Address</label>
+      <p ng-show='errors.ripple_address' style='color:red'>{{ errors.ripple_address }}</p>
       <input type="text" ng-model="setup.ripple_address" id="setup-ripple-address" class="form-control" placeholder="rsBxWbcdV8KwjzjFSCMUKue3pLJexaMF13"/>
     </div>
     <div class="form-group">
-      <label for="setup-currency">Currency</label>
-      <input type="text" ng-model="setup.currency" id="setup-ripple-address" class="form-control" placeholder="rsBxWbcdV8KwjzjFSCMUKue3pLJexaMF13"/>
+      <label for="setup-ripple-secret">Ripple Secret</label>
+      <p ng-show='errors.cold_wallet_secret' style='color:red'>{{ errors.cold_wallet_secret }}</p>
+      <input type="text" ng-model="setup.cold_wallet_secret" id="setup-ripple-secret" class="form-control" placeholder="this will not be saved to disk!"/>
     </div>
-    <h3 class='bg-info lead pull-center' style='padding:10px'>Add another currency   <button class='glyphicon glyphicon-plus'></button></h3>
+    <div class="form-group">
+      <label for="setup-ripple-address">Currency</label>
+      <input type="text" ng-model="setup.currency" id="setup-ripple-address" class="form-control" placeholder="3-digit currency code, e.g. BTC"/>
+    </div>
     <button type="submit" class="btn btn-primary">Setup</button>
   </form>
 </div>
