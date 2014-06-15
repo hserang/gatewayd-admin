@@ -141,6 +141,20 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.setupStatus = function(fn) {
+    $http({method: 'GET', url: '/v1/setup'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.launchGateway = function(fn){
+    var processes = { processes : ["deposits", "outgoing", "incoming", "withdrawals", "server"] };
+
+    $http({method: 'POST', url: '/v1/start', data: processes})
+      .success(success(fn))
+      .error(error(fn));
+  };
+
   return new API;
 
 }]);
