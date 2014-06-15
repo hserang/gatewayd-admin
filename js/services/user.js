@@ -1,6 +1,7 @@
 rippleGatewayApp.service('UserService', ['$http', '$location', 'Base64', function($http, $location, Base64) {
+
   function registerUser(opts, fn) {
-    $http({ method: "POST", url: '/v1/registrations', data: opts })
+    $http({ method: "POST", url: '/v1/register', data: opts })
     .success(function(response, status, headers, config) {
       fn(null, response.user);
     })
