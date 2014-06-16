@@ -4,8 +4,11 @@ rippleGatewayApp.controller('SetupCtrl', [
   'ApiService',
   'UserService',
   function($scope, $location, $api, $user) {
-
-  $scope.setup = {};
+  //pre-fill default options
+  $scope.setup = {
+    database_url: 'postgres://postgres:postgres@localhost:5432/ripple_gateway',
+    ripple_rest_url: 'http://localhost:5990/'
+  };
   $scope.setupResults = {};
   $scope.errors = {};
   $scope.errorsExist = false;
