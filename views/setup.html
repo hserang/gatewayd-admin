@@ -23,14 +23,26 @@
           <p ng-show='errors.cold_wallet_secret' style='color:red'>{{ errors.cold_wallet_secret }}</p>
           <input type="text" ng-model="setup.cold_wallet_secret" id="setup-ripple-secret" class="form-control" placeholder="this will not be saved to disk!"/>
         </div>
-        <div class="form-group">
-          <label for="setup-ripple-address">Currency</label>
-          <input type="text" ng-model="setup.currency" id="setup-ripple-address" class="form-control" placeholder="3-digit currency code, e.g. BTC"/>
+
+        <div class="row currencies">
+          <div class="col-xs-3">
+              <label for="setup-ripple-address">Currency</label>
+              <input type="text" ng-model="setup.currency" id="setup-currency" class="form-control" placeholder="3-digit currency code, e.g. BTC" width="48%"/>
+          </div>
+          <div class="col-xs-5">
+              <label for="setup-ripple-address">Amount to issue</label>
+              <input type="text" ng-model="setup.amount" id="setup-amount" class="form-control" placeholder="enter amount" width="48%"/>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">
-            <span ng-show="isSubmitting">Setting up your gateway ...</span>
-            <span ng-hide="isSubmitting">Setup</span>
-        </button>
+
+        <div class="form-group">
+            <br/>
+          <button type="submit" class="btn btn-primary">
+             <span ng-show="isSubmitting">Setting up your gateway ...</span>
+             <span ng-hide="isSubmitting">Setup</span>
+          </button>
+        </div>
+
     </fieldset>
   </form>
 
