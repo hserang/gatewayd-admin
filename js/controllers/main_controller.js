@@ -3,7 +3,7 @@ rippleGatewayApp.controller('MainCtrl', ['$scope', '$location', 'UserService', '
 
     $api.setupStatus(function(error, response){
       if(error || !response.success){
-        alert('setup status error', error);
+        console.log('setup status error', error);
       } else if (!response.setup_complete) {
           $location.path('/setup');
       } else if (!$user.isLogged && $location.path() != '/register') {
