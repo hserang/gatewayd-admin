@@ -49,6 +49,10 @@ rippleGatewayApp.config(['$routeProvider',
       controller: 'AccountCtrl',
       templateUrl: 'views/user/withdraw.html'
     }).
+    when('/account', {
+      controller: 'UserCtrl',
+      templateUrl: 'views/user/account.html'
+    }).
     otherwise({
       redirectTo: '/login'
     });

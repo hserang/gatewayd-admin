@@ -20,7 +20,7 @@ rippleGatewayApp.controller('LoginCtrl', ['$scope', 'UserService', '$location', 
             $user.name = user.name;
             $user.id = user.id;
             $user.isAdmin = false;
-            $location.path('/users/'+user.id);
+            $location.path('/account');
           }
         }
       } 
