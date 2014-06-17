@@ -14,15 +14,23 @@ rippleGatewayApp.controller('SetupCtrl', [
   $scope.errorsExist = false;
   $scope.setupComplete = false;
   $scope.isSubmitting = false;
-  console.log($scope.setup);
+  $scope.progressBar = 0;
+  $scope.setup.currencies = {};
+
+  $scope.addMoreCurrencies = function(currency, amount){
+    this.setup.currencies[currency] = amount;
+    $scope.amount = null;
+    $scope.currency = null;
+  };
+
+  $scope.removeCurrency = function(currency){
+    delete this.setup.currencies[currency];
+  };
+
   $scope.postSetup = function(){
     $scope.isSubmitting = true;
-
-    $scope.setup.currencies = {};
-    $scope.setup.currencies[$scope.setup.currency] = 10;
-
+    $scope.pollProgress();
     $api.setup({ config: $scope.setup }, function(error, response){
-
       if (error) {
         $scope.errors = {};
         var errors = error.errors;
@@ -37,12 +45,22 @@ rippleGatewayApp.controller('SetupCtrl', [
         console.log('ERROR', error); 
       } else {
         console.log('RESPONSE', response);
+
         $scope.setupResults = response;
         $scope.setupComplete = true;
         $scope.isSubmitting = false;
       }
     });
   };
+
+    $scope.pollProgress = function(){
+      $api.setupStatus(function(error, response){
+        $scope.progressBar = response.progress;
+      });
+      setTimeout(function(){
+        $scope.pollProgress();
+      }, 700);
+    };
 
   $scope.launchGateway = function(){
     $user.login($scope.setupResults.results.admin_login.username, $scope.setupResults.results.admin_login.password, function(err, success){
@@ -60,6 +78,9 @@ rippleGatewayApp.controller('SetupCtrl', [
       }
     });
   };
+
+  window.setup = $scope.setup;
+
 
 }]);
 
