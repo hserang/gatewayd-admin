@@ -1,8 +1,9 @@
 rippleGatewayApp.controller('AccountCtrl', [
   '$scope', 
   '$http', 
+  'ApiService',
   '$location', 
-  'UserService', function($scope, $http, $location, $user){
+  'UserService', function($scope, $http, $api, $location, $user){
   
   if (!$user.isLogged) {  $location.path('/login') };
   if ($user.isAdmin) {  $location.path('/admin') };
@@ -11,19 +12,18 @@ rippleGatewayApp.controller('AccountCtrl', [
   $scope.loading = true;  
   $scope.externalTransactions = [];
   $scope.rippleTransactions = [];
-  getUserExternalTransactions($http, userId, function(err, transactions) {
+  $api.getUserExternalTransactions(userId, function(err, transactions) {
     $scope.loading = false;
     $scope.externalTransactions = transactions;
   });
 
-  getUserRippleTransactions($http, userId, function(err, transactions) {
+  $api.getUserRippleTransactions(userId, function(err, transactions) {
     $scope.loading = false;
     $scope.rippleTransactions = transactions;
   });
 
   $scope.withdrawAddress = [];
   function getUserWithdrawalAddress(fn) {
-    console.log('getUserWithdrawalAddress');
     $http({ method: 'GET', url: "/v1/users/"+$user.id+"/ripple_addresses" })  
     .success(function(response, status, headers, config) {
       var rippleAddresses = response.rippleAddresses;

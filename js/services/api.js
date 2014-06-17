@@ -30,13 +30,13 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   };
 
   API.prototype.getUserRippleTransactions = function(userId, fn) {
-    http.get('/v1/users/'+userId+'/ripple_transactions')
+    $http.get('/v1/users/'+userId+'/ripple_transactions')
     .success(success(fn))
     .error(error(fn));
   };
 
   API.prototype.getUserExternalTransactions = function(userId, fn) {
-    http.get('/v1/users/'+userId+'/external_transactions')
+    $http.get('/v1/users/'+userId+'/external_transactions')
     .success(success(fn))
     .error(error(fn));
   };
