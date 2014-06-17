@@ -7,7 +7,8 @@ rippleGatewayApp.controller('SetupCtrl', [
   //pre-fill default options
   $scope.setup = {
     database_url: 'postgres://postgres:postgres@localhost:5432/ripple_gateway',
-    ripple_rest_url: 'http://localhost:5990/'
+    ripple_rest_url: 'http://localhost:5990/',
+    currencies: {}
   };
   $scope.setupResults = {};
   $scope.errors = {};
@@ -15,21 +16,22 @@ rippleGatewayApp.controller('SetupCtrl', [
   $scope.setupComplete = false;
   $scope.isSubmitting = false;
   $scope.progressBar = 0;
-  $scope.setup.currencies = {};
 
-  $scope.addMoreCurrencies = function(currency, amount){
+  //TODO: enable issuing multiple currencies at a time in the future
+  $scope.addCurrencies = function(currency, amount){
     this.setup.currencies[currency] = amount;
-    $scope.amount = null;
-    $scope.currency = null;
+    console.log(this.setup.currencies);
   };
 
   $scope.removeCurrency = function(currency){
-    delete this.setup.currencies[currency];
+    delete this.currencies[currency];
   };
-
   $scope.postSetup = function(){
     $scope.isSubmitting = true;
+    $scope.addCurrencies($scope.currency, $scope.amount);
+
     $scope.pollProgress();
+
     $api.setup({ config: $scope.setup }, function(error, response){
       if (error) {
         $scope.errors = {};
@@ -44,6 +46,7 @@ rippleGatewayApp.controller('SetupCtrl', [
         $scope.isSubmitting = false;
         console.log('ERROR', error); 
       } else {
+
         console.log('RESPONSE', response);
 
         $scope.setupResults = response;
@@ -78,9 +81,6 @@ rippleGatewayApp.controller('SetupCtrl', [
       }
     });
   };
-
-  window.setup = $scope.setup;
-
 
 }]);
 
