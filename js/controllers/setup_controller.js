@@ -61,7 +61,9 @@ rippleGatewayApp.controller('SetupCtrl', [
         $scope.progressBar = response.progress;
       });
       setTimeout(function(){
-        $scope.pollProgress();
+        if(!$scope.setupComplete) {
+          $scope.pollProgress();
+        }
       }, 700);
     };
 
