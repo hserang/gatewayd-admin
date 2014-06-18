@@ -7,22 +7,32 @@ rippleGatewayApp.controller('SetupCtrl', [
   //pre-fill default options
   $scope.setup = {
     database_url: 'postgres://postgres:postgres@localhost:5432/ripple_gateway',
-    ripple_rest_url: 'http://localhost:5990/'
+    ripple_rest_url: 'http://localhost:5990/',
+    currencies: {}
   };
   $scope.setupResults = {};
   $scope.errors = {};
   $scope.errorsExist = false;
   $scope.setupComplete = false;
   $scope.isSubmitting = false;
-  console.log($scope.setup);
+  $scope.progressBar = 0;
+
+  //TODO: enable issuing multiple currencies at a time in the future
+  $scope.addCurrencies = function(currency, amount){
+    this.setup.currencies[currency] = amount;
+    console.log(this.setup.currencies);
+  };
+
+  $scope.removeCurrency = function(currency){
+    delete this.currencies[currency];
+  };
   $scope.postSetup = function(){
     $scope.isSubmitting = true;
+    $scope.addCurrencies($scope.currency, $scope.amount);
 
-    $scope.setup.currencies = {};
-    $scope.setup.currencies[$scope.setup.currency] = 10;
+    $scope.pollProgress();
 
     $api.setup({ config: $scope.setup }, function(error, response){
-
       if (error) {
         $scope.errors = {};
         var errors = error.errors;
@@ -36,13 +46,26 @@ rippleGatewayApp.controller('SetupCtrl', [
         $scope.isSubmitting = false;
         console.log('ERROR', error); 
       } else {
+
         console.log('RESPONSE', response);
+
         $scope.setupResults = response;
         $scope.setupComplete = true;
         $scope.isSubmitting = false;
       }
     });
   };
+
+    $scope.pollProgress = function(){
+      $api.setupStatus(function(error, response){
+        $scope.progressBar = response.progress;
+      });
+      setTimeout(function(){
+        if(!$scope.setupComplete) {
+          $scope.pollProgress();
+        }
+      }, 700);
+    };
 
   $scope.launchGateway = function(){
     $user.login($scope.setupResults.results.admin_login.username, $scope.setupResults.results.admin_login.password, function(err, success){

@@ -1,62 +1,92 @@
-<div class="container"> 
-  <!-- Login form -->
-  <form class="form-login form-wrapper form-narrow" ng-submit="postSetup()" ng-hide='setupComplete'>
-      <fieldset ng-disabled="isSubmitting">
-        <h3 class="title-divider"><span>Setup</span></h3>
-        <div class="form-group">
-          <label for="setup-database-url">Database URL</label>
-          <p ng-show='errors.database_url' style='color:red'>{{ errors.database_url }}</p>
-          <input type="text" ng-model="setup.database_url" id="setup-database-url" class="form-control" placeholder="postgres://user:password@host:port/database">
-        </div>
-        <div class="form-group">
-          <label for="setup-ripple-rest-url">Ripple REST URL</label>
-          <p ng-show='errors.ripple_rest_url' style='color:red'>{{ errors.ripple_rest_url }}</p>
-          <input type="text" ng-model="setup.ripple_rest_url" id="setup-ripple-rest-url" class="form-control" placeholder="http://localhost:5990/"/>
-        </div>
-        <div class="form-group">
-          <label for="setup-ripple-address">Ripple Address</label>
-          <p ng-show='errors.ripple_address' style='color:red'>{{ errors.ripple_address }}</p>
-          <input type="text" ng-model="setup.ripple_address" id="setup-ripple-address" class="form-control" placeholder="rsBxWbcdV8KwjzjFSCMUKue3pLJexaMF13"/>
-        </div>
-        <div class="form-group">
-          <label for="setup-ripple-secret">Ripple Secret</label>
-          <p ng-show='errors.cold_wallet_secret' style='color:red'>{{ errors.cold_wallet_secret }}</p>
-          <input type="text" ng-model="setup.cold_wallet_secret" id="setup-ripple-secret" class="form-control" placeholder="this will not be saved to disk!"/>
-        </div>
+<div class="container">
+    <!-- Login form -->
 
-        <div class="row currencies">
-          <div class="col-xs-3">
-              <label for="setup-ripple-address">Currency</label>
-              <input type="text" ng-model="setup.currency" id="setup-currency" class="form-control" placeholder="3-digit currency code, e.g. BTC" width="48%"/>
-          </div>
-          <div class="col-xs-5">
-              <label for="setup-ripple-address">Amount to issue</label>
-              <input type="text" ng-model="setup.amount" id="setup-amount" class="form-control" placeholder="enter amount" width="48%"/>
-          </div>
-        </div>
+    <form name="setupForm" class="form-login form-wrapper form-narrow" ng-submit="postSetup()" novalidate role="form" ng-hide='setupComplete'>
+        <p style="color: red" ng-repeat="(field, message) in errors">Error: {{error}}</p>
+        <fieldset ng-disabled="isSubmitting">
+            <h3 class="title-divider"><span>Setup</span></h3>
+            <div class="form-group">
+                <label for="setup-database-url">Database URL</label>
+                <p ng-show='errors.database_url' style='color:red'>{{ errors.database_url }}</p>
+                <input type="text" ng-model="setup.database_url" id="setup-database-url" class="form-control" placeholder="postgres://user:password@host:port/database">
+            </div>
+            <div class="form-group">
+                <label for="setup-ripple-rest-url">Ripple REST URL</label>
+                <p ng-show='errors.ripple_rest_url' style='color:red'>{{ errors.ripple_rest_url }}</p>
+                <input type="text" ng-model="setup.ripple_rest_url" id="setup-ripple-rest-url" class="form-control" placeholder="http://localhost:5990/"/>
+            </div>
+            <div class="form-group">
+                <label for="setup-ripple-address">Ripple Address (Cold wallet)</label>
+                <p ng-show='errors.ripple_address' style='color:red'>{{ errors.ripple_address }}</p>
+                <input type="text" ng-model="setup.ripple_address" id="setup-ripple-address" class="form-control" placeholder="rsBxWbcdV8KwjzjFSCMUKue3pLJexaMF13"/>
+            </div>
+            <div class="form-group">
+                <label for="setup-ripple-secret">Ripple Secret</label>
+                <p ng-show='errors.cold_wallet_secret' style='color:red'>{{ errors.cold_wallet_secret }}</p>
+                <input type="text" ng-model="setup.cold_wallet_secret" id="setup-ripple-secret" class="form-control" placeholder="this will not be saved to disk!"/>
+            </div>
+            <!--<div class="form-group">-->
+                <!--<span ng-repeat="(currency, amount) in setup.currencies">-->
+                    <!--<span class="badge badge-info"><span>{{currency}}: {{amount}}</span> <span style="color: #fff; margin-left: 8px; cursor: pointer;" class="glyphicon glyphicon-remove" ng-click="removeCurrency(currency)"></span></span>-->
+                <!--</span>-->
+            <!--</div>-->
+            <div class="row currencies">
+                <div class="col-xs-3">
+                    <label for="setup-ripple-address">Currency</label>
+                    <input type="text" name="currency" ng-model="currency" id="setup-currency" class="form-control" placeholder="3-digit currency code, e.g. BTC" width="48%"/>
+                </div>
+                <div class="col-xs-5">
+                    <label for="setup-ripple-address">Amount to issue</label>
+                    <input type="number" ng-model="amount" name="amount" id="setup-amount" class="form-control" placeholder="enter amount" width="48%"/>
+                </div>
+                <!--<div class="col-xs-1">-->
+                    <!--<button style="margin-top: 25px;" type="button" ng-disabled="!currency" class="btn btn-primary" ng-click="addMoreCurrencies(currency, amount)">-->
+                        <!--<span>+</span>-->
+                    <!--</button>-->
+                <!--</div>-->
+            </div>
 
-        <div class="form-group">
-            <br/>
-          <button type="submit" class="btn btn-primary">
-             <span ng-show="isSubmitting">Setting up your gateway ...</span>
-             <span ng-hide="isSubmitting">Setup</span>
-          </button>
-        </div>
+            <div class="form-group">
+                <br/>
+                <button type="submit" class="btn btn-primary">
+                    <span ng-show="isSubmitting">Setting up your gateway ...</span>
+                    <span ng-hide="isSubmitting">Setup</span>
+                </button>
 
-    </fieldset>
-  </form>
+            </div>
+            <div class="progress" ng-show="isSubmitting">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{progressBar}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progressBar}}%;">
+
+                </div>
+            </div>
+        </fieldset>
+    </form>
 
     <div class="row" ng-show="setupComplete">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <h4>You have successfully completed setting up your gateway!</h4>
-            <p>
-                Username: <strong>{{setupResults.results.admin_login.username}}</strong>
-                <br/>
-                Password: <strong>{{setupResults.results.admin_login.password}}</strong>
-            </p>
+            <ul class="list-group">
+                <li class="list-group-item active"><a href="">Login info</a></li>
+                <li class="list-group-item">Username: <strong>{{setupResults.results.admin_login.username}}</strong></li>
+                <li class="list-group-item">Password: <strong>{{setupResults.results.admin_login.password}}</strong></li>
+            </ul>
+
             <p><a class="btn btn-primary" ng-click="launchGateway()">Launch Gateway</a></p>
-            <p>You can <a href="#/login">login</a> as an administrator. Instructions on retrieving your password and other core command line API functions can be found in the
+
+            <ul class="list-group">
+                <li class="list-group-item active"><a href="">Setup summary</a></li>
+                <li class="list-group-item">Hot wallet address: <strong>{{setupResults.results.hot_wallet.address}}</strong></li>
+                <li class="list-group-item">Hot wallet secret: <strong>{{setupResults.results.hot_wallet.secret}}</strong></li>
+                <li class="list-group-item">Last transaction hash: <strong>{{setupResults.results.hash}}</strong></li>
+                <li class="list-group-item">Currencies issued: <strong>{{setupResults.results.currencies}}</strong></li>
+                <li class="list-group-item">Trust line (issuer, currency, value): <strong>{{setupResults.results.trust_line.issuer}}, {{setupResults.results.trust_line.currency}}, {{setupResults.results.trust_line.value}}</strong></li>
+                <li class="list-group-item">Database URL: <strong>{{setupResults.results.database_url}}</strong></li>
+                <li class="list-group-item">Ripple REST URL: <strong>{{setupResults.results.ripple_rest_url}}</strong></li>
+            </ul>
+            <div class="alert alert-info">
+            <p>You can now <a href="#/login">login</a> as an administrator. Instructions on retrieving your password and other core command line API functions can be found in the
                 <a href="#">documentation.</a></p>
+            </div>
         </div>
     </div>
 </div>
