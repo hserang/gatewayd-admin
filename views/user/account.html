@@ -1,1 +1,40 @@
-<h1>User Gateway Account</h1>
+<div class='container'>
+  <div class='row'>
+    <h1>User Gateway Account</h1>
+    <div class='span12'>
+
+      <div class='span6'>
+        <h2>External Transactions</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="transaction in externalTransactions">
+              <td>{{ transaction }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class='span6'>
+        <h2>Ripple Transactions</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="transaction in rippleTransactions">
+              <td>{{ transaction }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
