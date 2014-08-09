@@ -1,7 +1,17 @@
 <div class='container' style='width:40%; margin:0 auto'>
   <h1>Registration</h1><hr/>
+  <div id='registrationSuccess' ng-show='registeredUser'>
+    <h3>Successfully registered user!</h3>
+    <p>email: {{ registeredUser.name }}</p>
+    <p>independent wallet: {{ registeredUser.ripple_address.address }}</p>
+    <p>hosted wallet: {{ registeredUser.hosted_address.address }}?dt={{ registeredUser.hosted_address.tag }}</p>
+  </div>
+  <div id='registrationError' ng-show='registrationError'>
+    <h3>Registration Error!</h3>
+    <p>{{ registrationError }}</p>
+  </div>
   <div id='registerModal'>
-    <form id='registrationForm' role="form" ng-submit="register()">
+    <form id='registrationForm' role="form" ng-hide="registeredUser" ng-submit="register()">
       <h5>Account Information</h5>
       <div class="form-group">
         <label class="sr-only" for="signup-email">Ripple address</label>
