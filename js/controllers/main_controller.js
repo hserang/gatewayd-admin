@@ -1,5 +1,6 @@
 rippleGatewayApp.controller('MainCtrl', ['$scope', '$rootScope',  '$location', 'UserService', 'ApiService', function($scope, $rootScope, $location, $user, $api) {
   $scope.$on('$routeChangeStart', function(next, current) {
+/*  
     $rootScope.setupComplete = false;
 
     $api.setupStatus(function(error, response){
@@ -12,7 +13,9 @@ rippleGatewayApp.controller('MainCtrl', ['$scope', '$rootScope',  '$location', '
           $location.path("/login");
       }
     });
+*/
   });
+
 
   $scope.user = $user;
 

@@ -1,27 +1,57 @@
 <div class='container'>
 
 
-<div class='col-sm-12' ng-hide='loading'>
-    <h4 class="margin-top-large">Users</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
+<div class='col-sm-6' ng-hide='loading'>
+  <h2>Register</h2><hr/>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-click='navigateToUser(user.id)' ng-repeat="user in users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style='text-align:center; margin: 0 auto;' ng-show="isLoading">
+    <img class='throbber' src='/images/ripple_throbber.png'/>
+  </div>
+</div>
 
-            <th>Independent Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-click='navigateToUser(user.id)' ng-repeat="user in users">
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.independent_address }}</td>
-          </tr>
-        </tbody>
-      </table>
-        <div style='text-align:center; margin: 0 auto;' ng-show="isLoading">
-            <img class='throbber' src='/images/ripple_throbber.png'/>
-        </div>
-    </div>
+<div class='col-sm-4'>
+  <h2>List Users</h2><hr/>
+  <div id='registrationSuccess' ng-show='registeredUser'>
+    <h3>Successfully registered user!</h3>
+    <p>email: {{ registeredUser.name }}</p>
+    <p>independent wallet: {{ registeredUser.ripple_address.address }}</p>
+    <p>hosted wallet: {{ registeredUser.hosted_address.address }}?dt={{ registeredUser.hosted_address.tag }}</p>
+  </div>
+  <div id='registrationError' ng-show='registrationError'>
+    <h3>Registration Error!</h3>
+    <p>{{ registrationError }}</p>
+  </div>
+  <div id='registerModal'>
+    <form id='registrationForm' role="form" ng-hide="registeredUser" ng-submit="registerUser()">
+      <h5>Account Information</h5>
+      <div class="form-group">
+        <label class="sr-only" for="signup-email">Ripple address</label>
+        <input type="text" ng-model='newUser.ripple_address' class="form-control" id="signup-ripple-address" placeholder="Ripple address">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="signup-email">Email address</label>
+        <input type="email" ng-model='newUser.name' class="form-control" id="signup-email" placeholder="Email address">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="signup-password">Password</label>
+        <input type="password" ng-model='newUser.password' class="form-control" id="signup-password" placeholder="Password">
+      </div>
+      <button class="btn btn-primary" type="submit">Register User</button>
+    </form>
+  </div>
+</div>
+
 </div>
