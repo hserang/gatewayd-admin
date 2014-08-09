@@ -4,13 +4,19 @@ rippleGatewayApp.controller('RegistrationCtrl', ['$scope', 'UserService', '$loca
     password: '',
     ripple_address: ''
   }; 
+
+  $scope.registeredUser = null;
+  $scope.registrationError = null;
   $scope.register = function() {
-    $user.register($scope.newUser, function(err, user){
-      if (err) {
-        console.log('error registering user:', err);
+    $user.register($scope.newUser, function(error, user){
+      if (error) {
+        $scope.registeredUser = null;
+        $scope.registrationError = error;
+        console.log('error registering user:', error);
       } else { 
         console.log('registered a new user:', user);
-        $location.path('/#/users/'+user.id);
+        $scope.registeredUser = user;
+        $scope.registrationError = null;
       }
     });
   };
