@@ -132,7 +132,13 @@
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/deposits" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposits</a></li>
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/withdrawals" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdrawals</a></li>
-
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/externalTransactions" ng-class="{active: location.path() == '/database/externalTransactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Transactions</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/gatewayTransactions" ng-class="{active: location.path() == '/database/gatewayTransactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Gateway Transactions</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/kycData" ng-class="{active: location.path() == '/database/kycData'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>KYC Data</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/policies" ng-class="{active: location.path() == '/database/policies'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Policies</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/databases/rippleAddresses" ng-class="{active: location.path() == '/databases/rippleAddresses'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Addresses</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/rippleTransactions" ng-class="{active: location.path() == '/database/rippleTransactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Transactions</a></li>
+            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/users" ng-class="{active: location.path() == '/database/users'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
           </ul>
         </div>
         <!--/.navbar-collapse -->
