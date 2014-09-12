@@ -62,7 +62,7 @@
     border-color: transparent;
   }
   tr { opacity: 0.8 }
-  tr:hover { 
+  tr:hover {
     opacity: 1.0;
     cursor: pointer;
   }
@@ -74,14 +74,14 @@
 
 <body class="page page-index" ng-controller="MainCtrl">
 <div id="navigation" class="wrapper">
-  <div class="navbar-static-top"> 
-    
+  <div class="navbar-static-top">
+
     <!--Header & Branding region-->
     <div class="header">
       <div class="header-inner container">
         <div class="row">
-          <div class="col-md-8"> 
-            <!--branding/logo--> 
+          <div class="col-md-8">
+            <!--branding/logo-->
             <a class="navbar-brand" ng-href="/" title="Home">
             <h1><span>Gatewayd </span>Admin<span></span></h1>
             </a>
@@ -96,25 +96,25 @@
         </div>
       </div>
     </div>
-    
+
     <div class="container" ng-show="user.isLogged" data-toggle="clingify" style='background-color:#00ADBB'>
-      <div class="navbar" style='background-color:#00ADBB'> 
+      <div class="navbar" style='background-color:#00ADBB'>
         <!--
       mobile collapse menu button
       - data-toggle="toggle" = default BS menu
       - data-toggle="jpanel-menu" = jPanel Menu
-      --> 
-        <a class="navbar-btn" data-toggle="jpanel-menu" data-target=".navbar-collapse"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a> 
-        
+      -->
+        <a class="navbar-btn" data-toggle="jpanel-menu" data-target=".navbar-collapse"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>
+
         <!--user menu-->
 
         <div ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, {{ user.name }}</a></div>
         <div ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, Admin</a></div>
 
-        
+
         <!--everything within this div is collapsed on mobile-->
-        <div class="navbar-collapse collapse"> 
-          
+        <div class="navbar-collapse collapse">
+
           <!--main navigation-->
           <ul class="nav navbar-nav">
             <li class="home-link"><a href="/"><i class="fa fa-home"></i><span class="hidden">Home</span></a></li>
@@ -135,7 +135,7 @@
 
           </ul>
         </div>
-        <!--/.navbar-collapse --> 
+        <!--/.navbar-collapse -->
       </div>
     </div>
   </div>
@@ -201,29 +201,29 @@
   <!--</div>-->
 <!--</footer>-->
 
-<!--Scripts --> 
+<!--Scripts -->
 <script src="/bower_components/angular/angular.min.js"></script>
 <script src="/bower_components/angular-route/angular-route.min.js"></script>
-<script src="theme/js/jquery.min.js"></script> 
-<script src="theme/js/jquery-migrate-1.2.1.min.js"></script> <!--Legacy jQuery support for quicksand plugin--> 
+<script src="theme/js/jquery.min.js"></script>
+<script src="theme/js/jquery-migrate-1.2.1.min.js"></script> <!--Legacy jQuery support for quicksand plugin-->
 
-<!-- Bootstrap JS --> 
-<script src="theme/js/bootstrap.min.js"></script> 
+<!-- Bootstrap JS -->
+<script src="theme/js/bootstrap.min.js"></script>
 
-<!--JS plugins--> 
-<script src="theme/plugins/prism/prism.js"></script> 
-<script src="theme/plugins/slider-revolution/rs-plugin/js/jquery.themepunch.plugins.min.js?v=4.2"></script> 
-<script src="theme/plugins/slider-revolution/rs-plugin/js/jquery.themepunch.revolution.min.js?v=4.2"></script> 
-<script src="theme/plugins/flexslider/jquery.flexslider-min.js"></script> 
-<script src="theme/plugins/clingify/jquery.clingify.min.js"></script> 
-<script src="theme/plugins/jPanelMenu/jquery.jpanelmenu.min.js"></script> 
-<script src="theme/plugins/jRespond/js/jRespond.js"></script> 
-<script src="theme/plugins/quicksand/jquery.quicksand.js"></script> 
+<!--JS plugins-->
+<script src="theme/plugins/prism/prism.js"></script>
+<script src="theme/plugins/slider-revolution/rs-plugin/js/jquery.themepunch.plugins.min.js?v=4.2"></script>
+<script src="theme/plugins/slider-revolution/rs-plugin/js/jquery.themepunch.revolution.min.js?v=4.2"></script>
+<script src="theme/plugins/flexslider/jquery.flexslider-min.js"></script>
+<script src="theme/plugins/clingify/jquery.clingify.min.js"></script>
+<script src="theme/plugins/jPanelMenu/jquery.jpanelmenu.min.js"></script>
+<script src="theme/plugins/jRespond/js/jRespond.js"></script>
+<script src="theme/plugins/quicksand/jquery.quicksand.js"></script>
 
-<!--Custom scripts mainly used to trigger libraries --> 
+<!--Custom scripts mainly used to trigger libraries -->
 <script src="theme/js/script.min.js"></script>
 
-<!-- Gateway Application Scripts --> 
+<!-- Gateway Application Scripts -->
 <script src="/js/app.js"></script>
 <script src="/js/services/base64.js"></script>
 <script src="/js/services/user.js"></script>
@@ -235,6 +235,14 @@
 <script src="/js/controllers/setup_controller.js"></script>
 <script src="/js/controllers/main_controller.js"></script>
 <script src="/js/controllers/user_controller.js"></script>
+<script src="/js/controllers/external_accounts_controller.js"></script>
+<script src="/js/controllers/external_transactions_controller.js"></script>
+<script src="/js/controllers/gateway_transactions_controller.js"></script>
+<script src="/js/controllers/kyc_data_controller.js"></script>
+<script src="/js/controllers/policies_controller.js"></script>
+<script src="/js/controllers/ripple_addresses_controller.js"></script>
+<script src="/js/controllers/ripple_transactions_controller.js"></script>
+<script src="/js/controllers/users_controller.js"></script>
 
 </body>
 </html>
