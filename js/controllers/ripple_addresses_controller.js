@@ -5,4 +5,10 @@ rippleGatewayApp.controller('RippleAddressesCtrl', [
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.addresses = [];
+
+    $api.getRippleAddresses(function(err, response) {
+      if (!err) {
+        $scope.addresses = response.ripple_addresses;
+      }
+    });
 }]);

@@ -5,4 +5,10 @@ rippleGatewayApp.controller('RippleTransactionsCtrl', [
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.transactions = [];
+
+    $api.getRippleTransactions(function(err, response) {
+      if (!err) {
+        $scope.transactions = response.ripple_transactions;
+      }
+    });
 }]);

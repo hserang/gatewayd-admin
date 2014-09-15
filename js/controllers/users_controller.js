@@ -5,4 +5,10 @@ rippleGatewayApp.controller('UsersCtrl', [
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.users = [];
+
+    $api.getUsers(function(err, response) {
+      if (!err && response.success) {
+        $scope.users = response.users;
+      }
+    });
 }]);
