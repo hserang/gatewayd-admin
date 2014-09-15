@@ -2,8 +2,36 @@
   <span class='text-primary'>Ripple Transactions</span>
   <table class='table table-bordered'>
     <thead>
+      <th>ID</th>
+      <th>To Address ID</th>
+      <th>From Address ID</th>
+      <th>Transaction State</th>
+      <th>Transaction Hash</th>
+      <th>To Amount</th>
+      <th>To Currency</th>
+      <th>To Issuer</th>
+      <th>From Amount</th>
+      <th>From Currency</th>
+      <th>From Issuer</th>
+      <th>Created At</th>
+      <th>Updated At</th>
     </thead>
     <tbody>
+      <tr ng-repeat='transaction in transactions'>
+        <td>{{ transaction.id }}</td>
+        <td>{{ transaction.to_address_id }}</td>
+        <td>{{ transaction.from_address_id }}</td>
+        <td>{{ transaction.transaction_state }}</td>
+        <td>{{ transaction.transaction_hash }}</td>
+        <td>{{ transaction.to_amount }}</td>
+        <td>{{ transaction.to_currency }}</td>
+        <td>{{ transaction.to_issuer }}</td>
+        <td>{{ transaction.from_amount }}</td>
+        <td>{{ transaction.from_currency }}</td>
+        <td>{{ transaction.from_issuer }}</td>
+        <td>{{ transaction.createdAt }}</td>
+        <td>{{ transaction.updatedAt }}</td>
+      </tr>
     </tbody>
   </table>
 </div>
