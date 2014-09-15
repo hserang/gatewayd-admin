@@ -161,6 +161,18 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.getRippleTransactions = function(fn) {
+    $http({method: 'GET', url: '/v1/ripple_transactions'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getRippleAddresses =function(fn) {
+    $http({method: 'GET', url: '/v1/ripple_addresses'})
+    .success(success(fn))
+    .error(error(fn))
+  };
+
   return new API;
 
 }]);
