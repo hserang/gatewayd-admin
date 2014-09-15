@@ -1,0 +1,33 @@
+<div class='container'>
+  <span class='text-primary'>External Transactions</span>
+  <table class='table table-bordered'>
+    <thead>
+      <th>ID</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Deposit</th>
+      <th>External Account ID</th>
+      <th>Status</th>
+      <th>Ripple Transaction ID</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>UID</th>
+      <th>Data</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat='transaction in transactions'>
+        <td>{{ transaction.id }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.currency }}</td>
+        <td>{{ transaction.deposit }}</td>
+        <td>{{ transaction.external_account_id }}</td>
+        <td>{{ transaction.status }}</td>
+        <td>{{ transaction.ripple_transaction_id }}</td>
+        <td>{{ transaction.createdAt }}</td>
+        <td>{{ transaction.updatedAt }}</td>
+        <td>{{ transaction.uid }}</td>
+        <td>{{ transaction.data }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
