@@ -57,33 +57,65 @@ rippleGatewayApp.config(['$routeProvider',
       controller: 'ExternalAccountsCtrl',
       templateUrl: '/views/database/externalAccounts.html'
     }).
+    when('/database/external_accounts/new', {
+      controller: 'NewExternalAccountsCtrl',
+      templateUrl: '/views/database/newExternalAccounts.html'
+    }).
     when('/database/external_transactions', {
       controller: 'ExternalTransactionsCtrl',
       templateUrl: '/views/database/externalTransactions.html'
+    }).
+    when('/database/external_transactions/new', {
+      controller: 'NewExternalTransactionsCtrl',
+      templateUrl: '/views/database/newExternalTransactions.html'
     }).
     when('/database/gateway_transactions', {
       controller: 'GatewayTransactionsCtrl',
       templateUrl: '/views/database/gatewayTransactions.html'
     }).
+    when('/database/gateway_transactions/new', {
+      controller: 'NewGatewayTransactionsCtrl',
+      templateUrl: '/views/database/newGatewayTransactions.html'
+    }).
     when('/database/kyc_data', {
       controller: 'KycDataCtrl',
       templateUrl: '/views/database/kycData.html'
+    }).
+    when('/database/kyc_data/new', {
+      controller: 'NewKycDataCtrl',
+      templateUrl: '/views/database/newKycData.html'
     }).
     when('/database/policies', {
       controller: 'PoliciesCtrl',
       templateUrl: '/views/database/policies.html'
     }).
+    when('/database/policies/new', {
+      controller: 'NewPoliciesCtrl',
+      templateUrl: '/views/database/newPolicies.html'
+    }).
     when('/database/ripple_addresses', {
       controller: 'RippleAddressesCtrl',
       templateUrl: '/views/database/rippleAddresses.html'
+    }).
+    when('/database/ripple_addresses/new', {
+      controller: 'NewRippleAddressesCtrl',
+      templateUrl: '/views/database/newRippleAddresses.html'
     }).
     when('/database/ripple_transactions', {
       controller: 'RippleTransactionsCtrl',
       templateUrl: '/views/database/rippleTransactions.html'
     }).
+    when('/database/ripple_transactions/new', {
+      controller: 'NewRippleTransactionsCtrl',
+      templateUrl: '/views/database/newRippleTransactions.html'
+    }).
     when('/database/users', {
       controller: 'UsersCtrl',
       templateUrl: '/views/database/users.html'
+    }).
+    when('/database/users/new', {
+      controller: 'NewUsersCtrl',
+      templateUrl: '/views/database/newUsers.html'
     }).
     otherwise({
       redirectTo: '/login'

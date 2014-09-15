@@ -89,7 +89,7 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
-  API.prototype.getExternalTransactions = function(fn){
+  API.prototype.getAllExternalTransactions = function(fn){
     $http({ method: 'GET', url: '/v1/deposits' })
     .success(success(fn))
     .error(error(fn));

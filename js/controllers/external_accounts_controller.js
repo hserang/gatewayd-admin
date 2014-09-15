@@ -4,9 +4,9 @@ rippleGatewayApp.controller('ExternalAccountsCtrl', [
   'ApiService', function($scope, $user, $api) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
-    $api.getExternalAccounts(function(err, response) {
-      $scope.accounts = [];
+    $scope.accounts = [];
 
+    $api.getExternalAccounts(function(err, response) {
       if(!err){
         $scope.accounts = response.external_accounts;
       }
