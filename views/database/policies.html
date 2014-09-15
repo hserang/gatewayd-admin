@@ -2,8 +2,24 @@
   <span class='text-primary'>Policies</span>
   <table class='table table-bordered'>
     <thead>
+      <th>ID</th>
+      <th>External Account ID</th>
+      <th>Ripple Address ID</th>
+      <th>Name</th>
+      <th>Fee</th>
+      <th>Created At</th>
+      <th>Updated At</th>
     </thead>
     <tbody>
+      <tr ng-repeat='policy in policies'>
+        <td>{{ policy.id }}</td>
+        <td>{{ policy.external_account_id }}</td>
+        <td>{{ policy.ripple_address_id }}</td>
+        <td>{{ policy.name }}</td>
+        <td>{{ policy.fee }}</td>
+        <td>{{ policy.createdAt }}</td>
+        <td>{{ policy.updatedAt }}</td>
+      </tr>
     </tbody>
   </table>
 </div>

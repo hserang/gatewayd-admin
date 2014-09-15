@@ -2,8 +2,24 @@
   <span class='text-primary'>KYC Data</span>
   <table class='table table-bordered'>
     <thead>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>User ID</th>
+      <th>UID</th>
+      <th>Created At</th>
+      <th>Updated At</th>
     </thead>
     <tbody>
+      <tr ng-repeat='datum in data'>
+        <td>{{ datum.id }}</td>
+        <td>{{ datum.name }}</td>
+        <td>{{ datum.type }}</td>
+        <td>{{ datum.user_id }}</td>
+        <td>{{ datum.uid }}</td>
+        <td>{{ datum.createdAt }}</td>
+        <td>{{ datum.updatedAt }}</td>
+      </tr>
     </tbody>
   </table>
 </div>

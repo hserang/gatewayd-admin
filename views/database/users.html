@@ -2,8 +2,24 @@
   <span class='text-primary'>Users</span>
   <table class='table table-bordered'>
     <thead>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Salt</th>
+      <th>Federation Tag</th>
+      <th>Admin</th>
+      <th>Federation Name</th>
+      <th>Password Hash</th>
     </thead>
     <tbody>
+      <tr ng-repeat='user in users'>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.salt }}</td>
+        <td>{{ user.federation_tag }}</td>
+        <td>{{ user.admin }}</td>
+        <td>{{ user.federation_name }}</td>
+        <td>{{ user.password_hash }}</td>
+      </tr>
     </tbody>
   </table>
 </div>
