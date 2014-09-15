@@ -136,6 +136,7 @@
               <div>
                 Databases
                 <ul class="nav navbar-nav">
+                  <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/external_accounts" ng-class="{active: location.path() == '/database/external_accounts'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Accounts</a></li>
                   <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/external_transactions" ng-class="{active: location.path() == '/database/external_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Transactions</a></li>
                   <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/gateway_transactions" ng-class="{active: location.path() == '/database/gateway_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Gateway Transactions</a></li>
                   <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/kyc_data" ng-class="{active: location.path() == '/database/kyc_data'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>KYC Data</a></li>

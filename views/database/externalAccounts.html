@@ -1,0 +1,25 @@
+<div class='container'>
+  <span class='text-primary'>External Accounts</span>
+  <table class='table table-bordered'>
+    <thead>
+      <th>Data</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>User ID</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>UID</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat='account in accounts'>
+        <td>{{ account.data }}</td>
+        <td>{{ account.id }}</td>
+        <td>{{ account.name }}</td>
+        <td>{{ account.user_id }}</td>
+        <td>{{ account.createdAt }}</td>
+        <td>{{ account.updatedAt }}</td>
+        <td>{{ account.uid }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

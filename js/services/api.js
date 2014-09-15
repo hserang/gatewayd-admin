@@ -42,7 +42,7 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   };
 
   API.prototype.makeDeposit = function(deposit, fn) {
-    var opts = { 
+    var opts = {
       external_account_id: deposit.externalAccountId,
       amount: deposit.amount,
       currency: deposit.currency
@@ -153,6 +153,12 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     $http({method: 'POST', url: '/v1/start', data: processes})
       .success(success(fn))
       .error(error(fn));
+  };
+
+  API.prototype.getExternalAccounts = function(fn) {
+    $http({method: 'GET', url: '/v1/external_accounts'})
+    .success(success(fn))
+    .error(error(fn));
   };
 
   return new API;
