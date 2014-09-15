@@ -53,35 +53,35 @@ rippleGatewayApp.config(['$routeProvider',
       controller: 'UserCtrl',
       templateUrl: 'views/user/account.html'
     }).
-    when('/database/external_accounts' {
+    when('/database/external_accounts', {
       controller: 'ExternalAccountsCtrl',
       templateUrl: '/views/database/externalAccounts.html'
     }).
-    when('/database/external_transactions' {
+    when('/database/external_transactions', {
       controller: 'ExternalTransactionsCtrl',
       templateUrl: '/views/database/externalTransactions.html'
     }).
-    when('/database/gateway_transactions' {
+    when('/database/gateway_transactions', {
       controller: 'GatewayTransactionsCtrl',
       templateUrl: '/views/database/gatewayTransactions.html'
     }).
-    when('/database/kyc_data' {
+    when('/database/kyc_data', {
       controller: 'KycDataCtrl',
       templateUrl: '/views/database/kycData.html'
     }).
-    when('/database/policies' {
+    when('/database/policies', {
       controller: 'PoliciesCtrl',
       templateUrl: '/views/database/policies.html'
     }).
-    when('/database/ripple_addresses' {
+    when('/database/ripple_addresses', {
       controller: 'RippleAddressesCtrl',
       templateUrl: '/views/database/rippleAddresses.html'
     }).
-    when('/database/ripple_transactions' {
+    when('/database/ripple_transactions', {
       controller: 'RippleTransactionsCtrl',
       templateUrl: '/views/database/rippleTransactions.html'
     }).
-    when('/database/users' {
+    when('/database/users', {
       controller: 'UsersCtrl',
       templateUrl: '/views/database/users.html'
     }).
