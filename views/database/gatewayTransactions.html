@@ -1,0 +1,25 @@
+<div class='container'>
+  <span class='text-primary'>Gateway Transactions</span>
+  <table class='table table-bordered'>
+    <thead>
+      <th>ID</th>
+      <th>External Transaction ID</th>
+      <th>Ripple Transaction ID</th>
+      <th>Policy ID</th>
+      <th>State</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+    </thead>
+    <tbody>
+      <tr ng-repat='transaction in transactions'>
+        <td>{{ transaction.id }}</td>
+        <td>{{ transaction.external_transaction_id }}</td>
+        <td>{{ transaction.ripple_transaction_id }}</td>
+        <td>{{ transaction.policy_id }}</td>
+        <td>{{ transaction.state }}</td>
+        <td>{{ transaction.createdAt }}</td>
+        <td>{{ transaction.updatedAt }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
