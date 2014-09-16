@@ -167,10 +167,40 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
-  API.prototype.getRippleAddresses =function(fn) {
+  API.prototype.getRippleAddresses = function(fn) {
     $http({method: 'GET', url: '/v1/ripple_addresses'})
     .success(success(fn))
     .error(error(fn))
+  };
+
+  API.prototype.getPolicies = function(fn) {
+    $http({method: 'GET', url: '/v1/policies'})
+    .success(success(fn))
+    .error(error(fn))
+  };
+
+  API.prototype.createUser = function(userInfo, fn) {
+    $http({method: 'POST', url: '/v1/users', data: userInfo})
+    .success(success(fn))
+    .error(error(fn))
+  };
+
+  API.prototype.createExternalAccount = function(accountInfo, fn) {
+    $http({method: 'POST', url: '/v1/external_accounts', data: accountInfo})
+    .success(success(fn)
+    .error(error(fn)));
+  };
+
+  API.prototype.createExternalTransaction = function(transactionDetails, fn) {
+    $http({method: 'POST', url: '/v1/external_transactions', data: transactionDetails})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createPolicy = function(policyInfo, fn) {
+    $http({method: 'POST', url: '/v1/policies', data: policyInfo})
+    .success(success(fn))
+    .error(error(fn));
   };
 
   return new API;
