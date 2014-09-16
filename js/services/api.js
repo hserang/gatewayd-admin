@@ -203,6 +203,18 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.createRippleAddress = function(addressDetails, fn) {
+    $http({method: 'POST', url: '/v1/ripple_addresses', data: addressDetails})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createRippleTransaction = function(transactionDetails, fn) {
+    $http({method: 'POST', url: '/v1/ripple_transactions', data: transactionDetails})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
   return new API;
 
 }]);

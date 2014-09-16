@@ -1,0 +1,76 @@
+<div class='container'>
+  <form class='form-horizontal' ng-submit='createRippleAddress()'>
+
+    <div class='form-group' ng-model='address.managed'>
+      <label class='col-xs-2'>Managed?</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='true or false'>
+      </div>
+    </div>
+
+    <div class='form-group' ng-model='address.address'>
+      <label class='col-xs-2'>Address</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='r...'>
+      </div>
+    </div>
+
+    <div class='form-group' ng-model='address.type'>
+      <label class='col-xs-2'>Type</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='independent or hot'>
+      </div>
+    </div>
+
+    <div class='form-group' ng-model='address.user_id'>
+      <label class='col-xs-2'>User ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='1, 2, 3, etc.'>
+      </div>
+    </div>
+
+    <div class='form-group' ng-model='address.tag'>
+      <label class='col-xs-2'>Tag</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder=''>
+      </div>
+    </div>
+
+    <div class='form-group' ng-model='address.secret'>
+      <label class='col-xs-2'>Secret</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='s...'>
+      </div>
+    </div>
+
+    <div class='form-group' ng-model='address.previous_transaction_hash'>
+      <label class='col-xs-2'>Previous Transaction Hash</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder=''>
+      </div>
+    </div>
+
+    <div class='form-group' ng-model='address.uid'>
+      <label class='col-xs-2'>UID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder=''>
+      </div>
+    </div>
+
+    <div class='form-group' ng-model='address.data'>
+      <label class='col-xs-2'>Data</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder=''>
+      </div>
+    </div>
+
+    <!-- INCOMPLETE -->
+
+    <div class='form-group'>
+      <div class='col-xs-offset-2 col-xs-10'>
+        <button type='submit' class='btn btn-primary'>Create Ripple Address</button>
+      </div>
+    </div>
+
+  </form>
+</div>
