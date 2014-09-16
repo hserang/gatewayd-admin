@@ -1,28 +1,13 @@
 rippleGatewayApp.controller('NewExternalTransactionsCtrl', [
   '$scope',
   'UserService',
-  'ApiService', function($scope, $user, $api) {
+  '$location',
+  'ApiService', function($scope, $user, $location, $api) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
-    $scope.transaction = {
-      amount: '',
-      currency: '',
-      deposit: '',
-      external_account_id: '',
-      status: '',
-      ripple_transaction_id: '',
-      uid: '',
-      data: ''
-    };
+    $scope.transaction = {};
 
     $scope.createExternalTransaction = function() {
-      var toBool = {
-        true: true,
-        false: false
-      };
-
-      $scope.transaction.deposit = toBool[$scope.transaction.deposit];
-
       $api.createExternalTransaction($scope.transaction, function(err, res) {
         if (!err) {
           $location.path('/database/external_transactions');

@@ -1,15 +1,11 @@
 rippleGatewayApp.controller('NewExternalAccountsCtrl', [
   '$scope',
   'UserService',
-  'ApiService', function($scope, $user, $api) {
+  '$location',
+  'ApiService', function($scope, $user, $location, $api) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
-    $scope.account = {
-      data: '',
-      name: '',
-      user_id: '',
-      uid: ''
-    };
+    $scope.account = {};
 
     $scope.createExternalAccount = function() {
       $api.createExternalAccount($scope.account, function(err, res) {

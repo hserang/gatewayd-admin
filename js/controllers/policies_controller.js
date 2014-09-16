@@ -6,9 +6,9 @@ rippleGatewayApp.controller('PoliciesCtrl', [
 
     $scope.policies = [];
 
-    $api.getPolicies(function(err, response) {
-      if (!err && response.success) {
-        $scope.policies = response.policies;
+    $api.getPolicies(function(err, res) {
+      if (!err && res.success) {
+        $scope.policies = res.policies;
       }
     });
 }]);

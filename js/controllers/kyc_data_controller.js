@@ -5,4 +5,10 @@ rippleGatewayApp.controller('KycDataCtrl', [
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.data = [];
+
+    $api.getKycData(function(err, res) {
+      if (!err) {
+        $scope.data = res.kyc_data;
+      }
+    });
 }]);

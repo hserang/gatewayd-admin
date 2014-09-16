@@ -1,0 +1,41 @@
+<div class='container'>
+  <form class='form-horizontal' ng-submit='createGatewayTransaction()'>
+
+  <!-- WHAT IS REQUIRED? -->
+
+    <div class='form-group'>
+      <label class='col-xs-2'>External Transaction ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.external_transaction_id'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Ripple Transaction ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.ripple_transaction_id'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Policy ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.policy_id'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>State</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.state'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <div class='col-xs-offset-2 col-xs-10'>
+        <button type='submit' class='btn btn-primary'>Create Gateway Transaction</button>
+      </div>
+    </div>
+
+  </form>
+</div>

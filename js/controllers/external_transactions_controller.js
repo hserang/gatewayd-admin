@@ -6,9 +6,9 @@ rippleGatewayApp.controller('ExternalTransactionsCtrl', [
 
     $scope.transactions = [];
 
-    $api.getAllExternalTransactions(function(err, response) {
+    $api.getAllExternalTransactions(function(err, res) {
       if (!err) {
-        $scope.transactions = response.deposits;
+        $scope.transactions = res.external_transactions;
       }
     });
 }]);

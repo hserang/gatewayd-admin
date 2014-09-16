@@ -90,7 +90,7 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   };
 
   API.prototype.getAllExternalTransactions = function(fn){
-    $http({ method: 'GET', url: '/v1/deposits' })
+    $http({ method: 'GET', url: '/v1/external_transactions' })
     .success(success(fn))
     .error(error(fn));
   };
@@ -187,11 +187,12 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
 
   API.prototype.createExternalAccount = function(accountInfo, fn) {
     $http({method: 'POST', url: '/v1/external_accounts', data: accountInfo})
-    .success(success(fn)
-    .error(error(fn)));
+    .success(success(fn))
+    .error(error(fn));
   };
 
   API.prototype.createExternalTransaction = function(transactionDetails, fn) {
+    console.log('hmmmmmm', transactionDetails);
     $http({method: 'POST', url: '/v1/external_transactions', data: transactionDetails})
     .success(success(fn))
     .error(error(fn));
@@ -211,6 +212,34 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
 
   API.prototype.createRippleTransaction = function(transactionDetails, fn) {
     $http({method: 'POST', url: '/v1/ripple_transactions', data: transactionDetails})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  // URL NOT IMPLEMENTED
+  API.prototype.getKycData = function(fn) {
+    $http({method: 'GET', url: '/v1/kyc_data'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  // URL NOT IMPLEMENTED
+  API.prototype.createKycData = function(data, fn) {
+    $http({method: 'POST', url: '/v1/kyc_data', data: data})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  // URL NOT IMPLEMENTED
+  API.prototype.getGatewayTransactions = function(fn) {
+    $http({method: 'GET', url: '/v1/gateway_transactions'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  // URL NOT IMPLEMENTED
+  API.prototype.createGatewayTransaction = function(transactionDetails, fn) {
+    $http({method: 'POST', url: '/v1/gateway_transactions', data: transactionDetails})
     .success(success(fn))
     .error(error(fn));
   };

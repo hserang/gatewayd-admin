@@ -6,9 +6,9 @@ rippleGatewayApp.controller('ExternalAccountsCtrl', [
 
     $scope.accounts = [];
 
-    $api.getExternalAccounts(function(err, response) {
+    $api.getExternalAccounts(function(err, res) {
       if(!err){
-        $scope.accounts = response.external_accounts;
+        $scope.accounts = res.external_accounts;
       }
     });
 }]);

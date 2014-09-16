@@ -6,9 +6,9 @@ rippleGatewayApp.controller('UsersCtrl', [
 
     $scope.users = [];
 
-    $api.getUsers(function(err, response) {
-      if (!err && response.success) {
-        $scope.users = response.users;
+    $api.getUsers(function(err, res) {
+      if (!err && res.success) {
+        $scope.users = res.users;
       }
     });
 }]);

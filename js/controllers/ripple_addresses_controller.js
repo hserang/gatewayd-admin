@@ -6,9 +6,9 @@ rippleGatewayApp.controller('RippleAddressesCtrl', [
 
     $scope.addresses = [];
 
-    $api.getRippleAddresses(function(err, response) {
+    $api.getRippleAddresses(function(err, res) {
       if (!err) {
-        $scope.addresses = response.ripple_addresses;
+        $scope.addresses = res.ripple_addresses;
       }
     });
 }]);
