@@ -5,4 +5,10 @@ rippleGatewayApp.controller('PoliciesCtrl', [
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.policies = [];
+
+    $api.getPolicies(function(err, response) {
+      if (!err && response.success) {
+        $scope.policies = response.policies;
+      }
+    });
 }]);
