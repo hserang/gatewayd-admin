@@ -1,0 +1,72 @@
+<div class='container'>
+  <form class='form-horizontal' ng-submit='createExternalTransaction()'>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2'>Amount</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='0.001'ng-model='transaction.amount' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2'>Currency</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='XRP' ng-model='transaction.currency' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2'>Deposit or Withdrawal?</label>
+      <div class='col-xs-10'>
+        <label class='radio-inline'>
+          <input type='radio' name='inlineRadioOptions' value='true' ng-model='transaction.deposit' required> Deposit
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='inlineRadioOptions' value='false' ng-model='transaction.deposit'> Withdrawal
+        </label>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2'>External Account ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.hash' required>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Status</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.status'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Ripple Transaction ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.ripple_transaction_id'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>UID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.uid'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Data</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.data'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <div class='col-xs-offset-2 col-xs-10'>
+        <button type='submit' class='btn btn-primary'>Create External Transaction</button>
+      </div>
+    </div>
+
+  </form>
+</div>

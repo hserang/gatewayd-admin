@@ -1,70 +1,73 @@
 <div class='container'>
   <form class='form-horizontal' ng-submit='createRippleAddress()'>
 
-    <div class='form-group' ng-model='address.managed'>
+    <div class='form-group'>
       <label class='col-xs-2'>Managed?</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='true or false'>
+        <label class='radio-inline'>
+          <input type='radio' name='inlineRadioOptions' value='true' ng-model='transaction.managed' required> Yes
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='inlineRadioOptions' value='false' ng-model='transaction.managed'> No
+        </label>
       </div>
     </div>
 
-    <div class='form-group' ng-model='address.address'>
+    <div class='form-group has-success'>
       <label class='col-xs-2'>Address</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='r...'>
+        <input type='text' class='form-control' placeholder='r...' ng-model='address.address' required>
       </div>
     </div>
 
-    <div class='form-group' ng-model='address.type'>
+    <div class='form-group has-success'>
       <label class='col-xs-2'>Type</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='independent or hot'>
+        <input type='text' class='form-control' placeholder='independent or hot' ng-model='address.type' required>
       </div>
     </div>
 
-    <div class='form-group' ng-model='address.user_id'>
+    <div class='form-group'>
       <label class='col-xs-2'>User ID</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='1, 2, 3, etc.'>
+        <input type='text' class='form-control' placeholder='1, 2, 3, etc.' ng-model='address.user_id'>
       </div>
     </div>
 
-    <div class='form-group' ng-model='address.tag'>
+    <div class='form-group'>
       <label class='col-xs-2'>Tag</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder=''>
+        <input type='text' class='form-control' placeholder='' ng-model='address.tag'>
       </div>
     </div>
 
-    <div class='form-group' ng-model='address.secret'>
+    <!-- <div class='form-group'>
       <label class='col-xs-2'>Secret</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='s...'>
+        <input type='text' class='form-control' placeholder='s...' ng-model='address.secret'>
       </div>
-    </div>
+    </div> -->
 
-    <div class='form-group' ng-model='address.previous_transaction_hash'>
+    <div class='form-group'>
       <label class='col-xs-2'>Previous Transaction Hash</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder=''>
+        <input type='text' class='form-control' placeholder='' ng-model='address.previous_transaction_hash'>
       </div>
     </div>
 
-    <div class='form-group' ng-model='address.uid'>
+    <div class='form-group'>
       <label class='col-xs-2'>UID</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder=''>
+        <input type='text' class='form-control' placeholder='' ng-model='address.uid'>
       </div>
     </div>
 
-    <div class='form-group' ng-model='address.data'>
+    <div class='form-group'>
       <label class='col-xs-2'>Data</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder=''>
+        <input type='text' class='form-control' placeholder='' ng-model='address.data'>
       </div>
     </div>
-
-    <!-- INCOMPLETE -->
 
     <div class='form-group'>
       <div class='col-xs-offset-2 col-xs-10'>

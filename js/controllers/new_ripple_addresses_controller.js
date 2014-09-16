@@ -5,23 +5,28 @@ rippleGatewayApp.controller('NewRippleAddressesCtrl', [
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.address = {
-      managed: false,
+      managed: '',
       address: '',
       type: '',
       user_id: '',
       tag: '',
-      secret: '',
+      // secret: '',
       previous_transaction_hash: '',
       uid: '',
       data: ''
     };
 
     $scope.createRippleAddress = function() {
-      $scope.user.managed = !!$scope.user.managed;
+      var toBool = {
+        true: true,
+        false: false
+      };
 
-      $api.createRippleAddress($scope.user, function(err, res) {
+      $scope.user.managed = toBool[$scope.address.managed];
+
+      $api.createRippleAddress($scope.address, function(err, res) {
         if (!err) {
-          $location.path('/database/users');
+          $location.path('/database/ripple_addresses');
         }
       });
     };
