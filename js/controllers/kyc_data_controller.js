@@ -13,12 +13,12 @@ rippleGatewayApp.controller('KycDataCtrl', [
       }
     });
 
-    $scope.deleteKycData = function(index) {
-      var data = $scope.data[index];
+    $scope.deleteKycDatum = function(index) {
+      var datum = $scope.data[index];
       var confirmed = $window.confirm('Are you sure?')
 
       if (confirmed) {
-        $api.deleteKycData(data.id, function(err, res) {
+        $api.deleteKycDatum(datum.id, function(err, res) {
           if (!err) {
             $scope.data.splice(index, 1);
           }
