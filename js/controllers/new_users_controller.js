@@ -5,7 +5,6 @@ rippleGatewayApp.controller('NewUsersCtrl', [
   'ApiService', function($scope, $user, $location, $api) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
-    // INCOMPLETE
     $scope.user = {};
 
     $scope.createUser = function() {

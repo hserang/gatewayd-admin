@@ -6,7 +6,7 @@ rippleGatewayApp.controller('GatewayTransactionsCtrl', [
 
     $scope.transactions = [];
 
-    $api.getGatewayTransaction(function(err, res) {
+    $api.getGatewayTransactions(function(err, res) {
       if (!err) {
         $scope.transactions = res.gateway_transactions;
       }
