@@ -244,6 +244,106 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.updateRippleAddress = function(id, updatedAddress, fn) {
+    $http({method: 'PUT', url: '/v1/ripple_addresses/' + id, data: updatedAddress})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateRippleTransaction = function(id, updatedTransaction, fn) {
+    $http({method: 'PUT', url: '/v1/ripple_transactions/' + id, data: updatedTransaction})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateExternalAccount = function(id, updatedAccount, fn) {
+    $http({method: 'PUT', url: '/v1/external_accounts/' + id, data: updatedAccount})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateExternalTransaction = function(id, updatedTransaction, fn) {
+    $http({method: 'PUT', url: '/v1/external_transactions/' + id, data: updatedTransaction})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updatePolicy = function(id, updatedPolicy, fn) {
+    $http({method: 'PUT', url: '/v1/policies/' + id, data: updatedPolicy})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateUser = function(id, updatedUser, fn) {
+    $http({method: 'PUT', url: '/v1/users/' + id, data: updatedUser})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  // URL NOT IMPLEMENTED
+  API.prototype.updateGatewayTransaction = function(id, updatedTransaction, fn) {
+    $http({method: 'PUT', url: '/v1/gateway_transactions/' + id, data: updatedTransaction})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  // URL NOT IMPLEMENTED
+  API.prototype.updateKycData = function(id, updatedData, fn) {
+    $http({method: 'PUT', url: '/v1/kyc_data/' + id, data: updatedData})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteRippleAddress = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/ripple_addresses/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteRippleTransaction = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/ripple_transaction/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteExternalAccount = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/external_accounts/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteExternalTransaction = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/external_transactions/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deletePolicy = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/policies/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteUser = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/users/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  // URL NOT IMPLEMENTED
+  API.prototype.deleteGatewayTransaction = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/gateway_transactions/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  // URL NOT IMPLEMENTED
+  API.prototype.deleteKycData = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/kyc_data/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
   return new API;
 
 }]);
