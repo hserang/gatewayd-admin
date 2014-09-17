@@ -1,7 +1,8 @@
 rippleGatewayApp.controller('ExternalTransactionsCtrl', [
   '$scope',
   'UserService',
-  'ApiService', function($scope, $user, $api) {
+  'ApiService',
+  '$window', function($scope, $user, $api, $window) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.transactions = [];
@@ -11,4 +12,17 @@ rippleGatewayApp.controller('ExternalTransactionsCtrl', [
         $scope.transactions = res.external_transactions;
       }
     });
+
+    $scope.deleteExternalTransaction = function(index) {
+      var transaction = $scope.transactions[index];
+      var confirmed = $window.confirm('Are you sure?')
+
+      if (confirmed) {
+        $api.deleteExternalTransaction(transaction.id, function(err, res) {
+          if (!err) {
+            $scope.transactions.splice(index, 1);
+          }
+        });
+      }
+    };
 }]);

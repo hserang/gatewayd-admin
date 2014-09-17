@@ -1,7 +1,8 @@
 rippleGatewayApp.controller('UsersCtrl', [
   '$scope',
   'UserService',
-  'ApiService', function($scope, $user, $api) {
+  'ApiService',
+  '$window', function($scope, $user, $api, $window) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.users = [];
@@ -11,4 +12,17 @@ rippleGatewayApp.controller('UsersCtrl', [
         $scope.users = res.users;
       }
     });
+
+    $scope.deleteUser = function(index) {
+      var user = $scope.users[index];
+      var confirmed = $window.confirm('Are you sure?')
+
+      if (confirmed) {
+        $api.deleteUser(user.id, function(err, res) {
+          if (!err) {
+            $scope.users.splice(index, 1);
+          }
+        });
+      }
+    };
 }]);

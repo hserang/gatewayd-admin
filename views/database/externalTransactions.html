@@ -1,6 +1,6 @@
 <div class='container'>
   <span class='text-primary'>External Transactions</span>
-  <table class='table table-bordered'>
+  <table class='table table-striped table-condensed'>
     <thead>
       <th>ID</th>
       <th>Amount</th>
@@ -13,6 +13,7 @@
       <th>Updated At</th>
       <th>UID</th>
       <th>Data</th>
+      <th>Actions</th>
     </thead>
     <tbody>
       <tr ng-repeat='transaction in transactions'>
@@ -27,6 +28,10 @@
         <td>{{ transaction.updatedAt }}</td>
         <td>{{ transaction.uid }}</td>
         <td>{{ transaction.data }}</td>
+        <td>
+          <input type='button' class='btn btn-warning btn-block' ng-click='editExternalTransaction($index)' value='Edit'>
+          <input type='button' class='btn btn-danger btn-block' ng-click='deleteExternalTransaction($index)' value='Delete'>
+        </td>
       </tr>
     </tbody>
   </table>

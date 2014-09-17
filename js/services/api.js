@@ -192,7 +192,6 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   };
 
   API.prototype.createExternalTransaction = function(transactionDetails, fn) {
-    console.log('hmmmmmm', transactionDetails);
     $http({method: 'POST', url: '/v1/external_transactions', data: transactionDetails})
     .success(success(fn))
     .error(error(fn));
