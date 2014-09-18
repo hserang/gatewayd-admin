@@ -1,29 +1,39 @@
 rippleGatewayApp.controller('PoliciesFormCtrl', [
   '$scope',
   'UserService',
+  '$timeout',
   '$location',
   '$routeParams',
-  'ApiService', function($scope, $user, $location, $routeParams, $api) {
+  'ApiService', function($scope, $user, $timeout, $location, $routeParams, $api) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.policy = {};
+    $scope.messageState = '';
 
     if ($routeParams.id) {
-      $scope.new = false;
+      $scope.creating = false;
 
       $api.getPolicy($routeParams.id, function(err, res) {
-        if (!err && res.success) {
+        if (!err) {
           $scope.policy = res.policy;
         }
       });
     } else {
-      $scope.new = true;
+      $scope.creating = true;
     }
 
     $scope.updatePolicy = function() {
       $api.updatePolicy($routeParams.id, $scope.policy, function(err, res) {
         if (!err) {
-          $location.path('/database/policies');
+          $scope.messageState = 'success';
+          $scope.successMessage = 'Policy updated.';
+
+          $timeout(function() {
+            $location.path('/database/policies');
+          }, 2000);
+        } else {
+          $scope.messageState = 'error';
+          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
         }
       });
     };
@@ -31,7 +41,15 @@ rippleGatewayApp.controller('PoliciesFormCtrl', [
     $scope.createPolicy = function() {
       $api.createPolicy($scope.policy, function(err, res) {
         if (!err) {
-          $location.path('/database/policies');
+          $scope.messageState = 'success';
+          $scope.successMessage = 'Policy updated.';
+
+          $timeout(function() {
+            $location.path('/database/policies');
+          }, 2000);
+        } else {
+          $scope.messageState = 'error';
+          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
         }
       });
     };

@@ -71,8 +71,20 @@
 
     <div class='form-group'>
       <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary' ng-click='createRippleAddress()' ng-show='new'>Create Ripple Address</button>
-        <button type='submit' class='btn btn-warning' ng-click='updateRippleAddress()' ng-show='!new'>Update Ripple Address</button>
+        <button type='submit' class='btn btn-primary' ng-click='createRippleAddress()' ng-show='creating'>Create Ripple Address</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateRippleAddress()' ng-show='!creating'>Update Ripple Address</button>
+      </div>
+    </div>
+
+    <div ng-switch='messageState'>
+      <div class='alert alert-success' ng-switch-when='success'>
+        <a href='#/database/external_accounts' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Success!</strong> {{ successMessage }}
+      </div>
+
+      <div class='alert alert-danger' ng-switch-when='error'>
+        <a href='' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Error!</strong> {{ errorMessage }}
       </div>
     </div>
 

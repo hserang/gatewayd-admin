@@ -83,25 +83,13 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   }
 
-  API.prototype.getUsers = function(fn){
-    $http({ method: 'GET', url: '/v1/users' })
-    .success(success(fn))
-    .error(error(fn));
-  };
-
-  API.prototype.getAllExternalTransactions = function(fn){
-    $http({ method: 'GET', url: '/v1/external_transactions' })
-    .success(success(fn))
-    .error(error(fn));
-  };
-
   API.prototype.getClearedTransactions = function(fn){
     $http({ method: 'GET', url: '/v1/cleared' })
     .success(success(fn))
     .error(error(fn));
   };
 
-  API.prototype.getExternalTransactions = function(query, fn){
+  API.prototype.queryExternalTransactions = function(query, fn){
     $http({ method: 'GET', url: '/v1/external_transactions?'+serialize(query) })
     .success(success(fn))
     .error(error(fn));
@@ -173,10 +161,22 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.getExternalTransactions = function(fn){
+    $http({ method: 'GET', url: '/v1/external_transactions' })
+    .success(success(fn))
+    .error(error(fn));
+  };
+
   API.prototype.getPolicies = function(fn) {
     $http({method: 'GET', url: '/v1/policies'})
     .success(success(fn))
     .error(error(fn))
+  };
+
+  API.prototype.getUsers = function(fn){
+    $http({ method: 'GET', url: '/v1/users' })
+    .success(success(fn))
+    .error(error(fn));
   };
 
   API.prototype.getGatewayTransactions = function(fn) {
@@ -227,14 +227,14 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn))
   };
 
-  API.prototype.createKycDatum = function(datum, fn) {
-    $http({method: 'POST', url: '/v1/kyc_data', data: datum})
+  API.prototype.createGatewayTransaction = function(transactionDetails, fn) {
+    $http({method: 'POST', url: '/v1/gateway_transactions', data: transactionDetails})
     .success(success(fn))
     .error(error(fn));
   };
 
-  API.prototype.createGatewayTransaction = function(transactionDetails, fn) {
-    $http({method: 'POST', url: '/v1/gateway_transactions', data: transactionDetails})
+  API.prototype.createKycDatum = function(datum, fn) {
+    $http({method: 'POST', url: '/v1/kyc_data', data: datum})
     .success(success(fn))
     .error(error(fn));
   };
@@ -381,6 +381,22 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     $http({method: 'GET', url: '/v1/kyc_data/' + id})
     .success(success(fn))
     .error(error(fn));
+  };
+
+  API.prototype.constructErrorMessage = function(err) {
+    var errorMessages = [];
+
+    for (var key in err.error) {
+      var field = err.error[key];
+
+      for (var i = 0; i < field.length; i++) {
+        var entry = field[i];
+
+        errorMessages.push(entry);
+      }
+    }
+
+    return errorMessages;
   };
 
   return new API;

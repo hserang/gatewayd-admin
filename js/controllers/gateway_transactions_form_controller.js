@@ -1,30 +1,39 @@
 rippleGatewayApp.controller('GatewayTransactionsFormCtrl', [
   '$scope',
   'UserService',
+  '$timeout',
   '$location',
   '$routeParams',
-  'ApiService', function($scope, $user, $location, $routeParams, $api) {
+  'ApiService', function($scope, $user, $timeout, $location, $routeParams, $api) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.transaction = {};
+    $scope.messageState = '';
 
     if ($routeParams.id) {
-      $scope.new = false;
+      $scope.creating = false;
 
       $api.getGatewayTransaction($routeParams.id, function(err, res) {
-        console.log(res);
-        if (!err && res.success) {
+        if (!err) {
           $scope.transaction = res.transaction;
         }
       });
     } else {
-      $scope.new = true;
+      $scope.creating = true;
     }
 
     $scope.updateGatewayTransaction = function() {
       $api.updateGatewayTransaction($routeParams.id, $scope.transaction, function(err, res) {
         if (!err) {
-          $location.path('/database/gateway_transactions');
+          $scope.messageState = 'success';
+          $scope.successMessage = 'Gateway transaction updated.';
+
+          $timeout(function() {
+            $location.path('/database/gateway_transactions');
+          }, 2000);
+        } else {
+          $scope.messageState = 'error';
+          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
         }
       });
     };
@@ -32,7 +41,15 @@ rippleGatewayApp.controller('GatewayTransactionsFormCtrl', [
     $scope.createGatewayTransaction = function() {
       $api.createGatewayTransaction($scope.transaction, function(err, res) {
         if (!err) {
-          $location.path('/database/gateway_transactions');
+          $scope.messageState = 'success';
+          $scope.successMessage = 'Gateway transaction updated.';
+
+          $timeout(function() {
+            $location.path('/database/gateway_transactions');
+          }, 2000);
+        } else {
+          $scope.messageState = 'error';
+          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
         }
       });
     };

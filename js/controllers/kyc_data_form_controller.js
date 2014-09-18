@@ -1,30 +1,39 @@
 rippleGatewayApp.controller('KycDataFormCtrl', [
   '$scope',
   'UserService',
+  '$timeout',
   '$location',
   '$routeParams',
-  'ApiService', function($scope, $user, $location, $routeParams, $api) {
+  'ApiService', function($scope, $user, $timeout, $location, $routeParams, $api) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.datum = {};
+    $scope.messageState = '';
 
     if ($routeParams.id) {
-      $scope.new = false;
+      $scope.creating = false;
 
       $api.getKycDatum($routeParams.id, function(err, res) {
-        console.log(res);
-        if (!err && res.success) {
+        if (!err) {
           $scope.datum = res.data;
         }
       });
     } else {
-      $scope.new = true;
+      $scope.creating = true;
     }
 
     $scope.updateKycDatum = function() {
       $api.updateKycDatum($routeParams.id, $scope.datum, function(err, res) {
         if (!err) {
-          $location.path('/database/kyc_data');
+          $scope.messageState = 'success';
+          $scope.successMessage = 'KYC Data updated.';
+
+          $timeout(function() {
+            $location.path('/database/kyc_data');
+          }, 2000);
+        } else {
+          $scope.messageState = 'error';
+          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
         }
       });
     };
@@ -32,7 +41,15 @@ rippleGatewayApp.controller('KycDataFormCtrl', [
     $scope.createKycDatum = function() {
       $api.createKycDatum($scope.datum, function(err, res) {
         if (!err) {
-          $location.path('/database/kyc_data');
+          $scope.messageState = 'success';
+          $scope.successMessage = 'KYC Data updated.';
+
+          $timeout(function() {
+            $location.path('/database/kyc_data');
+          }, 2000);
+        } else {
+          $scope.messageState = 'error';
+          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
         }
       });
     };

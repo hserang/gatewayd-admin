@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class='form-group has-success'>
+    <div class='form-group has-success' ng-show='creating'>
       <label class='col-xs-2'>Password</label>
       <div class='col-xs-10'>
         <input type='password' class='form-control' placeholder='' ng-model='user.password' required>
@@ -52,8 +52,20 @@
 
     <div class='form-group'>
       <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary' ng-click='createUser()' ng-show='new'>Create User</button>
-        <button type='submit' class='btn btn-warning' ng-click='updateUser()' ng-show='!new'>Update User</button>
+        <button type='submit' class='btn btn-primary' ng-click='createUser()' ng-show='creating'>Create User</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateUser()' ng-show='!creating'>Update User</button>
+      </div>
+    </div>
+
+    <div ng-switch='messageState'>
+      <div class='alert alert-success' ng-switch-when='success'>
+        <a href='#/database/external_accounts' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Success!</strong> {{ successMessage }}
+      </div>
+
+      <div class='alert alert-danger' ng-switch-when='error'>
+        <a href='' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Error!</strong> {{ errorMessage }}
       </div>
     </div>
 
