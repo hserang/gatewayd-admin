@@ -1,4 +1,4 @@
-rippleGatewayApp.controller('NewPoliciesCtrl', [
+rippleGatewayApp.controller('PoliciesFormCtrl', [
   '$scope',
   'UserService',
   '$location',

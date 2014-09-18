@@ -1,4 +1,4 @@
-rippleGatewayApp.controller('NewExternalAccountsCtrl', [
+rippleGatewayApp.controller('ExternalAccountsFormCtrl', [
   '$scope',
   'UserService',
   '$location',

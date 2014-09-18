@@ -1,4 +1,4 @@
-rippleGatewayApp.controller('NewGatewayTransactionsCtrl', [
+rippleGatewayApp.controller('GatewayTransactionsFormCtrl', [
   '$scope',
   'UserService',
   '$location',

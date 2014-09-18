@@ -1,4 +1,4 @@
-rippleGatewayApp.controller('NewKycDataCtrl', [
+rippleGatewayApp.controller('KycDataFormCtrl', [
   '$scope',
   'UserService',
   '$location',

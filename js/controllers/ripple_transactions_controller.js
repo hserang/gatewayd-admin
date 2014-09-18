@@ -1,8 +1,9 @@
 rippleGatewayApp.controller('RippleTransactionsCtrl', [
   '$scope',
   'UserService',
+  '$location',
   'ApiService',
-  '$window', function($scope, $user, $api, $window) {
+  '$window', function($scope, $user, $location, $api, $window) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
     $scope.transactions = [];
