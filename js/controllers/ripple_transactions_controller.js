@@ -28,6 +28,6 @@ rippleGatewayApp.controller('RippleTransactionsCtrl', [
     };
 
     $scope.updateRippleTransaction = function(index) {
-      $location.path('/database/ripple_transactions/' + index + '/update');
+      $location.path('/database/ripple_transactions/' + $scope.transactions[index].id + '/update');
     };
 }]);

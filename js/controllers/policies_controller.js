@@ -28,6 +28,6 @@ rippleGatewayApp.controller('PoliciesCtrl', [
     };
 
     $scope.updatePolicy = function(index) {
-      $location.path('/database/policies/' + index + '/update');
+      $location.path('/database/policies/' + $scope.policies[index].id + '/update');
     };
 }]);

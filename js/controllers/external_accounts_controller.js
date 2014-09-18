@@ -28,6 +28,6 @@ rippleGatewayApp.controller('ExternalAccountsCtrl', [
     };
 
     $scope.updateExternalAccount = function(index) {
-      $location.path('/database/external_accounts/' + index + '/update');
+      $location.path('/database/external_accounts/' + $scope.accounts[index].id + '/update');
     };
 }]);

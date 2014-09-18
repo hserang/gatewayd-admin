@@ -1,5 +1,5 @@
 <div class='container'>
-  <form class='form-horizontal' ng-submit='createExternalTransaction()'>
+  <form class='form-horizontal'>
 
     <div class='form-group has-success'>
       <label class='col-xs-2'>Amount</label>
@@ -19,10 +19,10 @@
       <label class='col-xs-2'>Deposit or Withdrawal?</label>
       <div class='col-xs-10'>
         <label class='radio-inline'>
-          <input type='radio' name='inlineRadioOptions' value='true' ng-model='transaction.deposit' required> Deposit
+          <input type='radio' name='inlineRadioOptions' ng-value='true' ng-model='transaction.deposit' required> Deposit
         </label>
         <label class='radio-inline'>
-          <input type='radio' name='inlineRadioOptions' value='false' ng-model='transaction.deposit'> Withdrawal
+          <input type='radio' name='inlineRadioOptions' ng-value='false' ng-model='transaction.deposit'> Withdrawal
         </label>
       </div>
     </div>
@@ -64,7 +64,8 @@
 
     <div class='form-group'>
       <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary'>Create External Transaction</button>
+        <button type='submit' class='btn btn-primary' ng-click='createExternalTransaction()' ng-show='new'>Create External Transaction</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateExternalTransaction()' ng-show='!new'>Update External Transaction</button>
       </div>
     </div>
 

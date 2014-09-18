@@ -1,14 +1,14 @@
 <div class='container'>
-  <form class='form-horizontal' ng-submit='createRippleAddress()'>
+  <form class='form-horizontal'>
 
     <div class='form-group has-success'>
       <label class='col-xs-2'>Managed?</label>
       <div class='col-xs-10'>
         <label class='radio-inline'>
-          <input type='radio' name='inlineRadioOptions' value='true' ng-model='address.managed' required> Yes
+          <input type='radio' name='inlineRadioOptions' ng-value='true' ng-model='address.managed' required> Yes
         </label>
         <label class='radio-inline'>
-          <input type='radio' name='inlineRadioOptions' value='false' ng-model='address.managed'> No
+          <input type='radio' name='inlineRadioOptions' ng-value='false' ng-model='address.managed'> No
         </label>
       </div>
     </div>
@@ -71,7 +71,8 @@
 
     <div class='form-group'>
       <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary'>Create Ripple Address</button>
+        <button type='submit' class='btn btn-primary' ng-click='createRippleAddress()' ng-show='new'>Create Ripple Address</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateRippleAddress()' ng-show='!new'>Update Ripple Address</button>
       </div>
     </div>
 

@@ -28,6 +28,6 @@ rippleGatewayApp.controller('RippleAddressesCtrl', [
     };
 
     $scope.updateRippleAddress = function(index) {
-      $location.path('/database/ripple_addresses/' + index + '/update');
+      $location.path('/database/ripple_addresses/' + $scope.addresses[index].id + '/update');
     };
 }]);

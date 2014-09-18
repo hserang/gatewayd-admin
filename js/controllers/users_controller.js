@@ -28,6 +28,6 @@ rippleGatewayApp.controller('UsersCtrl', [
     };
 
     $scope.updateUser = function(index) {
-      $location.path('/database/users/' + index + '/update');
+      $location.path('/database/users/' + $scope.users[index].id + '/update');
     };
 }]);

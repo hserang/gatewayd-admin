@@ -1,5 +1,5 @@
 <div class='container'>
-  <form class='form-horizontal' ng-submit='createRippleTransaction()'>
+  <form class='form-horizontal'>
 
     <div class='form-group has-success'>
       <label class='col-xs-2'>To Address ID</label>
@@ -73,7 +73,8 @@
 
     <div class='form-group'>
       <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary'>Create Ripple Transaction</button>
+        <button type='submit' class='btn btn-primary' ng-click='createRippleTransaction()' ng-show='new'>Create Ripple Transaction</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateRippleTransaction()' ng-show='!new'>Update Ripple Transaction</button>
       </div>
     </div>
 

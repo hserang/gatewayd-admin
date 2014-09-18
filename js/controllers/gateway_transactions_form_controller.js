@@ -2,15 +2,24 @@ rippleGatewayApp.controller('GatewayTransactionsFormCtrl', [
   '$scope',
   'UserService',
   '$location',
-  'ApiService', function($scope, $user, $location, $api) {
+  '$routeParams',
+  'ApiService', function($scope, $user, $location, $routeParams, $api) {
     if (!$user.isAdmin) {  $location.path('/login') };
 
-    $scope.transaction = {
-      external_transaction_id: '',
-      ripple_transaction_id: '',
-      policy_id: '',
-      state: ''
-    };
+    $scope.transaction = {};
+
+    if ($routeParams.id) {
+      $scope.new = false;
+
+      $api.getGatewayTransaction($routeParams.id, function(err, res) {
+        console.log(res);
+        if (!err && res.success) {
+          $scope.transaction = res.transaction;
+        }
+      });
+    } else {
+      $scope.new = true;
+    }
 
     $scope.createGatewayTransaction = function() {
       $api.createGatewayTransaction($scope.transaction, function(err, res) {

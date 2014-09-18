@@ -1,5 +1,5 @@
 <div class='container'>
-  <form class='form-horizontal' ng-submit='createGatewayTransaction()'>
+  <form class='form-horizontal'>
 
   <!-- WHAT IS REQUIRED? -->
 
@@ -33,7 +33,8 @@
 
     <div class='form-group'>
       <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary'>Create Gateway Transaction</button>
+        <button type='submit' class='btn btn-primary' ng-click='createGatewayTransaction()' ng-show='new'>Create Gateway Transaction</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateGatewayTransaction()' ng-show='!new'>Update Gateway Transaction</button>
       </div>
     </div>
 

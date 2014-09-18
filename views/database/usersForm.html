@@ -1,5 +1,5 @@
 <div class='container'>
-  <form class='form-horizontal' ng-submit='createUser()'>
+  <form class='form-horizontal'>
 
     <div class='form-group has-success'>
       <label class='col-xs-2'>Name</label>
@@ -52,7 +52,8 @@
 
     <div class='form-group'>
       <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary'>Create User</button>
+        <button type='submit' class='btn btn-primary' ng-click='createUser()' ng-show='new'>Create User</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateUser()' ng-show='!new'>Update User</button>
       </div>
     </div>
 
