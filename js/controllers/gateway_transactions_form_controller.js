@@ -21,6 +21,14 @@ rippleGatewayApp.controller('GatewayTransactionsFormCtrl', [
       $scope.new = true;
     }
 
+    $scope.updateGatewayTransaction = function() {
+      $api.updateGatewayTransaction($routeParams.id, $scope.transaction, function(err, res) {
+        if (!err) {
+          $location.path('/database/gateway_transactions');
+        }
+      });
+    };
+
     $scope.createGatewayTransaction = function() {
       $api.createGatewayTransaction($scope.transaction, function(err, res) {
         if (!err) {

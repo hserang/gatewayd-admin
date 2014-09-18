@@ -20,6 +20,14 @@ rippleGatewayApp.controller('ExternalTransactionsFormCtrl', [
       $scope.new = true;
     }
 
+    $scope.updateExternalTransaction = function() {
+      $api.updateExternalTransaction($routeParams.id, $scope.transaction, function(err, res) {
+        if (!err) {
+          $location.path('/database/external_transactions');
+        }
+      });
+    };
+
     $scope.createExternalTransaction = function() {
       $api.createExternalTransaction($scope.transaction, function(err, res) {
         if (!err) {

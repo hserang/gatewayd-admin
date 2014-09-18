@@ -20,6 +20,14 @@ rippleGatewayApp.controller('PoliciesFormCtrl', [
       $scope.new = true;
     }
 
+    $scope.updatePolicy = function() {
+      $api.updatePolicy($routeParams.id, $scope.policy, function(err, res) {
+        if (!err) {
+          $location.path('/database/policies');
+        }
+      });
+    };
+
     $scope.createPolicy = function() {
       $api.createPolicy($scope.policy, function(err, res) {
         if (!err) {

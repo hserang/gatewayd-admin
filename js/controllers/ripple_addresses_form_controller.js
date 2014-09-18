@@ -20,6 +20,14 @@ rippleGatewayApp.controller('RippleAddressesFormCtrl', [
       $scope.new = true;
     }
 
+    $scope.updateRippleAddress = function() {
+      $api.updateRippleAddress($routeParams.id, $scope.address, function(err, res) {
+        if (!err) {
+          $location.path('/database/ripple_addresses');
+        }
+      });
+    };
+
     $scope.createRippleAddress = function() {
       $api.createRippleAddress($scope.address, function(err, res) {
         if (!err) {

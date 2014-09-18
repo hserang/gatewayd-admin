@@ -20,6 +20,14 @@ rippleGatewayApp.controller('UsersFormCtrl', [
       $scope.new = true;
     }
 
+    $scope.updateUser = function() {
+      $api.updateUser($routeParams.id, $scope.user, function(err, res) {
+        if (!err) {
+          $location.path('/database/users');
+        }
+      });
+    };
+
     $scope.createUser = function() {
       $api.createUser($scope.user, function(err, res) {
         if (!err) {

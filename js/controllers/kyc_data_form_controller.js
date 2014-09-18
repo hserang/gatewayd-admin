@@ -14,12 +14,20 @@ rippleGatewayApp.controller('KycDataFormCtrl', [
       $api.getKycDatum($routeParams.id, function(err, res) {
         console.log(res);
         if (!err && res.success) {
-          $scope.datum = res.datum;
+          $scope.datum = res.data;
         }
       });
     } else {
       $scope.new = true;
     }
+
+    $scope.updateKycDatum = function() {
+      $api.updateKycDatum($routeParams.id, $scope.datum, function(err, res) {
+        if (!err) {
+          $location.path('/database/kyc_data');
+        }
+      });
+    };
 
     $scope.createKycDatum = function() {
       $api.createKycDatum($scope.datum, function(err, res) {
