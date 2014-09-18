@@ -26,4 +26,8 @@ rippleGatewayApp.controller('PoliciesCtrl', [
         });
       }
     };
+
+    $scope.updatePolicy = function(index) {
+      $location.path('/database/policies/' + index + '/update');
+    };
 }]);

@@ -26,4 +26,8 @@ rippleGatewayApp.controller('KycDataCtrl', [
         });
       }
     };
+
+    $scope.updateKycDatum = function(index) {
+      $location.path('/database/kyc_data/' + index + '/update');
+    };
 }]);

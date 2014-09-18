@@ -26,4 +26,8 @@ rippleGatewayApp.controller('RippleAddressesCtrl', [
         });
       }
     };
+
+    $scope.updateRippleAddress = function(index) {
+      $location.path('/database/ripple_addresses/' + index + '/update');
+    };
 }]);

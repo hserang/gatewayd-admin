@@ -26,4 +26,8 @@ rippleGatewayApp.controller('UsersCtrl', [
         });
       }
     };
+
+    $scope.updateUser = function(index) {
+      $location.path('/database/users/' + index + '/update');
+    };
 }]);

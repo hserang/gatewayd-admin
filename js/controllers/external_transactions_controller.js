@@ -26,4 +26,8 @@ rippleGatewayApp.controller('ExternalTransactionsCtrl', [
         });
       }
     };
+
+    $scope.updateExternalTransaction = function(index) {
+      $location.path('/database/external_transactions/' + index + '/update');
+    };
 }]);
