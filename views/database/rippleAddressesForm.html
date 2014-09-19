@@ -2,28 +2,40 @@
   <form class='form-horizontal'>
 
     <div class='form-group has-success'>
-      <label class='col-xs-2'>Managed?</label>
+      <label class='col-xs-2 text-success'>Managed?</label>
       <div class='col-xs-10'>
         <label class='radio-inline'>
-          <input type='radio' name='inlineRadioOptions' ng-value='true' ng-model='address.managed' required> Yes
+          <input type='radio' name='managed' ng-value='true' ng-model='address.managed' required> Yes
         </label>
         <label class='radio-inline'>
-          <input type='radio' name='inlineRadioOptions' ng-value='false' ng-model='address.managed'> No
+          <input type='radio' name='managed' ng-value='false' ng-model='address.managed'> No
         </label>
       </div>
     </div>
 
     <div class='form-group has-success'>
-      <label class='col-xs-2'>Address</label>
+      <label class='col-xs-2 text-success'>Address</label>
       <div class='col-xs-10'>
         <input type='text' class='form-control' placeholder='r...' ng-model='address.address' required>
       </div>
     </div>
 
     <div class='form-group has-success'>
-      <label class='col-xs-2'>Type</label>
+      <label class='col-xs-2 text-success'>Type</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='independent or hot' ng-model='address.type' required>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='independent' ng-model='address.type' required> Independent
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='hosted' ng-model='address.type'> Hosted
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='hot' ng-model='address.type'> Hot
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='cold' ng-model='address.type'> Cold
+        </label>
+        <!-- <input type='text' class='form-control' placeholder='independent or hot' ng-model='address.type' required> -->
       </div>
     </div>
 

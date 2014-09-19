@@ -2,21 +2,21 @@
   <form class='form-horizontal'>
 
     <div class='form-group has-success'>
-      <label class='col-xs-2'>Amount</label>
+      <label class='col-xs-2 text-success'>Amount</label>
       <div class='col-xs-10'>
         <input type='text' class='form-control' placeholder='0.001'ng-model='transaction.amount' required>
       </div>
     </div>
 
     <div class='form-group has-success'>
-      <label class='col-xs-2'>Currency</label>
+      <label class='col-xs-2 text-success'>Currency</label>
       <div class='col-xs-10'>
         <input type='text' class='form-control' placeholder='XRP' ng-model='transaction.currency' required>
       </div>
     </div>
 
     <div class='form-group has-success'>
-      <label class='col-xs-2'>Deposit or Withdrawal?</label>
+      <label class='col-xs-2 text-success'>Deposit or Withdrawal?</label>
       <div class='col-xs-10'>
         <label class='radio-inline'>
           <input type='radio' name='inlineRadioOptions' ng-value='true' ng-model='transaction.deposit' required> Deposit
@@ -28,7 +28,7 @@
     </div>
 
     <div class='form-group has-success'>
-      <label class='col-xs-2'>External Account ID</label>
+      <label class='col-xs-2 text-success'>External Account ID</label>
       <div class='col-xs-10'>
         <input type='text' class='form-control' placeholder='' ng-model='transaction.external_account_id' required>
       </div>
