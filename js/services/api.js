@@ -294,7 +294,7 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   };
 
   API.prototype.deleteRippleTransaction = function(id, fn) {
-    $http({method: 'DELETE', url: '/v1/ripple_transaction/' + id})
+    $http({method: 'DELETE', url: '/v1/ripple_transactions/' + id})
     .success(success(fn))
     .error(error(fn));
   };
