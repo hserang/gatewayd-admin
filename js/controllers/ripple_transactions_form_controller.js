@@ -48,7 +48,6 @@ rippleGatewayApp.controller('RippleTransactionsFormCtrl', [
             $location.path('/database/ripple_transactions');
           }, 1000);
         } else {
-          console.log(err);
           $scope.messageState = 'error';
           $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
