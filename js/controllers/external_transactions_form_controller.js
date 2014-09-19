@@ -30,10 +30,10 @@ rippleGatewayApp.controller('ExternalTransactionsFormCtrl', [
 
           $timeout(function() {
             $location.path('/database/external_transactions');
-          }, 2000);
+          }, 1000);
         } else {
           $scope.messageState = 'error';
-          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
+          $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
       });
     };
@@ -46,10 +46,10 @@ rippleGatewayApp.controller('ExternalTransactionsFormCtrl', [
 
           $timeout(function() {
             $location.path('/database/external_transactions');
-          }, 2000);
+          }, 1000);
         } else {
           $scope.messageState = 'error';
-          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
+          $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
       });
     };

@@ -30,10 +30,10 @@ rippleGatewayApp.controller('RippleTransactionsFormCtrl', [
 
           $timeout(function() {
             $location.path('/database/ripple_transactions');
-          }, 2000);
+          }, 1000);
         } else {
           $scope.messageState = 'error';
-          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
+          $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
       });
     };
@@ -46,10 +46,11 @@ rippleGatewayApp.controller('RippleTransactionsFormCtrl', [
 
           $timeout(function() {
             $location.path('/database/ripple_transactions');
-          }, 2000);
+          }, 1000);
         } else {
+          console.log(err);
           $scope.messageState = 'error';
-          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
+          $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
       });
     };

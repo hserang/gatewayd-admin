@@ -30,10 +30,10 @@ rippleGatewayApp.controller('UsersFormCtrl', [
 
           $timeout(function() {
             $location.path('/database/users');
-          }, 2000);
+          }, 1000);
         } else {
           $scope.messageState = 'error';
-          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
+          $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
       });
     };
@@ -46,10 +46,10 @@ rippleGatewayApp.controller('UsersFormCtrl', [
 
           $timeout(function() {
             $location.path('/database/users');
-          }, 2000);
+          }, 1000);
         } else {
           $scope.messageState = 'error';
-          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
+          $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
       });
     };

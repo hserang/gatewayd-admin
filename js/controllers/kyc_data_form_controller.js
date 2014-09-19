@@ -30,10 +30,10 @@ rippleGatewayApp.controller('KycDataFormCtrl', [
 
           $timeout(function() {
             $location.path('/database/kyc_data');
-          }, 2000);
+          }, 1000);
         } else {
           $scope.messageState = 'error';
-          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
+          $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
       });
     };
@@ -46,10 +46,10 @@ rippleGatewayApp.controller('KycDataFormCtrl', [
 
           $timeout(function() {
             $location.path('/database/kyc_data');
-          }, 2000);
+          }, 1000);
         } else {
           $scope.messageState = 'error';
-          $scope.errorMessage = $api.constructErrorMessage(err).join('\n');
+          $scope.errorMessage = $api.constructErrorMessage(err).join(', ');
         }
       });
     };
