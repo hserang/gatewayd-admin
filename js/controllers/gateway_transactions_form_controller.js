@@ -15,7 +15,7 @@ rippleGatewayApp.controller('GatewayTransactionsFormCtrl', [
 
       $api.getGatewayTransaction($routeParams.id, function(err, res) {
         if (!err) {
-          $scope.transaction = res.transaction;
+          $scope.transaction = res.gateway_transaction;
         }
       });
     } else {
