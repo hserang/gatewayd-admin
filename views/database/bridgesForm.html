@@ -1,0 +1,57 @@
+<div class='container'>
+  <form class='form-horizontal'>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Source Address ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='bridge.source_address_id' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Destination Address ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='bridge.destination_address_id' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Policy ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='bridge.policy_id' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Direction</label>
+      <div class='col-xs-10'>
+        <label class='radio-inline text-success'>
+          <input type='radio' name='type' value='to-ripple' ng-model='bridge.direction' required> To Ripple
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='from-ripple' ng-model='bridge.direction'> From Ripple
+        </label>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <div class='col-xs-offset-2 col-xs-10'>
+        <button type='submit' class='btn btn-primary' ng-click='createBridge()' ng-show='creating' required>Create Bridge</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateBridge()' ng-show='!creating'>Update Bridge</button>
+      </div>
+    </div>
+
+    <div ng-switch='messageState'>
+      <div class='alert alert-success' ng-switch-when='success'>
+        <a href='#/database/bridges' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Success!</strong> {{ successMessage }}
+      </div>
+
+      <div class='alert alert-danger' ng-switch-when='error'>
+        <a href='' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Error!</strong> {{ errorMessage }}
+      </div>
+    </div>
+
+  </form>
+</div>

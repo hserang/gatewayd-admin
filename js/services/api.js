@@ -191,6 +191,12 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.getBridges = function(fn) {
+    $http({method: 'GET', url: '/v1/bridges'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
   API.prototype.createRippleAddress = function(addressDetails, fn) {
     $http({method: 'POST', url: '/v1/ripple_addresses', data: addressDetails})
     .success(success(fn))
@@ -235,6 +241,12 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
 
   API.prototype.createKycDatum = function(datum, fn) {
     $http({method: 'POST', url: '/v1/kyc_data', data: datum})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createBridge = function(bridgeInfo, fn) {
+    $http({method: 'POST', url: '/v1/bridges', data: bridgeInfo})
     .success(success(fn))
     .error(error(fn));
   };
@@ -287,6 +299,12 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.updateBridge = function(id, updatedBridge, fn) {
+    $http({method: 'PUT', url: '/v1/bridges/' + id, data: updatedBridge})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
   API.prototype.deleteRippleAddress = function(id, fn) {
     $http({method: 'DELETE', url: '/v1/ripple_addresses/' + id})
     .success(success(fn))
@@ -331,6 +349,12 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
 
   API.prototype.deleteKycDatum = function(id, fn) {
     $http({method: 'DELETE', url: '/v1/kyc_data/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteBridge = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/bridges/' + id})
     .success(success(fn))
     .error(error(fn));
   };
@@ -383,6 +407,12 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   };
 
+  API.prototype.getBridge = function(id, fn) {
+    $http({method: 'GET', url: '/v1/bridges/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
   API.prototype.constructErrorMessage = function(err) {
     var errorMessages = [];
 
@@ -402,4 +432,3 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   return new API;
 
 }]);
-

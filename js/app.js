@@ -133,7 +133,6 @@ rippleGatewayApp.config(['$routeProvider',
       controller: 'RippleTransactionsFormCtrl',
       templateUrl: '/views/database/rippleTransactionsForm.html'
     }).
-
     when('/database/ripple_transactions/new', {
       controller: 'RippleTransactionsFormCtrl',
       templateUrl: '/views/database/rippleTransactionsForm.html'
@@ -149,6 +148,18 @@ rippleGatewayApp.config(['$routeProvider',
     when('/database/users/new', {
       controller: 'UsersFormCtrl',
       templateUrl: '/views/database/usersForm.html'
+    }).
+    when('/database/bridges', {
+      controller: 'BridgesCtrl',
+      templateUrl: '/views/database/bridges.html'
+    }).
+    when('/database/bridges/:id/update', {
+      controller: 'BridgesFormCtrl',
+      templateUrl: '/views/database/bridgesForm.html'
+    }).
+    when('/database/bridges/new', {
+      controller: 'BridgesFormCtrl',
+      templateUrl: '/views/database/bridgesForm.html'
     }).
     otherwise({
       redirectTo: '/login'
