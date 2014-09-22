@@ -1,0 +1,52 @@
+<div class='container'>
+  <form class='form-horizontal'>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>External Account ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='policy.external_account_id' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Ripple Address ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='policy.ripple_address_id' required>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Name</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='policy.name'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Fee</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='policy.fee'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <div class='col-xs-offset-2 col-xs-10'>
+        <button type='submit' class='btn btn-primary' ng-click='createPolicy()' ng-show='creating'>Create Policy</button>
+        <button type='submit' class='btn btn-warning' ng-click='updatePolicy()' ng-show='!creating'>Update Policy</button>
+      </div>
+    </div>
+
+    <div ng-switch='messageState'>
+      <div class='alert alert-success' ng-switch-when='success'>
+        <a href='#/database/external_accounts' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Success!</strong> {{ successMessage }}
+      </div>
+
+      <div class='alert alert-danger' ng-switch-when='error'>
+        <a href='' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Error!</strong> {{ errorMessage }}
+      </div>
+    </div>
+
+  </form>
+</div>

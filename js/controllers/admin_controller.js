@@ -1,6 +1,6 @@
 rippleGatewayApp.controller('AdminCtrl', [
-  '$scope', 
-  '$http', 
+  '$scope',
+  '$http',
   '$location',
   '$window',
   'UserService',
@@ -23,7 +23,7 @@ rippleGatewayApp.controller('AdminCtrl', [
     name: '',
     password: '',
     ripple_address: ''
-  }; 
+  };
 
   $scope.registeredUser = null;
   $scope.registrationError = null;
@@ -33,7 +33,7 @@ rippleGatewayApp.controller('AdminCtrl', [
         $scope.registeredUser = null;
         $scope.registrationError = error;
         console.log('error registering user:', error);
-      } else { 
+      } else {
         console.log('registered a new user:', user);
         $scope.registeredUser = user;
         $scope.registrationError = null;
@@ -95,7 +95,7 @@ rippleGatewayApp.controller('AdminCtrl', [
       });
     })
     */
-   
+
   });
 
   $api.getWithdrawals(function(err, resp){
@@ -111,23 +111,23 @@ rippleGatewayApp.controller('AdminCtrl', [
       resp.external_transactions.forEach(function(transaction){
         transactions.push(transaction);
       });
-      
+
       outstandingCalls -= 1;
       if (outstandingCalls == 0){
         fn(null, transactions);
       }
     }
-    
-    $api.getExternalTransactions({ status: 'processed' }, function(err, resp){
+
+    $api.queryExternalTransactions({ status: 'processed' }, function(err, resp){
       if (err) { fn(err, null); return };
       handleResponse(resp);
     });
 
-    $api.getExternalTransactions({ status: 'cleared' }, function(err, resp){
+    $api.queryExternalTransactions({ status: 'cleared' }, function(err, resp){
       if (err) { fn(err, null); return };
       handleResponse(resp, fn);
     });
-    
+
   }
 
   $scope.clearWithdrawal = function(id) {
@@ -164,8 +164,8 @@ rippleGatewayApp.controller('AdminCtrl', [
   };
 
   getClearedTransactions(function(error, transactions){
-    if (error) { 
-      console.log('getClearedTransactions error', error); 
+    if (error) {
+      console.log('getClearedTransactions error', error);
     } else {
       $scope.externalTransactions = transactions;
       $scope.isSubmitting = false;

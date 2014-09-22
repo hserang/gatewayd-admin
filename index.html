@@ -132,13 +132,21 @@
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/deposits" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposits</a></li>
             <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/withdrawals" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdrawals</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/externalTransactions" ng-class="{active: location.path() == '/database/externalTransactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Transactions</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/gatewayTransactions" ng-class="{active: location.path() == '/database/gatewayTransactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Gateway Transactions</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/kycData" ng-class="{active: location.path() == '/database/kycData'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>KYC Data</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/policies" ng-class="{active: location.path() == '/database/policies'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Policies</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/databases/rippleAddresses" ng-class="{active: location.path() == '/databases/rippleAddresses'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Addresses</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/rippleTransactions" ng-class="{active: location.path() == '/database/rippleTransactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Transactions</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/database/users" ng-class="{active: location.path() == '/database/users'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
+            <li ng-show="user.isLogged && user.isAdmin">
+              <div ng-show="user.isLogged && user.isAdmin">
+                Databases
+                <ul class="nav navbar-nav">
+                  <li><a ng-href="/#/database/external_accounts" ng-class="{active: location.path() == '/database/external_accounts'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Accounts</a></li>
+                  <li><a ng-href="/#/database/external_transactions" ng-class="{active: location.path() == '/database/external_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Transactions</a></li>
+                  <li><a ng-href="/#/database/gateway_transactions" ng-class="{active: location.path() == '/database/gateway_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Gateway Transactions</a></li>
+                  <li><a ng-href="/#/database/kyc_data" ng-class="{active: location.path() == '/database/kyc_data'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>KYC Data</a></li>
+                  <li><a ng-href="/#/database/policies" ng-class="{active: location.path() == '/database/policies'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Policies</a></li>
+                  <li><a ng-href="/#/database/ripple_addresses" ng-class="{active: location.path() == '/database/ripple_addresses'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Addresses</a></li>
+                  <li><a ng-href="/#/database/ripple_transactions" ng-class="{active: location.path() == '/database/ripple_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Transactions</a></li>
+                  <li><a ng-href="/#/database/users" ng-class="{active: location.path() == '/database/users'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
+                </ul>
+              </div>
+            </li>
           </ul>
         </div>
         <!--/.navbar-collapse -->
@@ -148,64 +156,6 @@
 </div>
 
 <div id="content" ng-view=""></div>
-
-<!-- FOOTER -->
-<!--<footer id="footer">-->
-  <!--<div class="container">-->
-    <!--<div class="row">-->
-      <!--<div class="col-md-3 col">-->
-        <!--<div class="block contact-block"> -->
-          <!--&lt;!&ndash;@todo: replace with company contact details&ndash;&gt;-->
-          <!--<h3>Contact Us</h3>-->
-          <!--<address>-->
-          <!--<ul class="fa-ul">-->
-            <!--<li><abbr title="Phone"><i class="fa fa-li fa-phone"></i></abbr> 019223 8092344</li>-->
-            <!--<li><abbr title="Email"><i class="fa fa-li fa-envelope"></i></abbr> info@gatewayinabox.com</li>-->
-            <!--<li><abbr title="Address"><i class="fa fa-li fa-home"></i></abbr> Sunshine House, Sunville. SUN12 8LU.</li>-->
-          <!--</ul>-->
-          <!--</address>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="col-md-5 col">-->
-        <!--<div class="block">-->
-          <!--<h3>About Us</h3>-->
-          <!--<p>We are a top issuer of the finest digital crypto currency on Ripple you will find.</p>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="col-md-4 col">-->
-        <!--<div class="block newsletter">-->
-          <!--<h3>Newsletter</h3>-->
-          <!--<p>Stay up to date with our latest news and product releases by signing up to our newsletter.</p>-->
-          <!--&lt;!&ndash;@todo: replace with mailchimp code&ndash;&gt;-->
-          <!--<form role="form" id='newsletterForm'>-->
-            <!--<div class="input-group input-group-sm">-->
-              <!--<label class="sr-only" for="email-field">Email</label>-->
-              <!--<input type="text" class="form-control" id="email-field" placeholder="Email">-->
-              <!--<span class="input-group-btn">-->
-              <!--<button class="btn btn-primary" type="button">Go!</button>-->
-              <!--</span> </div>-->
-          <!--</form>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--<div id="toplink"><a href="#top" class="top-link" title="Back to top">Back To Top <i class="fa fa-chevron-up"></i></a></div>-->
-      <!--&lt;!&ndash;@todo: replace with company copyright details&ndash;&gt;-->
-      <!--<div class="subfooter">-->
-        <!--<div class="col-md-6">-->
-          <!--<p>Site template by <a href="theme/appstraptheme.com">Ripple Gateway</a> | Copyright 2012 &copy; Ripple Gateway</p>-->
-        <!--</div>-->
-        <!--<div class="col-md-6">-->
-          <!--<ul class="list-inline footer-menu">-->
-            <!--<li><a href="#">Terms</a></li>-->
-            <!--<li><a href="#">Privacy</a></li>-->
-            <!--<li><a href="#">Contact Us</a></li>-->
-          <!--</ul>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</footer>-->
 
 <!--Scripts -->
 <script src="/bower_components/angular/angular.min.js"></script>
@@ -249,6 +199,14 @@
 <script src="/js/controllers/ripple_addresses_controller.js"></script>
 <script src="/js/controllers/ripple_transactions_controller.js"></script>
 <script src="/js/controllers/users_controller.js"></script>
+<script src="/js/controllers/external_accounts_form_controller.js"></script>
+<script src="/js/controllers/external_transactions_form_controller.js"></script>
+<script src="/js/controllers/gateway_transactions_form_controller.js"></script>
+<script src="/js/controllers/kyc_data_form_controller.js"></script>
+<script src="/js/controllers/policies_form_controller.js"></script>
+<script src="/js/controllers/ripple_addresses_form_controller.js"></script>
+<script src="/js/controllers/ripple_transactions_form_controller.js"></script>
+<script src="/js/controllers/users_form_controller.js"></script>
 
 </body>
 </html>
