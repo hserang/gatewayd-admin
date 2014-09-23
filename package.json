@@ -1,6 +1,6 @@
 {
   "name": "ripple-gateway-webapp-example",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "An example angular webapp for interacting with Gatewayd.",
   "main": "Gruntfile.js",
   "directories": {
