@@ -15,7 +15,7 @@ rippleGatewayApp.controller('LoginCtrl', ['$scope', 'UserService', '$location', 
           if (user.admin) {
             $user.name = 'admin';
             $user.isAdmin = true;
-            $location.path('/overview');
+            $location.path('/users');
           } else {
             $user.name = user.name;
             $user.id = user.id;

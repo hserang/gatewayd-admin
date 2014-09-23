@@ -1,0 +1,104 @@
+<div class='container'>
+  <form class='form-horizontal'>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Managed?</label>
+      <div class='col-xs-10'>
+        <label class='radio-inline'>
+          <input type='radio' name='managed' ng-value='true' ng-model='address.managed' required> Yes
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='managed' ng-value='false' ng-model='address.managed'> No
+        </label>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Address</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='r...' ng-model='address.address' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Type</label>
+      <div class='col-xs-10'>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='independent' ng-model='address.type' required> Independent
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='hosted' ng-model='address.type'> Hosted
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='hot' ng-model='address.type'> Hot
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='cold' ng-model='address.type'> Cold
+        </label>
+        <!-- <input type='text' class='form-control' placeholder='independent or hot' ng-model='address.type' required> -->
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>User ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='1, 2, 3, etc.' ng-model='address.user_id'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Tag</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='address.tag'>
+      </div>
+    </div>
+
+    <!-- <div class='form-group'>
+      <label class='col-xs-2'>Secret</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='s...' ng-model='address.secret'>
+      </div>
+    </div> -->
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Previous Transaction Hash</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='address.previous_transaction_hash'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>UID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='address.uid'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>Data</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='address.data'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <div class='col-xs-offset-2 col-xs-10'>
+        <button type='submit' class='btn btn-primary' ng-click='createRippleAddress()' ng-show='creating'>Create Ripple Address</button>
+        <button type='submit' class='btn btn-warning' ng-click='updateRippleAddress()' ng-show='!creating'>Update Ripple Address</button>
+      </div>
+    </div>
+
+    <div ng-switch='messageState'>
+      <div class='alert alert-success' ng-switch-when='success'>
+        <a href='#/database/external_accounts' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Success!</strong> {{ successMessage }}
+      </div>
+
+      <div class='alert alert-danger' ng-switch-when='error'>
+        <a href='' class='close' data-dismiss='alert'>&times;</a>
+        <strong>Error!</strong> {{ errorMessage }}
+      </div>
+    </div>
+
+  </form>
+</div>

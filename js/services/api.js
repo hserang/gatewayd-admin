@@ -42,7 +42,7 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
   };
 
   API.prototype.makeDeposit = function(deposit, fn) {
-    var opts = { 
+    var opts = {
       external_account_id: deposit.externalAccountId,
       amount: deposit.amount,
       currency: deposit.currency
@@ -83,25 +83,13 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     .error(error(fn));
   }
 
-  API.prototype.getUsers = function(fn){
-    $http({ method: 'GET', url: '/v1/users' })
-    .success(success(fn))
-    .error(error(fn));
-  };
-
-  API.prototype.getExternalTransactions = function(fn){
-    $http({ method: 'GET', url: '/v1/deposits' })
-    .success(success(fn))
-    .error(error(fn));
-  };
-
   API.prototype.getClearedTransactions = function(fn){
     $http({ method: 'GET', url: '/v1/cleared' })
     .success(success(fn))
     .error(error(fn));
   };
 
-  API.prototype.getExternalTransactions = function(query, fn){
+  API.prototype.queryExternalTransactions = function(query, fn){
     $http({ method: 'GET', url: '/v1/external_transactions?'+serialize(query) })
     .success(success(fn))
     .error(error(fn));
@@ -153,6 +141,262 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
     $http({method: 'POST', url: '/v1/start', data: processes})
       .success(success(fn))
       .error(error(fn));
+  };
+
+  API.prototype.getRippleAddresses = function(fn) {
+    $http({method: 'GET', url: '/v1/ripple_addresses'})
+    .success(success(fn))
+    .error(error(fn))
+  };
+
+  API.prototype.getRippleTransactions = function(fn) {
+    $http({method: 'GET', url: '/v1/ripple_transactions'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getExternalAccounts = function(fn) {
+    $http({method: 'GET', url: '/v1/external_accounts'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getExternalTransactions = function(fn){
+    $http({ method: 'GET', url: '/v1/external_transactions' })
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getPolicies = function(fn) {
+    $http({method: 'GET', url: '/v1/policies'})
+    .success(success(fn))
+    .error(error(fn))
+  };
+
+  API.prototype.getUsers = function(fn){
+    $http({ method: 'GET', url: '/v1/users' })
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getGatewayTransactions = function(fn) {
+    $http({method: 'GET', url: '/v1/gateway_transactions'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getKycData = function(fn) {
+    $http({method: 'GET', url: '/v1/kyc_data'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createRippleAddress = function(addressDetails, fn) {
+    $http({method: 'POST', url: '/v1/ripple_addresses', data: addressDetails})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createRippleTransaction = function(transactionDetails, fn) {
+    $http({method: 'POST', url: '/v1/ripple_transactions', data: transactionDetails})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createExternalAccount = function(accountInfo, fn) {
+    $http({method: 'POST', url: '/v1/external_accounts', data: accountInfo})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createExternalTransaction = function(transactionDetails, fn) {
+    $http({method: 'POST', url: '/v1/external_transactions', data: transactionDetails})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createPolicy = function(policyInfo, fn) {
+    $http({method: 'POST', url: '/v1/policies', data: policyInfo})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createUser = function(userInfo, fn) {
+    $http({method: 'POST', url: '/v1/users', data: userInfo})
+    .success(success(fn))
+    .error(error(fn))
+  };
+
+  API.prototype.createGatewayTransaction = function(transactionDetails, fn) {
+    $http({method: 'POST', url: '/v1/gateway_transactions', data: transactionDetails})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.createKycDatum = function(datum, fn) {
+    $http({method: 'POST', url: '/v1/kyc_data', data: datum})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateRippleAddress = function(id, updatedAddress, fn) {
+    $http({method: 'PUT', url: '/v1/ripple_addresses/' + id, data: updatedAddress})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateRippleTransaction = function(id, updatedTransaction, fn) {
+    $http({method: 'PUT', url: '/v1/ripple_transactions/' + id, data: updatedTransaction})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateExternalAccount = function(id, updatedAccount, fn) {
+    $http({method: 'PUT', url: '/v1/external_accounts/' + id, data: updatedAccount})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateExternalTransaction = function(id, updatedTransaction, fn) {
+    $http({method: 'PUT', url: '/v1/external_transactions/' + id, data: updatedTransaction})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updatePolicy = function(id, updatedPolicy, fn) {
+    $http({method: 'PUT', url: '/v1/policies/' + id, data: updatedPolicy})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateUser = function(id, updatedUser, fn) {
+    $http({method: 'PUT', url: '/v1/users/' + id, data: updatedUser})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateGatewayTransaction = function(id, updatedTransaction, fn) {
+    $http({method: 'PUT', url: '/v1/gateway_transactions/' + id, data: updatedTransaction})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.updateKycDatum = function(id, updatedDatum, fn) {
+    $http({method: 'PUT', url: '/v1/kyc_data/' + id, data: updatedDatum})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteRippleAddress = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/ripple_addresses/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteRippleTransaction = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/ripple_transactions/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteExternalAccount = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/external_accounts/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteExternalTransaction = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/external_transactions/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deletePolicy = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/policies/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteUser = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/users/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteGatewayTransaction = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/gateway_transactions/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.deleteKycDatum = function(id, fn) {
+    $http({method: 'DELETE', url: '/v1/kyc_data/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getRippleAddress = function(id, fn) {
+    $http({method: 'GET', url: '/v1/ripple_addresses/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getRippleTransaction = function(id, fn) {
+    $http({method: 'GET', url: '/v1/ripple_transactions/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getExternalAccount = function(id, fn) {
+    $http({method: 'GET', url: '/v1/external_accounts/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getExternalTransaction = function(id, fn) {
+    $http({method: 'GET', url: '/v1/external_transactions/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getPolicy = function(id, fn) {
+    $http({method: 'GET', url: '/v1/policies/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getUser = function(id, fn) {
+    $http({method: 'GET', url: '/v1/users/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getGatewayTransaction = function(id, fn) {
+    $http({method: 'GET', url: '/v1/gateway_transactions/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.getKycDatum = function(id, fn) {
+    $http({method: 'GET', url: '/v1/kyc_data/' + id})
+    .success(success(fn))
+    .error(error(fn));
+  };
+
+  API.prototype.constructErrorMessage = function(err) {
+    var errorMessages = [];
+
+    for (var key in err.error) {
+      var field = err.error[key];
+
+      for (var i = 0; i < field.length; i++) {
+        var entry = field[i];
+
+        errorMessages.push(entry);
+      }
+    }
+
+    return errorMessages;
   };
 
   return new API;
