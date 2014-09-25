@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="rippleGatewayApp">
+<html lang="en" data-ng-app="rippleGatewayApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -49,6 +49,10 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti' rel='stylesheet' type='text/css'>
 -->
 <style>
+  html, body,
+  .full-height {
+    height: calc(100%);
+  }
   .throbber {
     text-align:center;
     -webkit-animation: spin 0.7s infinite linear;
@@ -66,97 +70,62 @@
     opacity: 1.0;
     cursor: pointer;
   }
+  .sidebar {
+    background-color: #f5f5f5;
+  }
+  .sidebar a {
+  }
+  .nav-sidebar {
+    margin: 0 -15px 20px -15px;
+  }
+  .wordmark .brand {
+    color: #fff;
+  }
 </style>
 
 <!--Retina.js plugin - @see: http://retinajs.com/-->
 <script src="theme/plugins/retina/js/retina-1.1.0.min.js"></script>
 </head>
 
-<body class="page page-index" ng-controller="MainCtrl">
-<div id="navigation" class="wrapper">
-  <div class="navbar-static-top">
-
-    <!--Header & Branding region-->
-    <div class="header">
-      <div class="header-inner container">
-        <div class="row">
-          <div class="col-md-8">
-            <!--branding/logo-->
-            <a class="navbar-brand" ng-href="/" title="Home">
-            <h1><span>Gatewayd </span>Admin<span></span></h1>
-            </a>
-          </div>
-          <div class="col-md-4">
-              <div class="pull-right">
-                  <div ng-hide='user.isLogged' class="btn-group user-menu"> <a ng-href="/#/login" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Login</a></div>
-                  <div ng-hide='user.isLogged' class="btn-group user-menu"> <a ng-href="/#/register" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Register</a> </div>
-                  <div ng-show='user.isLogged' class="btn-group user-menu"> <a ng-click="user.logout()" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Logout</a> </div>
-              </div>
-          </div>
-        </div>
+<body class="page page-index" data-ng-controller="MainCtrl">
+  <div class="container-fluid full-height">
+    <div class="row navbar">
+      <div class="navbar-header">
+        <!--branding/logo-->
+          <a data-ng-href="/" title="Home"class="wordmark navbar-brand">
+            <span class="brand">Gatewayd </span>Admin
+          </a>
       </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li data-ng-show="user.isLogged && !user.isAdmin"><a data-ng-href="/#/users" data-ng-class="{active: path == '/users'}" >Welcome, {{ user.name }}</a></li>
+        <li data-ng-show="user.isLogged && user.isAdmin"><a data-ng-href="/#/users" data-ng-class="{active: path == '/users'}" >Welcome, Admin</a></li>
+        <li data-ng-hide='user.isLogged' class="btn-group user-menu"> <a data-ng-href="/#/login" class="btn btn-secondary dropdown-toggle login" data-toggle="modal">Login</a></li>
+        <li data-ng-hide='user.isLogged' class="btn-group user-menu"> <a data-ng-href="/#/register" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Register</a> </li>
+        <li data-ng-show='user.isLogged' class="btn-group user-menu"> <a data-ng-click="user.logout()" class="dropdown-toggle login" data-toggle="modal">Logout</a> </li>
+      </ul>
     </div>
 
-    <div class="container" ng-show="user.isLogged" data-toggle="clingify" style='background-color:#00ADBB'>
-      <div class="navbar" style='background-color:#00ADBB'>
-        <!--
-      mobile collapse menu button
-      - data-toggle="toggle" = default BS menu
-      - data-toggle="jpanel-menu" = jPanel Menu
-      -->
-        <a class="navbar-btn" data-toggle="jpanel-menu" data-target=".navbar-collapse"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>
-
-        <!--user menu-->
-
-        <div ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, {{ user.name }}</a></div>
-        <div ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, Admin</a></div>
-
-
-        <!--everything within this div is collapsed on mobile-->
-        <div class="navbar-collapse collapse">
-
-          <!--main navigation-->
-          <ul class="nav navbar-nav">
-            <li class="home-link"><a href="/"><i class="fa fa-home"></i><span class="hidden">Home</span></a></li>
-              <!-- Dropdown Menu -->
-              <ul class="dropdown-menu" role="menu" aria-labelledby="about-drop">
-                <li role="presentation"><a role="menuitem" href="theme/about.htm" tabindex="-1" class="menu-item">About Us</a></li>
-                <li role="presentation"><a role="menuitem" href="theme/team.htm" tabindex="-1" class="menu-item">Our Team</a></li>
-                <li role="presentation"><a role="menuitem" href="theme/contact.htm" tabindex="-1" class="menu-item">Contact</a></li>
-              </ul>
-            </li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/overview" ng-class="{active: location.path() == '/overview'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Overview</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/account" ng-class="{active: path == '/account'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Account</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/deposit" ng-class="{active: path == '/deposit'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposit</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/withdraw" ng-class="{active: path == '/withdraw'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdraw</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/deposits" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposits</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/withdrawals" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdrawals</a></li>
-            <li ng-show="user.isLogged && user.isAdmin">
-              <div ng-show="user.isLogged && user.isAdmin">
-                Databases
-                <ul class="nav navbar-nav">
-                  <li><a ng-href="/#/database/external_accounts" ng-class="{active: location.path() == '/database/external_accounts'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Accounts</a></li>
-                  <li><a ng-href="/#/database/external_transactions" ng-class="{active: location.path() == '/database/external_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Transactions</a></li>
-                  <li><a ng-href="/#/database/gateway_transactions" ng-class="{active: location.path() == '/database/gateway_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Gateway Transactions</a></li>
-                  <li><a ng-href="/#/database/kyc_data" ng-class="{active: location.path() == '/database/kyc_data'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>KYC Data</a></li>
-                  <li><a ng-href="/#/database/policies" ng-class="{active: location.path() == '/database/policies'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Policies</a></li>
-                  <li><a ng-href="/#/database/ripple_addresses" ng-class="{active: location.path() == '/database/ripple_addresses'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Addresses</a></li>
-                  <li><a ng-href="/#/database/ripple_transactions" ng-class="{active: location.path() == '/database/ripple_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Transactions</a></li>
-                  <li><a ng-href="/#/database/users" ng-class="{active: location.path() == '/database/users'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
-                  <li><a ng-href="/#/database/bridges" ng-class="{active: location.path() == '/database/bridges'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Bridges</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!--/.navbar-collapse -->
+    <div class="row full-height">
+      <div class="col-md-2 sidebar full-height">
+        <ul class="nav nav-sidebar" data-ng-show="user.isLogged && user.isAdmin">
+          <li><a data-ng-href="/#/overview" ng-class="{active: location.path() == '/overview'}">Overview</a></li>
+          <li><a data-ng-href="/#/database/external_accounts" data-ng-class="{active: location.path() == '/database/external_accounts'}"  >External Accounts</a></li>
+          <li><a data-ng-href="/#/database/external_transactions" data-ng-class="{active: location.path() == '/database/external_transactions'}"  >External Transactions</a></li>
+          <li><a data-ng-href="/#/database/gateway_transactions" data-ng-class="{active: location.path() == '/database/gateway_transactions'}"  >Gateway Transactions</a></li>
+          <li><a data-ng-href="/#/database/kyc_data" data-ng-class="{active: location.path() == '/database/kyc_data'}"  >KYC Data</a></li>
+          <li><a data-ng-href="/#/database/policies" data-ng-class="{active: location.path() == '/database/policies'}"  >Policies</a></li>
+          <li><a data-ng-href="/#/database/ripple_addresses" data-ng-class="{active: location.path() == '/database/ripple_addresses'}"  >Ripple Addresses</a></li>
+          <li><a data-ng-href="/#/database/ripple_transactions" data-ng-class="{active: location.path() == '/database/ripple_transactions'}"  >Ripple Transactions</a></li>
+          <li><a data-ng-href="/#/database/users" data-ng-class="{active: location.path() == '/database/users'}"  >Users</a></li>
+          <li><a data-ng-href="/#/database/bridges" data-ng-class="{active: location.path() == '/database/bridges'}"  >Bridges</a></li>
+        </ul>
+      </div>
+      <div class="col-md-10">
+        <div id="content" data-ng-view=""></div>
       </div>
     </div>
   </div>
-</div>
 
-<div id="content" ng-view=""></div>
 
 <!--Scripts -->
 <script src="/bower_components/angular/angular.min.js"></script>
