@@ -1,33 +1,50 @@
 rippleGatewayApp.controller('ExternalAccountsCtrl', [
-  '$scope',
-  'UserService',
-  '$location',
-  'ApiService',
-  '$window', function($scope, $user, $location, $api, $window) {
-    if (!$user.isAdmin) {  $location.path('/login') };
+  '$scope', 'UserService', 'ApiService', '$window', '$state', '$timeout',
+    'ExternalAccountsModel',
+  function($scope, $user, $api, $window, $state, $timeout, Model) {
+    "use strict";
+
+    if (!$user.isAdmin || !$user.isLogged) {
+      $state.go('login');
+      return false;
+    }
 
     $scope.accounts = [];
+    $scope.account = {};
 
-    $api.getExternalAccounts(function(err, res) {
-      if (!err) {
-        $scope.accounts = res.external_accounts;
-      }
-    });
+    //read
+    $scope.accounts = Model.get();
 
-    $scope.deleteExternalAccount = function(index) {
-      var account = $scope.accounts[index];
-      var confirmed = $window.confirm('Are you sure?')
-
-      if (confirmed) {
-        $api.deleteExternalAccount(account.id, function(err, res) {
-          if (!err) {
-            $scope.accounts.splice(index, 1);
-          }
-        });
-      }
+    //create
+    $scope.create = function() {
+      $scope.crudType = "create";
     };
 
-    $scope.updateExternalAccount = function(index) {
-      $location.path('/database/external_accounts/' + $scope.accounts[index].id + '/update');
+    $scope.submitCreate = function() {
+      Model.create($scope.account).then(function() {
+        $state.go('database.external_accounts');
+      });
+    };
+
+    //update
+    $scope.update = function(index) {
+      $scope.crudType = "update";
+      $scope.account = $scope.accounts[index];
+    };
+
+    $scope.submitUpdate = function() {
+      Model.update($scope.account).then(function() {
+        $state.go('database.external_accounts');
+      });
+    };
+
+    //delete
+    $scope.remove = function(index) {
+      var account = $scope.accounts[index],
+          confirmed = $window.confirm('are you sure?');
+
+      if (confirmed) {
+        Model.delete(account);
+      }
     };
 }]);

@@ -1,6 +1,6 @@
-rippleGatewayApp.controller('ExternalTransactionsCtrl', [
+rippleGatewayApp.controller('BridgesCtrl', [
   '$scope', 'UserService', 'ApiService', '$window', '$state', '$timeout',
-    'ExternalTransactionsModel',
+     'BridgesModel',
   function($scope, $user, $api, $window, $state, $timeout, Model) {
     "use strict";
 
@@ -9,11 +9,11 @@ rippleGatewayApp.controller('ExternalTransactionsCtrl', [
       return false;
     }
 
-    $scope.transactions = [];
-    $scope.transaction = {};
+    $scope.bridges = [];
+    $scope.bridge = {};
 
     //read
-    $scope.transactions = Model.get();
+    $scope.bridges = Model.get();
 
     //create
     $scope.create = function() {
@@ -21,30 +21,30 @@ rippleGatewayApp.controller('ExternalTransactionsCtrl', [
     };
 
     $scope.submitCreate = function() {
-      Model.create($scope.transaction).then(function() {
-        $state.go('database.external_transactions');
+      Model.create($scope.bridge).then(function() {
+        $state.go('database.bridges');
       });
     };
 
     //update
     $scope.update = function(index) {
       $scope.crudType = "update";
-      $scope.transaction = $scope.transactions[index];
+      $scope.bridge = $scope.bridges[index];
     };
 
     $scope.submitUpdate = function() {
-      Model.update($scope.transaction).then(function() {
-        $state.go('database.external_transactions');
+      Model.update($scope.bridge).then(function() {
+        $state.go('database.bridges');
       });
     };
 
     //delete
     $scope.remove = function(index) {
-      var transaction = $scope.transactions[index],
+      var bridge = $scope.bridges[index],
           confirmed = $window.confirm('are you sure?');
 
       if (confirmed) {
-        Model.delete(transaction);
+        Model.delete(bridge);
       }
     };
 }]);

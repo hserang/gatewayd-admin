@@ -136,20 +136,10 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
       .error(error(fn));
   };
 
-  API.prototype.constructErrorMessage = function(err) {
-    var errorMessages = [];
-
-    for (var key in err.error) {
-      var field = err.error[key];
-
-      for (var i = 0; i < field.length; i++) {
-        var entry = field[i];
-
-        errorMessages.push(entry);
-      }
-    }
-
-    return errorMessages;
+  API.prototype.getUsers = function(fn){
+    $http({method: 'GET', url: '/v1/users'})
+    .success(success(fn))
+    .error(error(fn));
   };
 
   return new API();

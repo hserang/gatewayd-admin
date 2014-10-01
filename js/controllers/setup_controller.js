@@ -1,88 +1,94 @@
 rippleGatewayApp.controller('SetupCtrl', [
-  '$scope',
-  '$location',
-  'ApiService',
-  'UserService',
-  function($scope, $location, $api, $user) {
-  //pre-fill default options
-  $scope.setup = {
-    database_url: 'postgres://postgres:postgres@localhost:5432/ripple_gateway',
-    ripple_rest_url: 'http://localhost:5990/',
-    currencies: {}
-  };
-  $scope.setupResults = {};
-  $scope.errors = {};
-  $scope.errorsExist = false;
-  $scope.setupComplete = false;
-  $scope.isSubmitting = false;
-  $scope.progressBar = 0;
+  '$scope', '$state', 'ApiService', 'UserService',
+  function($scope, $state, $api, $user) {
 
-  //TODO: enable issuing multiple currencies at a time in the future
-  $scope.addCurrencies = function(currency, amount){
-    this.setup.currencies[currency] = amount;
-    console.log(this.setup.currencies);
-  };
+    //pre-fill default options
+    $scope.setup = {
+      database_url: 'postgres://postgres:postgres@localhost:5432/ripple_gateway',
+      ripple_rest_url: 'http://localhost:5990/',
+      currencies: {}
+    };
 
-  $scope.removeCurrency = function(currency){
-    delete this.currencies[currency];
-  };
-  $scope.postSetup = function(){
-    $scope.isSubmitting = true;
-    $scope.addCurrencies($scope.currency, $scope.amount);
+    $scope.setupResults = {};
+    $scope.errors = {};
+    $scope.errorsExist = false;
+    $scope.setupComplete = false;
+    $scope.isSubmitting = false;
+    $scope.progressBar = 0;
 
-    $scope.pollProgress();
+    //TODO: enable issuing multiple currencies at a time in the future
+    $scope.addCurrencies = function(currency, amount) {
+      this.setup.currencies[currency] = amount;
+      console.log(this.setup.currencies);
+    };
 
-    $api.setup({ config: $scope.setup }, function(error, response){
-      if (error) {
-        $scope.errors = {};
-        var errors = error.errors;
-        console.log('error.errors', errors);
-        for (i in errors) {
-          var error = errors[i];
+    $scope.removeCurrency = function(currency) {
+      delete this.currencies[currency];
+    };
+
+    $scope.postSetup = function() {
+      $scope.isSubmitting = true;
+      $scope.addCurrencies($scope.currency, $scope.amount);
+
+      $scope.pollProgress();
+
+      $api.setup({ config: $scope.setup }, function(error, response) {
+        var error = error || null,
+            errors;
+
+        if (error) {
+          $scope.errors = {};
+          errors = error.errors;
+          console.log('error.errors', errors);
+
+          for (i in errors) {
+            error = errors[i];
+            console.log('ERROR', error);
+            $scope.errors[error.field] = error.message;
+          }
+
+          $scope.errorsExist = true;
+          $scope.isSubmitting = false;
           console.log('ERROR', error);
-          $scope.errors[error.field] = error.message;
+        } else {
+          console.log('RESPONSE', response);
+
+          $scope.setupResults = response;
+          $scope.setupComplete = true;
+          $scope.isSubmitting = false;
         }
-        $scope.errorsExist = true;
-        $scope.isSubmitting = false;
-        console.log('ERROR', error); 
-      } else {
+      });
+    };
 
-        console.log('RESPONSE', response);
-
-        $scope.setupResults = response;
-        $scope.setupComplete = true;
-        $scope.isSubmitting = false;
-      }
-    });
-  };
-
-    $scope.pollProgress = function(){
-      $api.setupStatus(function(error, response){
+    $scope.pollProgress = function() {
+      $api.setupStatus(function(error, response) {
         $scope.progressBar = response.progress;
       });
-      setTimeout(function(){
-        if(!$scope.setupComplete) {
+
+      setTimeout(function() {
+        if (!$scope.setupComplete) {
           $scope.pollProgress();
         }
       }, 700);
     };
 
-  $scope.launchGateway = function(){
-    $user.login($scope.setupResults.results.admin_login.username, $scope.setupResults.results.admin_login.password, function(err, success){
-      if(err){
-        console.log('LOGIN ERR', err);
-      } else {
-        $api.launchGateway(function(err, success){
-          if(err){
-            console.log('launc err', err);
+    $scope.launchGateway = function() {
+        $user.login($scope.setupResults.results.admin_login.username,
+        $scope.setupResults.results.admin_login.password,
+        function(err, success) {
+          if (err) {
+            console.log('LOGIN ERR', err);
           } else {
-            $location.path('/login');
-            console.log('started gateway', success);
+            $api.launchGateway(function(err, success) {
+              if (err) {
+                console.log('launc err', err);
+              } else {
+                $state.go('login');
+                console.log('started gateway', success);
+              }
+            });
           }
         });
-      }
-    });
-  };
+    };
 
-}]);
-
+  }]);

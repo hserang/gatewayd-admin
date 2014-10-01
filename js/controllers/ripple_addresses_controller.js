@@ -1,33 +1,50 @@
 rippleGatewayApp.controller('RippleAddressesCtrl', [
-  '$scope',
-  'UserService',
-  '$location',
-  'ApiService',
-  '$window', function($scope, $user, $location, $api, $window) {
-    if (!$user.isAdmin) {  $location.path('/login') };
+  '$scope', 'UserService', 'ApiService', '$window', '$state', '$timeout',
+     'RippleAddressesModel',
+  function($scope, $user, $api, $window, $state, $timeout, Model) {
+    "use strict";
+
+    if (!$user.isAdmin || !$user.isLogged) {
+      $state.go('login');
+      return false;
+    }
 
     $scope.addresses = [];
+    $scope.address = {};
 
-    $api.getRippleAddresses(function(err, res) {
-      if (!err) {
-        $scope.addresses = res.ripple_addresses;
-      }
-    });
+    //read
+    $scope.addresses = Model.get();
 
-    $scope.deleteRippleAddress = function(index) {
-      var address = $scope.addresses[index];
-      var confirmed = $window.confirm('Are you sure?')
-
-      if (confirmed) {
-        $api.deleteRippleAddress(address.id, function(err, res) {
-          if (!err) {
-            $scope.addresses.splice(index, 1);
-          }
-        });
-      }
+    //create
+    $scope.create = function() {
+      $scope.crudType = "create";
     };
 
-    $scope.updateRippleAddress = function(index) {
-      $location.path('/database/ripple_addresses/' + $scope.addresses[index].id + '/update');
+    $scope.submitCreate = function() {
+      Model.create($scope.address).then(function() {
+        $state.go('database.ripple_addresses');
+      });
+    };
+
+    //update
+    $scope.update = function(index) {
+      $scope.crudType = "update";
+      $scope.address = $scope.addresses[index];
+    };
+
+    $scope.submitUpdate = function() {
+      Model.update($scope.address).then(function() {
+        $state.go('database.ripple_addresses');
+      });
+    };
+
+    //delete
+    $scope.remove = function(index) {
+      var address = $scope.addresses[index],
+          confirmed = $window.confirm('are you sure?');
+
+      if (confirmed) {
+        Model.delete(address);
+      }
     };
 }]);

@@ -1,33 +1,50 @@
 rippleGatewayApp.controller('KycDataCtrl', [
-  '$scope',
-  'UserService',
-  '$location',
-  'ApiService',
-  '$window', function($scope, $user, $location, $api, $window) {
-    if (!$user.isAdmin) {  $location.path('/login') };
+  '$scope', 'UserService', 'ApiService', '$window', '$state', '$timeout',
+    'KycDataModel',
+  function($scope, $user, $api, $window, $state, $timeout, Model) {
+    "use strict";
+
+    if (!$user.isAdmin || !$user.isLogged) {
+      $state.go('login');
+      return false;
+    }
 
     $scope.data = [];
+    $scope.datum = {};
 
-    $api.getKycData(function(err, res) {
-      if (!err) {
-        $scope.data = res.kyc_data;
-      }
-    });
+    //read
+    $scope.data = Model.get();
 
-    $scope.deleteKycDatum = function(index) {
-      var datum = $scope.data[index];
-      var confirmed = $window.confirm('Are you sure?')
-
-      if (confirmed) {
-        $api.deleteKycDatum(datum.id, function(err, res) {
-          if (!err) {
-            $scope.data.splice(index, 1);
-          }
-        });
-      }
+    //create
+    $scope.create = function() {
+      $scope.crudType = "create";
     };
 
-    $scope.updateKycDatum = function(index) {
-      $location.path('/database/kyc_data/' + $scope.data[index].id + '/update');
+    $scope.submitCreate = function() {
+      Model.create($scope.datum).then(function() {
+        $state.go('database.external_data');
+      });
+    };
+
+    //update
+    $scope.update = function(index) {
+      $scope.crudType = "update";
+      $scope.datum = $scope.data[index];
+    };
+
+    $scope.submitUpdate = function() {
+      Model.update($scope.datum).then(function() {
+        $state.go('database.external_data');
+      });
+    };
+
+    //delete
+    $scope.remove = function(index) {
+      var datum = $scope.data[index],
+          confirmed = $window.confirm('are you sure?');
+
+      if (confirmed) {
+        Model.delete(datum);
+      }
     };
 }]);
