@@ -1,4 +1,4 @@
-<div class='container'>
+<div>
   <span class='text-primary'>External Accounts</span>
   <button class='btn btn-info pull-right' ng-click='create()'
       ui-sref="database.external_accounts.new">New External Account</button>
@@ -7,6 +7,8 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>Name</th>
+        <th>UID</th>
         <th>Type</th>
         <th>Address</th>
         <th>Data</th>
@@ -19,6 +21,8 @@
     <tbody>
       <tr ng-repeat='account in accounts'>
         <td>{{ account.id }}</td>
+        <td>{{ account.name }}</td>
+        <td>{{ account.uid }}</td>
         <td>{{ account.type }}</td>
         <td>{{ account.address }}</td>
         <td>{{ account.data }}</td>
