@@ -1,212 +1,308 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="rippleGatewayApp">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<title>Gatewayd Admin: Portal to the Ripple Network</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Gatewayd Admin: Portal to the Ripple Network</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- @todo: fill with your company info or remove -->
-<meta name="description" content="">
-<meta name="author" content="Ripple Labs">
+    <!-- @todo: fill with your company info or remove -->
+    <meta name="description" content="">
+    <meta name="author" content="Ripple Labs">
 
-<!-- Bootstrap CSS -->
-<link href="theme/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="theme/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Font Awesome -->
-<link href="theme/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="theme/css/font-awesome.min.css" rel="stylesheet">
 
-<!-- Plugins -->
-<link href="theme/plugins/prism/prism.css" media="screen" rel="stylesheet" />
-<link href="theme/plugins/slider-revolution/rs-plugin/css/settings.css?v=4.2" media="screen" rel="stylesheet" />
-<link href="theme/plugins/animate/animate.css" rel="stylesheet">
-<link href="theme/plugins/flexslider/flexslider.css" rel="stylesheet">
-<link href="theme/plugins/clingify/clingify.css" rel="stylesheet">
+    <!-- Plugins -->
+    <link href="theme/plugins/prism/prism.css" media="screen" rel="stylesheet">
+    <link href="theme/plugins/slider-revolution/rs-plugin/css/settings.css?v=4.2" media="screen" rel="stylesheet">
+    <link href="theme/plugins/animate/animate.css" rel="stylesheet">
+    <link href="theme/plugins/flexslider/flexslider.css" rel="stylesheet">
+    <link href="theme/plugins/clingify/clingify.css" rel="stylesheet">
 
-<!-- Theme style -->
-<link href="theme/css/theme-style.min.css" rel="stylesheet">
+    <!-- Theme style -->
+    <link href="theme/css/theme-style.min.css" rel="stylesheet">
 
-<!--Your custom colour override-->
-<link href="theme/css/colour-blue.css" id="colour-scheme" rel="stylesheet">
+    <!--Your custom colour override-->
+    <link href="theme/css/colour-blue.css" id="colour-scheme" rel="stylesheet">
 
-<!-- Your custom override -->
-<link href="theme/css/custom-style.css" rel="stylesheet">
+    <!-- Your custom override -->
+    <link href="theme/css/custom-style.css" rel="stylesheet">
 
-<!-- HTML5 shiv & respond.js for IE6-8 support of HTML5 elements & media queries -->
-<!--[if lt IE 9]>
+    <!-- HTML5 shiv & respond.js for IE6-8 support of HTML5 elements & media queries -->
+    <!--[if lt IE 9]>
       <script src="theme/plugins/html5shiv/dist/html5shiv.js"></script>
       <script src="theme/plugins/respond/respond.min.js"></script>
     <![endif]-->
 
-<!-- Le fav and touch icons - @todo: fill with your icons or remove -->
-<link rel="shortcut icon" href="theme/img/icons/favicon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="theme/img/icons/114x114.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="theme/img/icons/72x72.png">
-<link rel="apple-touch-icon-precomposed" href="theme/img/icons/default.png">
+    <!-- Le fav and touch icons - @todo: fill with your icons or remove -->
+    <link rel="shortcut icon" href="theme/img/icons/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="theme/img/icons/114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="theme/img/icons/72x72.png">
+    <link rel="apple-touch-icon-precomposed" href="theme/img/icons/default.png">
 
-<!--
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti' rel='stylesheet' type='text/css'>
--->
-<style>
-  .throbber {
-    text-align:center;
-    -webkit-animation: spin 0.7s infinite linear;
-    -moz-animation: spin 0.7s infinite linear;
-    -o-animation: spin 0.7s infinite linear;
-    -ms-animation: spin 0.7s infinite linear;
-  }
-  a.active {
-    color: #EBEBE8;
-    background-color: #353535;
-    border-color: transparent;
-  }
-  tr { opacity: 0.8 }
-  tr:hover {
-    opacity: 1.0;
-    cursor: pointer;
-  }
-</style>
+    <!--
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti' rel='stylesheet' type='text/css'>
+    -->
+    <style>
+      .throbber {
+        text-align:center;
+        -webkit-animation: spin 0.7s infinite linear;
+        -moz-animation: spin 0.7s infinite linear;
+        -o-animation: spin 0.7s infinite linear;
+        -ms-animation: spin 0.7s infinite linear;
+      }
+      a.active {
+        color: #EBEBE8;
+        background-color: #353535;
+        border-color: transparent;
+      }
+      tr {
+        opacity: 0.8
+      }
+      tr:hover {
+        opacity: 1.0;
+        cursor: pointer;
+      }
+      td {
+        color: #999;
+      }
+    </style>
 
-<!--Retina.js plugin - @see: http://retinajs.com/-->
-<script src="theme/plugins/retina/js/retina-1.1.0.min.js"></script>
-</head>
+    <!--Retina.js plugin - @see: http://retinajs.com/-->
+    <script src="theme/plugins/retina/js/retina-1.1.0.min.js"></script>
+  </head>
 
-<body class="page page-index" ng-controller="MainCtrl">
-<div id="navigation" class="wrapper">
-  <div class="navbar-static-top">
+  <body class="page page-index" ng-controller="MainCtrl">
+    <div id="navigation" class="wrapper">
+      <div class="navbar-static-top">
 
-    <!--Header & Branding region-->
-    <div class="header">
-      <div class="header-inner container">
-        <div class="row">
-          <div class="col-md-8">
-            <!--branding/logo-->
-            <a class="navbar-brand" ng-href="/" title="Home">
-            <h1><span>Gatewayd </span>Admin<span></span></h1>
+        <!--Header & Branding region-->
+        <div class="header">
+          <div class="header-inner container">
+            <div class="row">
+              <div class="col-md-8">
+                <!--branding/logo-->
+                <h1>
+                  <a class="navbar-brand" ng-href="/" title="Home">
+                    <span>Gatewayd </span>Admin<span></span>
+                  </a>
+                </h1>
+              </div>
+              <div class="col-md-4">
+                <div class="pull-right">
+                  <div ng-hide='user.isLogged' class="btn-group user-menu">
+                    <a ui-sref="login" class="btn btn-primary dropdown-toggle login"
+                        data-toggle="modal" data-target="login">Login</a>
+                  </div>
+                  <div ng-hide='user.isLogged' class="btn-group user-menu">
+                    <a ui-sref="register" class="btn btn-primary dropdown-toggle login"
+                      data-toggle="modal" data-target="register">Register</a>
+                  </div>
+                  <div ng-show='user.isLogged' class="btn-group user-menu">
+                    <a ng-click="user.logout()" class="btn btn-primary dropdown-toggle login"
+                      data-toggle="modal">Logout</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container" ng-show="user.isLogged" data-toggle="clingify" style='background-color:#00ADBB'>
+          <div class="navbar" style='background-color:#00ADBB'>
+            <!--
+            mobile collapse menu button
+            - data-toggle="toggle" = default BS menu
+            - data-toggle="jpanel-menu" = jPanel Menu
+            -->
+            <a class="navbar-btn" data-toggle="jpanel-menu" data-target=".navbar-collapse">
+              <span class="bar"></span> <span class="bar"></span>
+              <span class="bar"></span> <span class="bar"></span>
             </a>
-          </div>
-          <div class="col-md-4">
-              <div class="pull-right">
-                  <div ng-hide='user.isLogged' class="btn-group user-menu"> <a ng-href="/#/login" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Login</a></div>
-                  <div ng-hide='user.isLogged' class="btn-group user-menu"> <a ng-href="/#/register" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Register</a> </div>
-                  <div ng-show='user.isLogged' class="btn-group user-menu"> <a ng-click="user.logout()" class="btn btn-primary dropdown-toggle login" data-toggle="modal">Logout</a> </div>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="container" ng-show="user.isLogged" data-toggle="clingify" style='background-color:#00ADBB'>
-      <div class="navbar" style='background-color:#00ADBB'>
-        <!--
-      mobile collapse menu button
-      - data-toggle="toggle" = default BS menu
-      - data-toggle="jpanel-menu" = jPanel Menu
-      -->
-        <a class="navbar-btn" data-toggle="jpanel-menu" data-target=".navbar-collapse"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>
+            <!--user menu-->
 
-        <!--user menu-->
+            <div ng-show="user.isLogged && !user.isAdmin">
+              <a ui-sref="users" ng-class="{active: path == '/users'}"
+                  style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>
+                  Welcome, {{ user.name }}</a>
+            </div>
+            <div ng-show="user.isLogged && user.isAdmin">
+              <a ui-sref="users" ng-class="{active: path == '/users'}"
+                  style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>
+                Welcome, Admin</a>
+            </div>
 
-        <div ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, {{ user.name }}</a></div>
-        <div ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Welcome, Admin</a></div>
+            <!--everything within this div is collapsed on mobile-->
+            <div class="navbar-collapse collapse">
 
-
-        <!--everything within this div is collapsed on mobile-->
-        <div class="navbar-collapse collapse">
-
-          <!--main navigation-->
-          <ul class="nav navbar-nav">
-            <li class="home-link"><a href="/"><i class="fa fa-home"></i><span class="hidden">Home</span></a></li>
-              <!-- Dropdown Menu -->
-              <ul class="dropdown-menu" role="menu" aria-labelledby="about-drop">
-                <li role="presentation"><a role="menuitem" href="theme/about.htm" tabindex="-1" class="menu-item">About Us</a></li>
-                <li role="presentation"><a role="menuitem" href="theme/team.htm" tabindex="-1" class="menu-item">Our Team</a></li>
-                <li role="presentation"><a role="menuitem" href="theme/contact.htm" tabindex="-1" class="menu-item">Contact</a></li>
+              <!--main navigation-->
+              <ul class="nav navbar-nav">
+                <li class="home-link">
+                  <a href="/"><i class="fa fa-home"></i><span class="hidden">Home</span></a>
+                  <!-- Dropdown Menu -->
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="about-drop">
+                    <li role="presentation">
+                      <a role="menuitem" href="theme/about.htm" tabindex="-1"
+                        class="menu-item">About Us</a>
+                    </li>
+                    <li role="presentation">
+                      <a role="menuitem" href="theme/team.htm" tabindex="-1"
+                        class="menu-item">Our Team</a>
+                    </li>
+                    <li role="presentation">
+                      <a role="menuitem" href="theme/contact.htm" tabindex="-1"
+                        class="menu-item">Contact</a>
+                    </li>
+                  </ul>
+                </li>
+                <li ng-show="user.isLogged && user.isAdmin">
+                  <a ng-href="/#/overview" ng-class="{active: location.path() == '/overview'}"
+                    style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Overview</a>
+                </li>
+                <li ng-show="user.isLogged && !user.isAdmin">
+                  <a ui-sref="account" ng-class="{active: path == '/account'}"
+                    style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Account</a>
+                </li>
+                <li ng-show="user.isLogged && !user.isAdmin">
+                  <a ui-sref="deposit" ng-class="{active: path == '/deposit'}"
+                    style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposit</a>
+                </li>
+                <li ng-show="user.isLogged && !user.isAdmin">
+                  <a ui-sref="withdraw" ng-class="{active: path == '/withdraw'}"
+                    style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdraw</a>
+                </li>
+                <li ng-show="user.isLogged && user.isAdmin">
+                  <a ui-sref="users" ng-class="{active: path == '/users'}"
+                    style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a>
+                </li>
+                <li ng-show="user.isLogged && user.isAdmin">
+                  <a ui-sref="deposits" ng-class="{active: location.path() == '/withdrawals'}"
+                    style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposits</a>
+                </li>
+                <li ng-show="user.isLogged && user.isAdmin">
+                  <a ui-sref="withdrawals" ng-class="{active: location.path() == '/withdrawals'}"
+                    style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdrawals</a>
+                </li>
+                <li ng-show="user.isLogged && user.isAdmin">
+                  <div ng-show="user.isLogged && user.isAdmin">
+                    Databases
+                    <ul class="nav navbar-nav">
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.external_accounts"
+                          ng-class="{active: location.path() == '/database/external_accounts'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Accounts</a>
+                      </li>
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.external_transactions"
+                          ng-class="{active: location.path() == '/database/external_transactions'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Transactions</a>
+                      </li>
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.gateway_transactions"
+                          ng-class="{active: location.path() == '/database/gateway_transactions'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Gateway Transactions</a>
+                      </li>
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.kyc_data"
+                          ng-class="{active: location.path() == '/database/kyc_data'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>KYC Data</a>
+                      </li>
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.policies"
+                          ng-class="{active: location.path() == '/database/policies'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Policies</a>
+                      </li>
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.ripple_addresses"
+                          ng-class="{active: location.path() == '/database/ripple_addresses'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Addresses</a>
+                      </li>
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.ripple_transactions"
+                          ng-class="{active: location.path() == '/database/ripple_transactions'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Transactions</a>
+                      </li>
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.users"
+                          ng-class="{active: location.path() == '/database/users'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a>
+                      </li>
+                      <li ng-show="user.isLogged && user.isAdmin">
+                        <a ui-sref="database.bridges"
+                          ng-class="{active: location.path() == '/database/bridges'}"
+                          style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Bridges</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
               </ul>
-            </li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/overview" ng-class="{active: location.path() == '/overview'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Overview</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/account" ng-class="{active: path == '/account'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Account</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/deposit" ng-class="{active: path == '/deposit'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposit</a></li>
-            <li ng-show="user.isLogged && !user.isAdmin"><a ng-href="/#/withdraw" ng-class="{active: path == '/withdraw'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdraw</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/users" ng-class="{active: path == '/users'}"style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/deposits" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Deposits</a></li>
-            <li ng-show="user.isLogged && user.isAdmin"><a ng-href="/#/withdrawals" ng-class="{active: location.path() == '/withdrawals'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Withdrawals</a></li>
-            <li ng-show="user.isLogged && user.isAdmin">
-              <div ng-show="user.isLogged && user.isAdmin">
-                Databases
-                <ul class="nav navbar-nav">
-                  <li><a ng-href="/#/database/external_accounts" ng-class="{active: location.path() == '/database/external_accounts'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Accounts</a></li>
-                  <li><a ng-href="/#/database/external_transactions" ng-class="{active: location.path() == '/database/external_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>External Transactions</a></li>
-                  <li><a ng-href="/#/database/gateway_transactions" ng-class="{active: location.path() == '/database/gateway_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Gateway Transactions</a></li>
-                  <li><a ng-href="/#/database/kyc_data" ng-class="{active: location.path() == '/database/kyc_data'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>KYC Data</a></li>
-                  <li><a ng-href="/#/database/policies" ng-class="{active: location.path() == '/database/policies'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Policies</a></li>
-                  <li><a ng-href="/#/database/ripple_addresses" ng-class="{active: location.path() == '/database/ripple_addresses'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Addresses</a></li>
-                  <li><a ng-href="/#/database/ripple_transactions" ng-class="{active: location.path() == '/database/ripple_transactions'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Ripple Transactions</a></li>
-                  <li><a ng-href="/#/database/users" ng-class="{active: location.path() == '/database/users'}" style='color:#ffffff; float:right;padding-top:18px;padding-right:30px;'>Users</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
         </div>
-        <!--/.navbar-collapse -->
       </div>
     </div>
-  </div>
-</div>
 
-<div id="content" ng-view=""></div>
+    <!-- dynamic page content injection node -->
+    <div id="content" ui-view></div>
 
-<!--Scripts -->
-<script src="/bower_components/angular/angular.min.js"></script>
-<script src="/bower_components/angular-route/angular-route.min.js"></script>
-<script src="theme/js/jquery.min.js"></script>
-<script src="theme/js/jquery-migrate-1.2.1.min.js"></script> <!--Legacy jQuery support for quicksand plugin-->
+    <!--Scripts -->
+    <script src="/bower_components/lodash/dist/lodash.underscore.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/bower_components/restangular/dist/restangular.min.js"></script>
+    <script src="theme/js/jquery.min.js"></script>
+    <script src="theme/js/jquery-migrate-1.2.1.min.js"></script> <!--Legacy jQuery support for quicksand plugin-->
 
-<!-- Bootstrap JS -->
-<script src="theme/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="theme/js/bootstrap.min.js"></script>
 
-<!--JS plugins-->
-<script src="theme/plugins/prism/prism.js"></script>
-<script src="theme/plugins/slider-revolution/rs-plugin/js/jquery.themepunch.plugins.min.js?v=4.2"></script>
-<script src="theme/plugins/slider-revolution/rs-plugin/js/jquery.themepunch.revolution.min.js?v=4.2"></script>
-<script src="theme/plugins/flexslider/jquery.flexslider-min.js"></script>
-<script src="theme/plugins/clingify/jquery.clingify.min.js"></script>
-<script src="theme/plugins/jPanelMenu/jquery.jpanelmenu.min.js"></script>
-<script src="theme/plugins/jRespond/js/jRespond.js"></script>
-<script src="theme/plugins/quicksand/jquery.quicksand.js"></script>
+    <!--JS plugins-->
+    <script src="theme/plugins/prism/prism.js"></script>
+    <script src="theme/plugins/slider-revolution/rs-plugin/js/jquery.themepunch.plugins.min.js?v=4.2"></script>
+    <script src="theme/plugins/slider-revolution/rs-plugin/js/jquery.themepunch.revolution.min.js?v=4.2"></script>
+    <script src="theme/plugins/flexslider/jquery.flexslider-min.js"></script>
+    <script src="theme/plugins/clingify/jquery.clingify.min.js"></script>
+    <script src="theme/plugins/jPanelMenu/jquery.jpanelmenu.min.js"></script>
+    <script src="theme/plugins/jRespond/js/jRespond.js"></script>
+    <script src="theme/plugins/quicksand/jquery.quicksand.js"></script>
 
-<!--Custom scripts mainly used to trigger libraries -->
-<script src="theme/js/script.min.js"></script>
+    <!--Custom scripts mainly used to trigger libraries -->
+    <script src="theme/js/script.min.js"></script>
 
-<!-- Gateway Application Scripts -->
-<script src="/js/app.js"></script>
-<script src="/js/services/base64.js"></script>
-<script src="/js/services/user.js"></script>
-<script src="/js/services/api.js"></script>
-<script src="/js/controllers/login_controller.js"></script>
-<script src="/js/controllers/registration_controller.js"></script>
-<script src="/js/controllers/admin_controller.js"></script>
-<script src="/js/controllers/account_controller.js"></script>
-<script src="/js/controllers/setup_controller.js"></script>
-<script src="/js/controllers/main_controller.js"></script>
-<script src="/js/controllers/user_controller.js"></script>
-<script src="/js/controllers/external_accounts_controller.js"></script>
-<script src="/js/controllers/external_transactions_controller.js"></script>
-<script src="/js/controllers/gateway_transactions_controller.js"></script>
-<script src="/js/controllers/kyc_data_controller.js"></script>
-<script src="/js/controllers/policies_controller.js"></script>
-<script src="/js/controllers/ripple_addresses_controller.js"></script>
-<script src="/js/controllers/ripple_transactions_controller.js"></script>
-<script src="/js/controllers/users_controller.js"></script>
-<script src="/js/controllers/external_accounts_form_controller.js"></script>
-<script src="/js/controllers/external_transactions_form_controller.js"></script>
-<script src="/js/controllers/gateway_transactions_form_controller.js"></script>
-<script src="/js/controllers/kyc_data_form_controller.js"></script>
-<script src="/js/controllers/policies_form_controller.js"></script>
-<script src="/js/controllers/ripple_addresses_form_controller.js"></script>
-<script src="/js/controllers/ripple_transactions_form_controller.js"></script>
-<script src="/js/controllers/users_form_controller.js"></script>
+    <!-- Gateway Application Scripts -->
+    <script src="/js/app.js"></script>
+    <script src="/js/services/base64.js"></script>
+    <script src="/js/services/user.js"></script>
+    <script src="/js/services/api.js"></script>
+    <script src="/js/services/external_accounts_model.js"></script>
+    <script src="/js/services/external_transactions_model.js"></script>
+    <script src="/js/services/gateway_transactions_model.js"></script>
+    <script src="/js/services/kyc_data_model.js"></script>
+    <script src="/js/services/policies_model.js"></script>
+    <script src="/js/services/ripple_addresses_model.js"></script>
+    <script src="/js/services/ripple_transactions_model.js"></script>
+    <script src="/js/services/users_model.js"></script>
+    <script src="/js/services/bridges_model.js"></script>
 
-</body>
+    <script src="/js/controllers/login_controller.js"></script>
+    <script src="/js/controllers/registration_controller.js"></script>
+    <script src="/js/controllers/admin_controller.js"></script>
+    <script src="/js/controllers/account_controller.js"></script>
+    <script src="/js/controllers/setup_controller.js"></script>
+    <script src="/js/controllers/main_controller.js"></script>
+    <script src="/js/controllers/user_controller.js"></script>
+    <script src="/js/controllers/external_accounts_controller.js"></script>
+    <script src="/js/controllers/external_transactions_controller.js"></script>
+    <script src="/js/controllers/gateway_transactions_controller.js"></script>
+    <script src="/js/controllers/kyc_data_controller.js"></script>
+    <script src="/js/controllers/policies_controller.js"></script>
+    <script src="/js/controllers/ripple_addresses_controller.js"></script>
+    <script src="/js/controllers/ripple_transactions_controller.js"></script>
+    <script src="/js/controllers/users_controller.js"></script>
+    <script src="/js/controllers/bridges_controller.js"></script>
+  </body>
 </html>
