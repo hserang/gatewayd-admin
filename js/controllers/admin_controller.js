@@ -1,14 +1,15 @@
 rippleGatewayApp.controller('AdminCtrl', [
-  '$scope',
-  '$http',
-  '$location',
-  '$window',
-  'UserService',
-  'ApiService', function($scope, $http, $location, $window, $user, $api){
+  '$scope', '$http', '$state', '$window', 'UserService', 'ApiService',
+  function($scope, $http, $state, $window, $user, $api){
 
-  if (!$user.isAdmin) {  $location.path('/login') };
+  if (!$user.isAdmin) {
+    $state.go('login');
+  }
 
-  $scope.path = function() { $location.path() };
+  // todo: remove this?
+  $scope.path = function() {
+    $state.path();
+  };
 
   $scope.externalTransactions = [];
   $scope.users = [];
@@ -50,13 +51,13 @@ rippleGatewayApp.controller('AdminCtrl', [
   $scope.reverse = true;
 
   $api.getBalance(function(err, resp){
-    if(!err && resp.success){
+    if (!err && resp.success) {
       $scope.accountBalance = resp.balances;
     }
   });
 
   $api.getLiabilities(function(err, resp){
-    if(!err && resp.success){
+    if (!err && resp.success) {
       $scope.liabilities = resp.balances;
       $scope.isLoading = false;
     }
@@ -69,7 +70,6 @@ rippleGatewayApp.controller('AdminCtrl', [
       angular.forEach(response.CURRENCIES, function(key, value){
         $scope.currencies.push(value);
       });
-    } else {
     }
   });
 
@@ -80,10 +80,10 @@ rippleGatewayApp.controller('AdminCtrl', [
       } else if (response) {
         $scope.users = response.users;
       }
-    })
+    });
   }
 
-  $api.getUsers(function(err, resp){
+  $api.getUsers(function(err, resp) {
     $scope.users = resp.users;
 
     /*
@@ -95,39 +95,46 @@ rippleGatewayApp.controller('AdminCtrl', [
       });
     })
     */
-
   });
 
-  $api.getWithdrawals(function(err, resp){
+  $api.getWithdrawals(function(err, resp) {
     $scope.withdrawals = resp.withdrawals;
     $scope.isLoading = false;
   });
 
-  function getClearedTransactions(fn){
-    var outstandingCalls = 2;
-    var transactions = [];
+  function getClearedTransactions(fn) {
+    var outstandingCalls = 2,
+        transactions = [];
 
-    function handleResponse(resp){
-      resp.external_transactions.forEach(function(transaction){
+    function handleResponse(resp) {
+      resp.external_transactions.forEach(function(transaction) {
         transactions.push(transaction);
       });
 
       outstandingCalls -= 1;
-      if (outstandingCalls == 0){
+
+      if (outstandingCalls === 0) {
         fn(null, transactions);
       }
     }
 
-    $api.queryExternalTransactions({ status: 'processed' }, function(err, resp){
-      if (err) { fn(err, null); return };
+    $api.queryExternalTransactions({ status: 'processed' }, function(err, resp) {
+      if (err) {
+        fn(err, null);
+        return;
+      }
+
       handleResponse(resp);
     });
 
-    $api.queryExternalTransactions({ status: 'cleared' }, function(err, resp){
-      if (err) { fn(err, null); return };
+    $api.queryExternalTransactions({ status: 'cleared' }, function(err, resp) {
+      if (err) {
+        fn(err, null);
+        return;
+      }
+
       handleResponse(resp, fn);
     });
-
   }
 
   $scope.clearWithdrawal = function(id) {

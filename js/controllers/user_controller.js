@@ -1,5 +1,8 @@
-rippleGatewayApp.controller('UserCtrl', ['$scope', 'UserService', '$location', function($scope, $user, $location) {
-  if (!$user.isLogged) {  $location.path('/login') };
+rippleGatewayApp.controller('UserCtrl', [
+  '$scope', 'UserService', '$state',
+  function($scope, $user, $state) {
 
+    if (!$user.isLogged) {
+      $state.go('login');
+    }
 }]);
-

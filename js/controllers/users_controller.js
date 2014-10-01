@@ -1,33 +1,50 @@
 rippleGatewayApp.controller('UsersCtrl', [
-  '$scope',
-  'UserService',
-  '$location',
-  'ApiService',
-  '$window', function($scope, $user, $location, $api, $window) {
-    if (!$user.isAdmin) {  $location.path('/login') };
+  '$scope', 'UserService', 'ApiService', '$window', '$state', '$timeout',
+     'UsersModel',
+  function($scope, $user, $api, $window, $state, $timeout, Model) {
+    "use strict";
+
+    if (!$user.isAdmin || !$user.isLogged) {
+      $state.go('login');
+      return false;
+    }
 
     $scope.users = [];
+    $scope.user = {};
 
-    $api.getUsers(function(err, res) {
-      if (!err && res.success) {
-        $scope.users = res.users;
-      }
-    });
+    //read
+    $scope.users = Model.get();
 
-    $scope.deleteUser = function(index) {
-      var user = $scope.users[index];
-      var confirmed = $window.confirm('Are you sure?')
-
-      if (confirmed) {
-        $api.deleteUser(user.id, function(err, res) {
-          if (!err) {
-            $scope.users.splice(index, 1);
-          }
-        });
-      }
+    //create
+    $scope.create = function() {
+      $scope.crudType = "create";
     };
 
-    $scope.updateUser = function(index) {
-      $location.path('/database/users/' + $scope.users[index].id + '/update');
+    $scope.submitCreate = function() {
+      Model.create($scope.user).then(function() {
+        $state.go('database.users');
+      });
+    };
+
+    //update
+    $scope.update = function(index) {
+      $scope.crudType = "update";
+      $scope.user = $scope.users[index];
+    };
+
+    $scope.submitUpdate = function() {
+      Model.update($scope.user).then(function() {
+        $state.go('database.users');
+      });
+    };
+
+    //delete
+    $scope.remove = function(index) {
+      var user = $scope.users[index],
+          confirmed = $window.confirm('are you sure?');
+
+      if (confirmed) {
+        Model.delete(user);
+      }
     };
 }]);

@@ -1,33 +1,50 @@
 rippleGatewayApp.controller('GatewayTransactionsCtrl', [
-  '$scope',
-  'UserService',
-  '$location',
-  'ApiService',
-  '$window', function($scope, $user, $location, $api, $window) {
-    if (!$user.isAdmin) {  $location.path('/login') };
+  '$scope', 'UserService', 'ApiService', '$window', '$state', '$timeout',
+    'GatewayTransactionsModel',
+  function($scope, $user, $api, $window, $state, $timeout, Model) {
+    "use strict";
+
+    if (!$user.isAdmin || !$user.isLogged) {
+      $state.go('login');
+      return false;
+    }
 
     $scope.transactions = [];
+    $scope.transaction = {};
 
-    $api.getGatewayTransactions(function(err, res) {
-      if (!err) {
-        $scope.transactions = res.gateway_transactions;
-      }
-    });
+    //read
+    $scope.transactions = Model.get();
 
-    $scope.deleteGatewayTransaction = function(index) {
-      var transaction = $scope.transactions[index];
-      var confirmed = $window.confirm('Are you sure?')
-
-      if (confirmed) {
-        $api.deleteGatewayTransaction(transaction.id, function(err, res) {
-          if (!err) {
-            $scope.transactions.splice(index, 1);
-          }
-        });
-      }
+    //create
+    $scope.create = function() {
+      $scope.crudType = "create";
     };
 
-    $scope.updateGatewayTransaction = function(index) {
-      $location.path('/database/gateway_transactions/' + $scope.transactions[index].id + '/update');
+    $scope.submitCreate = function() {
+      Model.create($scope.transaction).then(function() {
+        $state.go('database.gateway_transactions');
+      });
+    };
+
+    //update
+    $scope.update = function(index) {
+      $scope.crudType = "update";
+      $scope.transaction = $scope.transactions[index];
+    };
+
+    $scope.submitUpdate = function() {
+      Model.update($scope.transaction).then(function() {
+        $state.go('database.gateway_transactions');
+      });
+    };
+
+    //delete
+    $scope.remove = function(index) {
+      var transaction = $scope.transactions[index],
+          confirmed = $window.confirm('are you sure?');
+
+      if (confirmed) {
+        Model.delete(transaction);
+      }
     };
 }]);
