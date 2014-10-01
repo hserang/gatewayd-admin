@@ -10,7 +10,6 @@ rippleGatewayApp.controller('BridgesCtrl', [
     }
 
     $scope.bridges = [];
-    $scope.bridge = {};
 
     //read
     $scope.bridges = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('BridgesCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.bridge = {};
     };
 
     $scope.submitCreate = function() {
@@ -28,13 +28,15 @@ rippleGatewayApp.controller('BridgesCtrl', [
 
     //update
     $scope.update = function(index) {
+      $scope.currentIndex = index;
       $scope.crudType = "update";
-      $scope.bridge = $scope.bridges[index];
+      $scope.bridge = $scope.bridges[index].clone();
     };
 
     $scope.submitUpdate = function() {
       Model.update($scope.bridge).then(function() {
         $state.go('database.bridges');
+        $scope.bridges[$scope.currentIndex] = $scope.bridge;
       });
     };
 

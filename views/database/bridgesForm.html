@@ -1,0 +1,45 @@
+<div>
+  <form class='form-horizontal'>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Source Address ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='bridge.source_address_id' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Destination Address ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='bridge.destination_address_id' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Policy ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='bridge.policy_id' required>
+      </div>
+    </div>
+
+    <div class='form-group has-success'>
+      <label class='col-xs-2 text-success'>Direction</label>
+      <div class='col-xs-10'>
+        <label class='radio-inline text-success'>
+          <input type='radio' name='type' value='to-ripple' ng-model='bridge.direction' required> To Ripple
+        </label>
+        <label class='radio-inline'>
+          <input type='radio' name='type' value='from-ripple' ng-model='bridge.direction'> From Ripple
+        </label>
+      </div>
+    </div>
+
+    <div class='form-group' ng-switch='crudType'>
+      <div class='col-xs-offset-2 col-xs-10'>
+        <button type='submit' class='btn btn-primary' ng-click='submitCreate()' ng-switch-when='create'>Create Bridge</button>
+        <button type='submit' class='btn btn-warning' ng-click='submitUpdate()' ng-switch-when='update'>Update Bridge</button>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,4 +1,4 @@
-<div class='container'>
+<div>
   <form class='form-horizontal'>
 
     <div class='form-group has-success'>
@@ -46,7 +46,7 @@
     <div class='form-group has-success'>
       <label class='col-xs-2 text-success'>To Issuer</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='' ng-model='transaction.to_issuer' required>
+        <input type='text' class='form-control' placeholder='r...' ng-model='transaction.to_issuer' required>
       </div>
     </div>
 
@@ -67,26 +67,70 @@
     <div class='form-group has-success'>
       <label class='col-xs-2 text-success'>From Issuer</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='' ng-model='transaction.from_issuer' required>
+        <input type='text' class='form-control' placeholder='r...' ng-model='transaction.from_issuer' required>
       </div>
     </div>
 
     <div class='form-group'>
-      <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary' ng-click='createRippleTransaction()' ng-show='creating'>Create Ripple Transaction</button>
-        <button type='submit' class='btn btn-warning' ng-click='updateRippleTransaction()' ng-show='!creating'>Update Ripple Transaction</button>
+      <label class='col-xs-2'>UID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.uid'>
       </div>
     </div>
 
-    <div ng-switch='messageState'>
-      <div class='alert alert-success' ng-switch-when='success'>
-        <a href='#/database/external_accounts' class='close' data-dismiss='alert'>&times;</a>
-        <strong>Success!</strong> {{ successMessage }}
+    <div class='form-group'>
+      <label class='col-xs-2'>Data</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.data'>
       </div>
+    </div>
 
-      <div class='alert alert-danger' ng-switch-when='error'>
-        <a href='' class='close' data-dismiss='alert'>&times;</a>
-        <strong>Error!</strong> {{ errorMessage }}
+    <div class='form-group'>
+      <label class='col-xs-2'>State</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.state'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2'>External Transaction ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.external_transaction_id'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2 text-success'>UID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.uid'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2 text-success'>Data</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.data'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2 text-success'>State</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.state'>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <label class='col-xs-2 text-success'>External Transaction ID</label>
+      <div class='col-xs-10'>
+        <input type='text' class='form-control' placeholder='' ng-model='transaction.external_transaction_id'>
+      </div>
+    </div>
+
+    <div class='form-group' ng-switch='crudType'>
+      <div class='col-xs-offset-2 col-xs-10'>
+        <button type='submit' class='btn btn-primary' ng-click='submitCreate()' ng-switch-when='create'>Create Ripple Transaction</button>
+        <button type='submit' class='btn btn-warning' ng-click='submitUpdate()' ng-switch-when='update'>Update Ripple Transaction</button>
       </div>
     </div>
 

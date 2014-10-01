@@ -1,10 +1,10 @@
-<div class='container'>
+<div>
   <form class='form-horizontal'>
 
     <div class='form-group has-success'>
       <label class='col-xs-2 text-success'>Amount</label>
       <div class='col-xs-10'>
-        <input type='text' class='form-control' placeholder='0.001'ng-model='transaction.amount' required>
+        <input type='text' class='form-control' placeholder='0.001' ng-model='transaction.amount' required>
       </div>
     </div>
 
@@ -62,22 +62,10 @@
       </div>
     </div>
 
-    <div class='form-group'>
+    <div class='form-group' ng-switch='crudType'>
       <div class='col-xs-offset-2 col-xs-10'>
-        <button type='submit' class='btn btn-primary' ng-click='createExternalTransaction()' ng-show='creating'>Create External Transaction</button>
-        <button type='submit' class='btn btn-warning' ng-click='updateExternalTransaction()' ng-show='!creating'>Update External Transaction</button>
-      </div>
-    </div>
-
-    <div ng-switch='messageState'>
-      <div class='alert alert-success' ng-switch-when='success'>
-        <a href='#/database/external_accounts' class='close' data-dismiss='alert'>&times;</a>
-        <strong>Success!</strong> {{ successMessage }}
-      </div>
-
-      <div class='alert alert-danger' ng-switch-when='error'>
-        <a href='' class='close' data-dismiss='alert'>&times;</a>
-        <strong>Error!</strong> {{ errorMessage }}
+        <button type='submit' class='btn btn-primary' ng-click='submitCreate()' ng-switch-when='create'>Create External Transaction</button>
+        <button type='submit' class='btn btn-warning' ng-click='submitUpdate()' ng-switch-when='update'>Update External Transaction</button>
       </div>
     </div>
 

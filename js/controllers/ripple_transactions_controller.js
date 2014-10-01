@@ -10,7 +10,6 @@ rippleGatewayApp.controller('RippleTransactionsCtrl', [
     }
 
     $scope.transactions = [];
-    $scope.transaction = {};
 
     //read
     $scope.transactions = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('RippleTransactionsCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.transaction = {};
     };
 
     $scope.submitCreate = function() {
@@ -28,13 +28,15 @@ rippleGatewayApp.controller('RippleTransactionsCtrl', [
 
     //update
     $scope.update = function(index) {
+      $scope.currentIndex = index;
       $scope.crudType = "update";
-      $scope.transaction = $scope.transactions[index];
+      $scope.transaction = $scope.transactions[index].clone();
     };
 
     $scope.submitUpdate = function() {
       Model.update($scope.transaction).then(function() {
         $state.go('database.ripple_transactions');
+        $scope.transactions[$scope.currentIndex] = $scope.transaction;
       });
     };
 

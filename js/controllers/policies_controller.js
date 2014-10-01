@@ -10,7 +10,6 @@ rippleGatewayApp.controller('PoliciesCtrl', [
     }
 
     $scope.policies = [];
-    $scope.policy = {};
 
     //read
     $scope.policies = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('PoliciesCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.policy = {};
     };
 
     $scope.submitCreate = function() {
@@ -28,13 +28,15 @@ rippleGatewayApp.controller('PoliciesCtrl', [
 
     //update
     $scope.update = function(index) {
+      $scope.currentIndex = index;
       $scope.crudType = "update";
-      $scope.policy = $scope.policies[index];
+      $scope.policy = $scope.policies[index].clone();
     };
 
     $scope.submitUpdate = function() {
       Model.update($scope.policy).then(function() {
         $state.go('database.policies');
+        $scope.policies[$scope.currentIndex] = $scope.policy;
       });
     };
 

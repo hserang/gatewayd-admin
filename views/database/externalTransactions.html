@@ -1,6 +1,8 @@
-<div class='container'>
+<div>
   <span class='text-primary'>External Transactions</span>
-  <button class='btn btn-info pull-right' onClick="location.href='#/database/external_transactions/new'">New External Transaction</button>
+  <button class='btn btn-info pull-right' ng-click='create()'
+      ui-sref="database.external_transactions.new">New External Transaction</button>
+  <div ui-view="child-view"></div>
   <table class='table table-striped table-condensed'>
     <thead>
       <th>ID</th>
@@ -30,8 +32,9 @@
         <td>{{ transaction.uid }}</td>
         <td>{{ transaction.data }}</td>
         <td>
-          <input type='button' class='btn btn-warning btn-block' ng-click='updateExternalTransaction($index)' value='Update'>
-          <input type='button' class='btn btn-danger btn-block' ng-click='deleteExternalTransaction($index)' value='Delete'>
+          <input type='button' ui-sref='database.external_transactions.update'
+            class='btn btn-warning btn-block' ng-click='update($index)' value='Update'>
+          <input type='button' class='btn btn-danger btn-block' ng-click='remove($index)' value='Delete'>
         </td>
       </tr>
     </tbody>

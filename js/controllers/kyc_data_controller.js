@@ -10,7 +10,6 @@ rippleGatewayApp.controller('KycDataCtrl', [
     }
 
     $scope.data = [];
-    $scope.datum = {};
 
     //read
     $scope.data = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('KycDataCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.datum = {};
     };
 
     $scope.submitCreate = function() {
@@ -28,13 +28,15 @@ rippleGatewayApp.controller('KycDataCtrl', [
 
     //update
     $scope.update = function(index) {
+      $scope.currentIndex = index;
       $scope.crudType = "update";
-      $scope.datum = $scope.data[index];
+      $scope.datum = $scope.data[index].clone();
     };
 
     $scope.submitUpdate = function() {
       Model.update($scope.datum).then(function() {
         $state.go('database.external_data');
+        $scope.data[$scope.currentIndex] = $scope.datum;
       });
     };
 

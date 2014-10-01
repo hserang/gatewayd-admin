@@ -1,6 +1,8 @@
-<div class='container'>
+<div>
   <span class='text-primary'>KYC Data</span>
-  <button class='btn btn-info pull-right' onClick="location.href='#/database/kyc_data/new'">New KYC Data</button>
+  <button class='btn btn-info pull-right' ui-sref="database.kyc_data.new"
+    ng-click="create()">New KYC Data</button>
+  <div ui-view="child-view"></div>
   <table class='table table-striped table-condensed'>
     <thead>
       <th>ID</th>
@@ -22,8 +24,9 @@
         <td>{{ datum.createdAt }}</td>
         <td>{{ datum.updatedAt }}</td>
         <td>
-          <input type='button' class='btn btn-warning btn-block' ng-click='updateKycDatum($index)' value='Update'>
-          <input type='button' class='btn btn-danger btn-block' ng-click='deleteKycDatum($index)' value='Delete'>
+          <input type='button' ui-sref="database.kyc_data.update"
+            class='btn btn-warning btn-block' ng-click='update($index)' value='Update'>
+          <input type='button' class='btn btn-danger btn-block' ng-click='remove($index)' value='Delete'>
         </td>
       </tr>
     </tbody>

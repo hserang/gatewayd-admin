@@ -10,7 +10,6 @@ rippleGatewayApp.controller('ExternalAccountsCtrl', [
     }
 
     $scope.accounts = [];
-    $scope.account = {};
 
     //read
     $scope.accounts = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('ExternalAccountsCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.account = {};
     };
 
     $scope.submitCreate = function() {
@@ -28,13 +28,15 @@ rippleGatewayApp.controller('ExternalAccountsCtrl', [
 
     //update
     $scope.update = function(index) {
+      $scope.currentIndex = index;
       $scope.crudType = "update";
-      $scope.account = $scope.accounts[index];
+      $scope.account = $scope.accounts[index].clone();
     };
 
     $scope.submitUpdate = function() {
       Model.update($scope.account).then(function() {
         $state.go('database.external_accounts');
+        $scope.accounts[$scope.currentIndex] = $scope.account;
       });
     };
 

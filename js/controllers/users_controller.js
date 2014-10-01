@@ -10,7 +10,6 @@ rippleGatewayApp.controller('UsersCtrl', [
     }
 
     $scope.users = [];
-    $scope.user = {};
 
     //read
     $scope.users = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('UsersCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.user = {};
     };
 
     $scope.submitCreate = function() {
@@ -28,13 +28,15 @@ rippleGatewayApp.controller('UsersCtrl', [
 
     //update
     $scope.update = function(index) {
+      $scope.currentIndex = index;
       $scope.crudType = "update";
-      $scope.user = $scope.users[index];
+      $scope.user = $scope.users[index].clone();
     };
 
     $scope.submitUpdate = function() {
       Model.update($scope.user).then(function() {
         $state.go('database.users');
+        $scope.users[$scope.currentIndex] = $scope.user;
       });
     };
 
