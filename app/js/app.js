@@ -1,8 +1,22 @@
-var rippleGatewayApp = angular.module('rippleGatewayApp', ['ui.router', 'restangular']);
+(function() {
+"use strict";
+
+     //src="/lib/lodash/dist/lodash.underscore.min.js">
+     //src="/lib/angular/angular.min.js">
+     //src="/lib/angular-ui-router/release/angular-ui-router.min.js">
+     //src="/lib/restangular/dist/restangular.min.js">
+
+require('angular');
+
+var uiRouter = require('angular-ui-router');
+var restangular = require('restangular');
+
+console.log("ui", uiRouter);
+
+var rippleGatewayApp = angular.module('rippleGatewayApp', [uiRouter, restangular]);
 
 rippleGatewayApp.config(['$stateProvider', '$urlRouterProvider', 'RestangularProvider',
   function($stateProvider, $urlRouterProvider, RestangularProvider) {
-    "use strict";
 
     // this is a known evil. Will address api at a later date
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
@@ -249,3 +263,7 @@ rippleGatewayApp.config(['$stateProvider', '$urlRouterProvider', 'RestangularPro
         });
   }
 ]);
+
+exports = rippleGatewayApp;
+
+})();

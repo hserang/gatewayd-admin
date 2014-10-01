@@ -1,0 +1,20 @@
+{
+  "name": "gatewayd-admin",
+  "version": "1.8.0",
+  "homepage": "https://github.com/hserang/gatewayd-admin",
+  "authors": [
+    "Haroun Serang <haroun@ripple.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/lib/",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap-sass-official": "~3.2.0+2"
+  }
+}
