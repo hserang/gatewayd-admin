@@ -136,6 +136,12 @@ rippleGatewayApp.service('ApiService', ['$http', function($http) {
       .error(error(fn));
   };
 
+  API.prototype.getUsers = function(fn){
+    $http({method: 'GET', url: '/v1/users'})
+    .success(success(fn))
+    .error(error(fn));
+  };
+  
   return new API();
 
 }]);
