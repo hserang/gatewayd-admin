@@ -17,7 +17,7 @@ rippleGatewayApp.controller('LoginCtrl', [
           if (user.admin) {
             $user.name = 'admin';
             $user.isAdmin = true;
-            $state.go('login');
+            $state.go('overview');
           } else {
             $user.name = user.name;
             $user.id = user.id;
