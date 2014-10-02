@@ -10,7 +10,6 @@ rippleGatewayApp.controller('RippleAddressesCtrl', [
     }
 
     $scope.addresses = [];
-    $scope.address = {};
 
     //read
     $scope.addresses = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('RippleAddressesCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.address = {};
     };
 
     $scope.submitCreate = function() {

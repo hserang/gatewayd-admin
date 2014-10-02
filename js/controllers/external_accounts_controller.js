@@ -10,7 +10,6 @@ rippleGatewayApp.controller('ExternalAccountsCtrl', [
     }
 
     $scope.accounts = [];
-    $scope.account = {};
 
     //read
     $scope.accounts = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('ExternalAccountsCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.account = {};
     };
 
     $scope.submitCreate = function() {

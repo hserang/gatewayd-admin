@@ -10,7 +10,6 @@ rippleGatewayApp.controller('BridgesCtrl', [
     }
 
     $scope.bridges = [];
-    $scope.bridge = {};
 
     //read
     $scope.bridges = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('BridgesCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.bridge = {};
     };
 
     $scope.submitCreate = function() {

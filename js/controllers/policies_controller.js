@@ -10,7 +10,6 @@ rippleGatewayApp.controller('PoliciesCtrl', [
     }
 
     $scope.policies = [];
-    $scope.policy = {};
 
     //read
     $scope.policies = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('PoliciesCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.policy = {};
     };
 
     $scope.submitCreate = function() {
