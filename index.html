@@ -67,8 +67,7 @@
               Welcome, Admin</a>
           </li>
           <li data-ng-hide='user.isLogged' class="btn-group user-menu">
-            <a data-ui-sref="login" class="btn btn-primary dropdown-toggle login"
-              data-toggle="modal" data-target="login">Login</a>
+            <a ui-sref="login" class="login" data-toggle="modal" data-target="login">Login</a>
           </li>
           <li data-ng-hide='user.isLogged' class="btn-group user-menu">
             <a data-ui-sref="register" class="btn btn-primary dropdown-toggle login"
@@ -125,7 +124,7 @@
           </ul>
         </div>
         <div class="col-xs-10">
-          <div id="content" data-ng-view=""></div>
+          <div id="content" data-ui-view=""></div>
         </div>
       </div>
     </div>
