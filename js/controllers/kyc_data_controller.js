@@ -10,7 +10,6 @@ rippleGatewayApp.controller('KycDataCtrl', [
     }
 
     $scope.data = [];
-    $scope.datum = {};
 
     //read
     $scope.data = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('KycDataCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.datum = {};
     };
 
     $scope.submitCreate = function() {

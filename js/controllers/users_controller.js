@@ -10,7 +10,6 @@ rippleGatewayApp.controller('UsersCtrl', [
     }
 
     $scope.users = [];
-    $scope.user = {};
 
     //read
     $scope.users = Model.get();
@@ -18,6 +17,7 @@ rippleGatewayApp.controller('UsersCtrl', [
     //create
     $scope.create = function() {
       $scope.crudType = "create";
+      $scope.user = {};
     };
 
     $scope.submitCreate = function() {
