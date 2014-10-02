@@ -1,74 +1,22 @@
-/*/////////////////////////////////////////////////////////////////////
- // 
- // Custom theme code styles
- // Written by Themelize.me (http://themelize.me)
- // 
- // This is an empty starter template for overriding styles
- // set by Bootstrap & the theme
- // 
- // ----------------------------------------------------
- // 
- // Remove unused code for better performances
- // 
- // ----------------------------------------------------
- // 
- // @see - Usefuls tools online for editing
- // 1. http://charliepark.org/bootstrap_buttons/ - Button style generator
- // 2. http://www.colorzilla.com/gradient-editor/ - CSS3 gradient maker
- // 
- // @note
- // To ensure custom styles are picked up
- // wrap definitions in body tag
- // ie.
- // body .navbar-inner {
- //   background: #ff0000;
- // }
- // 
- /////////////////////////////////////////////////////////////////////*/
-/*
- * --------------------------------------------------
- * 1. General Elements
- *--------------------------------------------------
- */
-#navigation {
-  /* 1. Navigation wrapper */
+.throbber {
+  text-align:center;
+  -webkit-animation: spin 0.7s infinite linear;
+  -moz-animation: spin 0.7s infinite linear;
+  -o-animation: spin 0.7s infinite linear;
+  -ms-animation: spin 0.7s infinite linear;
 }
-#highlighted {
-  /* 2. Highlighted (below header) wrapper */
+a.active {
+  color: #EBEBE8;
+  background-color: #353535;
+  border-color: transparent;
 }
-#content {
-  /* 3. Content wrapper */
+tr {
+  opacity: 0.8
 }
-#content-below {
-  /* 4. Content Below wrapper */
+tr:hover {
+  opacity: 1.0;
+  cursor: pointer;
 }
-#footer {
-  /* 5. Footer wrapper */
+td {
+  color: #999;
 }
-/*
- * --------------------------------------------------
- * 2. Colours
- *-------------------------------------------------- 
- */
-/*
- * --------------------------------------------------
- * 3. Responsiveness/media queries
- *--------------------------------------------------
- */
-/* Extra small devices (phones, less than 768px) */
-/* No media query since this is the default in Bootstrap */
-@media (min-width: 768px) {
-  /* Small devices (tablets, 768px and up) */
-}
-@media (min-width: 992px) {
-  /* Medium devices (desktops, 992px and up) */
-}
-@media (min-width: 1200px) {
-  /* Large devices (large desktops, 1200px and up) */
-}
-/*
- * --------------------------------------------------
- * 4. Misc
- * Other stuff
- *--------------------------------------------------
- */
