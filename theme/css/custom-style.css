@@ -1,3 +1,8 @@
+html,
+body,
+.full-height {
+  height: calc(100%);
+}
 .throbber {
   text-align:center;
   -webkit-animation: spin 0.7s infinite linear;
@@ -10,13 +15,38 @@ a.active {
   background-color: #353535;
   border-color: transparent;
 }
-tr {
-  opacity: 0.8
-}
+tr { opacity: 0.8 }
 tr:hover {
   opacity: 1.0;
   cursor: pointer;
 }
-td {
-  color: #999;
+.sidebar {
+  margin-top: 0;
+  background-color: #f5f5f5;
+}
+.sidebar a {
+}
+.nav-sidebar {
+  margin: 0 -15px 20px -15px;
+}
+
+.navbar-brand {
+  padding-left: 0;
+}
+
+.navbar-brand .brand {
+  color: #fff;
+}
+.navbar-header {
+  float: left;
+}
+
+.navbar-nav {
+  float: right;
+}
+
+.navbar-nav>li,
+#main-menu>li {
+  float: left;
+  border: none;
 }

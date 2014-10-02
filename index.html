@@ -66,7 +66,7 @@
             <a data-ui-sref="users" data-ng-class="{active: path == '/users'}">
               Welcome, Admin</a>
           </li>
-          <li data-ng-hide='user.isLogged' class="user-menu">
+          <li data-ng-hide='user.isLogged' class="btn-group user-menu">
             <a ui-sref="login" class="login" data-toggle="modal" data-target="login">Login</a>
           </li>
           <li data-ng-hide='user.isLogged' class="user-menu">
@@ -124,7 +124,7 @@
           </ul>
         </div>
         <div class="col-xs-10">
-          <div id="content" data-ng-view=""></div>
+          <div id="content" data-ui-view=""></div>
         </div>
       </div>
     </div>
