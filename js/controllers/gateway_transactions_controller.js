@@ -28,13 +28,15 @@ rippleGatewayApp.controller('GatewayTransactionsCtrl', [
 
     //update
     $scope.update = function(index) {
+      $scope.currentIndex = index;
       $scope.crudType = "update";
-      $scope.transaction = $scope.transactions[index];
+      $scope.transaction = $scope.transactions[index].clone();
     };
 
     $scope.submitUpdate = function() {
       Model.update($scope.transaction).then(function() {
         $state.go('database.gateway_transactions');
+        $scope.transactions[$scope.currentIndex] = $scope.transaction;
       });
     };
 

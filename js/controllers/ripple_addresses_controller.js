@@ -28,13 +28,15 @@ rippleGatewayApp.controller('RippleAddressesCtrl', [
 
     //update
     $scope.update = function(index) {
+      $scope.currentIndex = index;
       $scope.crudType = "update";
-      $scope.address = $scope.addresses[index];
+      $scope.address = $scope.addresses[index].clone();
     };
 
     $scope.submitUpdate = function() {
       Model.update($scope.address).then(function() {
         $state.go('database.ripple_addresses');
+        $scope.addresses[$scope.currentIndex] = $scope.address;
       });
     };
 
