@@ -1,0 +1,23 @@
+{
+  "name": "gatewayd-admin",
+  "version": "1.8.0",
+  "homepage": "https://github.com/ripple/gatewayd-admin",
+  "authors": [
+    "Haroun Serang <haroun@ripple.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.11",
+    "lodash": "~2.4.1",
+    "angular": "~1.2.26",
+    "restangular": "~1.4.0"
+  }
+}
